@@ -4,7 +4,12 @@ using namespace std;
 
 int main() {
 	cout << "Hello World this is Michael!";
-	cout << "Itamar, Was here"
+	cout << "Itamar, Was here";
+
+
+
+
+	cout << "Chris SHapiro was here!";
 	return 0;
 }
 
