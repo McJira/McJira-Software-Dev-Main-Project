@@ -1,11 +1,21 @@
 #include <iostream>
-#include "dungeon_game.h"
+#include "Header.h"
+#include "Player.h"
+
 using namespace std;
 
 int main() {
 	
 	Game game;
+	Player player_1;
 	game.start();
+
+	cout << player_1.getHealth() << endl;
+    player_1.takeDamage(15);
+    cout << player_1.getHealth() << endl;
+    player_1.gainHealth(15);
+    cout << player_1.getHealth();
+
 
 	/*
 	cout << "Hello World this is Michael!";
@@ -43,6 +53,7 @@ Be sure to strategize, preserve your health, and items to survive Ian's onslaugh
 
 Dr. Darwish of course would have taken on this mission himself, had he not destroyed his shoulder while moving a car battery.
 Are you up for the task? Of course you are!
+
 )"; // this will be altered as everyone starts working on their code, I'll have to add more info on how the map works and combat works etc.
 
 // Game class
@@ -51,16 +62,11 @@ void Game::displayIntroMessage() {
 }
 void Game::start() {
 	displayIntroMessage();
-	cout << "Now, lets get started!"
+	cout << "Now, lets get started!";
 }
 void Game::renderRoom() {}
 void Game::changeRoom() {}
 void Game::combat() {}
-
-// Player class
-void Player::attackEnemy() {}
-void Player::takeDamage() {}
-void Player::collectItem() {}
 
 // Room class
 void Room::enter() {}

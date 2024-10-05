@@ -13,13 +13,6 @@ private:
     void displayIntroMessage();
 };
 
-class Player {
-public:
-    void attackEnemy();
-    void takeDamage();
-    void collectItem();
-};
-
 class Room {
 public:
     void enter();
