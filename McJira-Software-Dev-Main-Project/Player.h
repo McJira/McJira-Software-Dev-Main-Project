@@ -13,11 +13,11 @@ public:
 	void takeDamage(int);
 	void gainHealth(int);
 
-	//void setMove(string);
+	void setMove(string);
 	void setInitialHealth();
 	//void setCurrentPosition(int);
 
-	//string getMove() const;
+	string getMove() const;
 	int getHealth() const;
 	//int getCurrentPosition() const;
 

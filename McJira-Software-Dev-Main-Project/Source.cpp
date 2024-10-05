@@ -15,6 +15,9 @@ int main() {
     cout << player_1.getHealth() << endl;
     player_1.gainHealth(15);
     cout << player_1.getHealth();
+	player_1.setMove("North");
+	cout << player_1.getMove();
+
 
 
 	/*
