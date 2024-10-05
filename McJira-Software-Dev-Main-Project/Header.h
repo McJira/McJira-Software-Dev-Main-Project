@@ -8,6 +8,9 @@ public:
     void renderRoom();
     void changeRoom();
     void combat();
+
+private:
+    void displayIntroMessage();
 };
 
 class Player {
