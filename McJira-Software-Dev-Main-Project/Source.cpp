@@ -17,7 +17,7 @@ int main() {
     cout << player_1.getHealth() << endl;
     player_1.gainHealth(15);
     cout << player_1.getHealth();
-	player_1.setMove("North");
+	player_1.setMove("South");
 	player_1.getMove();
 	movement.ChangeLocation(player_1.getMove());
 	

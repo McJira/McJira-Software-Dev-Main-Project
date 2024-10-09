@@ -1,16 +1,24 @@
 #include "Movement.h"
 
+void room1(string);
+
 void Movement::ChangeLocation(string move)
 {
+	room1(move);
 
+}
 
-	if (move == "North")
+void room1(string move )
+{
+	if(move == "North")
 	{
-
-		cout << "Going north";
-
+		cout << "You went to the fountain";
 	}
-
+	
+	if (move == "South")
+	{
+		cout << "You went to the mall";
+	}
 
 
 }
