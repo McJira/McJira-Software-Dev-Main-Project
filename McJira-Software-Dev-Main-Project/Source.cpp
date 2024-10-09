@@ -8,6 +8,8 @@ int main() {
 	
 	Game game;
 	Player player_1;
+	Movement movement;
+	
 	game.start();
 
 	cout << player_1.getHealth() << endl;
@@ -16,8 +18,9 @@ int main() {
     player_1.gainHealth(15);
     cout << player_1.getHealth();
 	player_1.setMove("North");
-	cout << player_1.getMove();
-
+	player_1.getMove();
+	movement.ChangeLocation(player_1.getMove());
+	
 
 
 	/*
