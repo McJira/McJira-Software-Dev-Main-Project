@@ -2,6 +2,7 @@
 #define PLAYER_H
 
 #include <iostream>
+#include "Movement.h"
 
 using namespace std;
 
