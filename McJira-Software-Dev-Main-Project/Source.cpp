@@ -1,41 +1,82 @@
 #include <iostream>
-#include "Header.h"
+#include "Room.h"
 #include "Player.h"
+#include "Dialog.h"
 
 using namespace std;
 
+
 int main() {
 	
-	Game game;
-	Player player_1;
-	game.start();
+	
+	string move;
+	string answer;
+	Dialog dialog;
+	Room rooms;
+	Player Player_1;
+	
 
-	cout << player_1.getHealth() << endl;
-    player_1.takeDamage(15);
-    cout << player_1.getHealth() << endl;
-    player_1.gainHealth(15);
-    cout << player_1.getHealth();
-	player_1.setMove("North");
-	cout << player_1.getMove();
+	cout << dialog.getIntroMessage() << endl;
+
+	rooms.getLocation();
+	while (true)
+	{
+		cout << "Choose room side: " << endl;
+		cin >> move;
+		Player_1.setMove(move);
+		rooms.setRoomSide(move);
+		rooms.getLocation();
+		if (rooms.getRoomSide() == "South" || rooms.getRoomSide() == "south")
+		{
+
+			cout << "A door is infront of you, Would you like to enter: " << endl;
+			cin >> answer;
+
+			if (answer == "Yes" || answer == "yes")
+			{
+				rooms.setRoom(2);
+				rooms.setRoomSide("North");
+				rooms.getLocation();
+			}
+			if (answer == "No" || answer == "no")
+			{
+
+				continue;
+
+			}
+
+		}
+
+		if (rooms.getRoomSide() == "North" || rooms.getRoomSide() == "north" && rooms.getRoom() == 2)
+		{
+
+			cout << "A door is behind of you, Would you like to enter: " << endl;
+			cin >> answer;
+
+			if (answer == "Yes" || answer == "yes")
+			{
+				rooms.setRoom(1);
+				rooms.setRoomSide("South");
+				rooms.getLocation();
+			}
+			if (answer == "No" || answer == "no")
+			{
+
+				continue;
+
+			}
+
+
+		}
+
+		
 
 
 
-	/*
-	cout << "Hello World this is Michael!";
-	cout << "Itamar, Was here";
-	cout << "Ryan was here";
+	}
 
-	cout << "Anthony was here";
 
-	cout << "Justine is here"
 
-	Testing branches for player movement - Anthony Gonzalez
-
-	cout << "Chris SHapiro was here!";
-
-	// testing movement branch num 2
-
-	*/
 	
 	return 0;
 }
@@ -45,27 +86,10 @@ int main() {
 // We have one mission, find Ian, get past his goons, and kill him before he destroys FDU
 // Professors will act as CPUs, they'll give u advice on where they last saw Ian, give u items/keys/health, or help you move through rooms
 
-const string introMessage = R"(Welcome to Devils Gone Wild, a dungeon adventure game!
-
-You find yourself in the Math/CS Department in the Zenn at FDU. 
-
-Dr. Darwish has just given you an important mission. 
-Last summer, a few of his students took on a project to build Ian, our mascot, a robot exoskeleton. One that could engage with students full time.
-However, soon after those students had graduated, Ian 2.0 begun to make decisions on his own. He has begun creating his own minions, setting traps, and has hidden himself away somewhere in FDU.
-
-As you make your way through FDU, be careful. Each room may hold enemies, traps, or items to assist you.
-Each time you clear a room, you will be given a list of options on where to go next.
-Keep an eye out for other professors along the way, they may give you items and hints on where to go next.
-
-The combat in this game is turn based, you may choose between fighting, using an item, or running to fight another day!
-Be sure to strategize, preserve your health, and items to survive Ian's onslaught. 
-
-Dr. Darwish of course would have taken on this mission himself, had he not destroyed his shoulder while moving a car battery.
-Are you up for the task? Of course you are!
-
-)"; // this will be altered as everyone starts working on their code, I'll have to add more info on how the map works and combat works etc.
+ // this will be altered as everyone starts working on their code, I'll have to add more info on how the map works and combat works etc.
 
 // Game class
+/*
 void Game::displayIntroMessage() {
 	cout << introMessage << endl;
 }
@@ -78,7 +102,7 @@ void Game::changeRoom() {}
 void Game::combat() {}
 
 // Room class
-void Room::enter() {}
+//void Room::enter() {}
 
 // Enemy class
 void Enemy::takeDamage() {}
@@ -93,3 +117,4 @@ void Trap::trigger() {}
 // Inventory class
 void Inventory::addItem() {}
 void Inventory::removeItem() {}
+*/

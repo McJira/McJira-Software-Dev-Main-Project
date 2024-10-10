@@ -13,10 +13,12 @@ private:
     void displayIntroMessage();
 };
 
+/*
 class Room {
 public:
     void enter();
 };
+*/
 
 class Enemy {
 public:
