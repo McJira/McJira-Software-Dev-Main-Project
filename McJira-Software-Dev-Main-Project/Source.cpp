@@ -16,9 +16,14 @@ int main() {
 	Player Player_1;
 	
 
+
 	cout << dialog.getIntroMessage() << endl;
 
-	rooms.getLocation();
+
+
+
+	dialog.dialogArray(rooms.getRoom());
+
 	while (true)
 	{
 		cout << "Choose room side: " << endl;
@@ -74,6 +79,7 @@ int main() {
 
 
 	}
+	
 
 
 

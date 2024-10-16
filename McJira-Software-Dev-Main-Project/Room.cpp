@@ -1,5 +1,5 @@
 #include "Room.h"
-
+#include "Dialog.h"
 
 
 void Room::setRoom(int roomNumber)

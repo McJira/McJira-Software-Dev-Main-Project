@@ -11,12 +11,23 @@ class Dialog
 public:
 
 	string getIntroMessage();
+	// A dialog array to contain all dialog, input using an integar to signify, room and side
+	string dialogArray(int);
 	
 
 
 private:
 
-	const string introMessage = R"(Welcome to Devils Gone Wild, a dungeon adventure game!
+	const string ROOM_1_NORTH = R"(A Lamp is in front of you)";
+	const string ROOM_1_SOUTH = R"(A door lies infront of you would you like to enter)";
+	const string ROOM_1_EAST = R"(A Knife is in front of you)";
+	const string ROOM_1_WEST = R"(A Light is in front of you)";
+
+
+
+
+
+	const string INTROMESSAGE = R"(Welcome to Devils Gone Wild, a dungeon adventure game!
 
 You find yourself in the Math/CS Department in the Zenn at FDU. 
 
@@ -36,7 +47,9 @@ Are you up for the task? Of course you are!
 
 )";
 
+	//array to store all discriptions
 
+	string discriptionsArray[4] = { ROOM_1_NORTH,ROOM_1_SOUTH,ROOM_1_EAST,ROOM_1_WEST};
 
 
 
