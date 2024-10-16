@@ -4,20 +4,34 @@
 #include "Item.h"
 using namespace std;
 
-//Area class definition
+// Area class definition
 class Area {
 private:
-    string AreaName;        //Name of the area (e.g., "Kitchen", "Bedroom")
-    string AreaDescription; //A description of the area
-    int Size;               //Size of the area in square meters (or any unit)
-    Item Items[10];         //Array to hold Item objects (max 10 items)
-    int ItemCount;          //Tracks the current number of items in the area
+    string AreaName;        // Name of the area (e.g., "Kitchen", "Bedroom")
+    string AreaDescription; // A description of the area
+    int Size;               // Size of the area in square meters (or any unit)
+    Item Items[10];         // Array to hold Item objects (max 10 items)
+    int ItemCount;          // Tracks the current number of items in the area
+    string rooms[5];
 
 public:
-    // Constructor to initialize the area
+
+    // Default constructor
+    Area() : AreaName("Unnamed"), AreaDescription("No description available"), Size(0), ItemCount(0) {}
+
+    // Constructor to initialize the area with specific values
     Area(const string& name, const string& description, int size)
         : AreaName(name), AreaDescription(description), Size(size), ItemCount(0) {}
 
+
+// Setter for rooms
+    void SetRooms(const string rooms[], int size) {
+        // Ensure that size does not exceed the maximum capacity of the rooms array
+        int limit = (size < 5) ? size : 5;
+        for (int i = 0; i < limit; i++) {
+            this->rooms[i] = rooms[i]; // Copy each room individually
+        }
+    }
     // Getter for AreaName
     string GetAreaName() const {
         return AreaName;
@@ -49,6 +63,7 @@ public:
     }
 
     // Method to add an Item to the area
+    /*
     bool AddItem(const Item& item) {
         if (ItemCount < 10) {               // Check if there is space for more items
             Items[ItemCount++] = item;      // Add the item and increment ItemCount
@@ -59,7 +74,7 @@ public:
             return false;
         }
     }
-
+    */
     // Method to display the items in the area
     void DisplayItems() const {
         cout << "Items in " << AreaName << ":" << endl;
@@ -85,19 +100,25 @@ public:
 };
 
 int main() {
-    // Create an Area object
+    // Create an Area object using the default constructor
+    Area defaultArea;
+
+    // Display default area information
+    defaultArea.DisplayAreaInfo();
+
+    // Create an Area object using the parameterized constructor
     Area kitchen("Kitchen", "A modern kitchen with stainless steel appliances", 20);
 
     // Create some Item objects
-    Item sword(101, "Magic Sword", 10, "A mystical sword with incredible power.");
-    Item potion(102, "Health Potion", 5, "Restores health when consumed.");
+    //Item sword(101, "Magic Sword", 10, "A mystical sword with incredible power.");
+    //Item potion(102, "Health Potion", 5, "Restores health when consumed.");
 
     // Add items to the area
-    kitchen.AddItem(sword);
-    kitchen.AddItem(potion);
+   // kitchen.AddItem(sword);
+    //kitchen.AddItem(potion);
 
     // Display area information and its items
-    kitchen.DisplayAreaInfo();
+   // kitchen.DisplayAreaInfo();
 
     return 0;
 }

@@ -1,7 +1,7 @@
 #pragma once
 #ifndef DUNGEON_GAME_H
 #define DUNGEON_GAME_H
-
+/*
 class Game {
 public:
     void start();
@@ -9,7 +9,7 @@ public:
     void changeRoom();
     void combat();
 
-private:
+
     void displayIntroMessage();
 };
 
@@ -24,10 +24,7 @@ public:
     void attackPlayer();
 };
 
-class Item {
-public:
-    void use();
-};
+
 
 class Trap {
 public:
@@ -39,5 +36,5 @@ public:
     void addItem();
     void removeItem();
 };
-
+*/
 #endif // DUNGEON_GAME_H
