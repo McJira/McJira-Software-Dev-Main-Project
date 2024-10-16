@@ -3,6 +3,7 @@
 using namespace std;
 
 // Item class definition
+/*
 class Item {
 private:
     int ItemID;            // The item's ID which can be used to reference the item in the catalog
@@ -63,3 +64,4 @@ public:
         cout << "Description: " << ItemDescription << endl;
     }
 };
+*/

@@ -1,16 +1,20 @@
+
 #pragma once
 #include <iostream>
 #include <string>
 #include "Item.h"
 using namespace std;
 
-// Area class definition
-class Area {
+// class definition
+class Area
+
+
+{
 private:
     string AreaName;        // Name of the area (e.g., "Kitchen", "Bedroom")
     string AreaDescription; // A description of the area
     int Size;               // Size of the area in square meters (or any unit)
-    Item Items[10];         // Array to hold Item objects (max 10 items)
+   // Item Items[10];         // Array to hold Item objects (max 10 items)
     int ItemCount;          // Tracks the current number of items in the area
     string rooms[5];
 
@@ -63,18 +67,9 @@ public:
     }
 
     // Method to add an Item to the area
-    /*
-    bool AddItem(const Item& item) {
-        if (ItemCount < 10) {               // Check if there is space for more items
-            Items[ItemCount++] = item;      // Add the item and increment ItemCount
-            return true;
-        }
-        else {
-            cout << "No more space in the area to add items!" << endl;
-            return false;
-        }
-    }
-    */
+    
+
+    
     // Method to display the items in the area
     void DisplayItems() const {
         cout << "Items in " << AreaName << ":" << endl;
@@ -84,14 +79,15 @@ public:
         else {
             for (int i = 0; i < ItemCount; i++) {
                 cout << "Item " << (i + 1) << ":" << endl;
-                Items[i].DisplayItem();
+                //Items[i].DisplayItem();
                 cout << endl;
             }
         }
     }
 
     // Method to display area information
-    void DisplayAreaInfo() const {
+    void DisplayAreaInfo()
+        const {
         cout << "Area Name: " << AreaName << endl;
         cout << "Description: " << AreaDescription << endl;
         cout << "Size: " << Size << " square meters" << endl;
@@ -99,7 +95,7 @@ public:
     }
 };
 
-int main() {
+int main() {/*
     // Create an Area object using the default constructor
     Area defaultArea;
 
@@ -120,5 +116,5 @@ int main() {
     // Display area information and its items
    // kitchen.DisplayAreaInfo();
 
-    return 0;
+    return 0;*/
 }

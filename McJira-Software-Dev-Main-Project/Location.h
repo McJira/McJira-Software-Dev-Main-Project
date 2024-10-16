@@ -1,7 +1,13 @@
+/*
 #include <iostream>
 #include <string>
 #include "Item.h"
-#include "Area.h"
+#include "
+
+
+
+
+.h"
 using namespace std;
 
 class Location {
@@ -15,7 +21,10 @@ private:
     string Terrain;        // Type of terrain (e.g., mountain, desert, forest)
     string Climate;        // General climate (e.g., tropical, dry)
    // const int NumberofRooms = 1;
- //   Area rooms[1];
+ //   
+
+
+ rooms[1];
 
 
 public:
@@ -91,3 +100,4 @@ public:
         return Climate;
     }
 };
+*/
