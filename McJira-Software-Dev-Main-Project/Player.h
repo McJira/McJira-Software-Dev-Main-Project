@@ -9,18 +9,24 @@ class Player
 {
 public:
 
+	//Setter Functions
+	void TakeDamage(int);
+	void GainHealth(int);
+	void SetPlayerAxisX(int);
+	void SetPlayerAxisY(int);
+	void SetMove(string);
+	void SetInitialHealth();
 
-	void takeDamage(int);
-	void gainHealth(int);
+	//Getter Functions
+	string GetMove() const;
+	int GetHealth() const;
+	int GetPlayerAxisX() const;
+	int GetPlayerAxisY() const;
+	
+	//Other Functions
+	void PlayerMovement(string);
 
-	void setMove(string);
-	void setInitialHealth();
-	//void setCurrentPosition(int);
-
-	string getMove() const;
-	int getHealth() const;
-	//int getCurrentPosition() const;
-
+	//Constructors
 	Player();
 	~Player();
 
@@ -28,6 +34,8 @@ private:
 
 	int maxHealth = 100;
 	int currentHealth;
+	int playerAxisXLocation;
+	int playerAxisYLocation;
 	string move;
 
 
