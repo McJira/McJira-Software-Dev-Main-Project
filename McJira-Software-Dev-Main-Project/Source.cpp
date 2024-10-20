@@ -9,6 +9,7 @@ using namespace std;
 int main() {
 
 	
+	
 	string playerInput;
 	InputValidation inputValid;
 
@@ -17,6 +18,7 @@ int main() {
 	Dialog dialog;
 	Map dungeonMap;
 
+	dialog.DisplayRoomSideDescription("s");
 	dialog.GetIntroMessage();
 	dungeonMap.DisplayMap(player_1.GetPlayerAxisX(), player_1.GetPlayerAxisY());
 
