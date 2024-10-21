@@ -8,8 +8,6 @@ using namespace std;
 class Map {
 private:
     Room dungeon[2][2]; //2x2 grid of Room objects (4 rooms)
-    int playerX;        //player current X position
-    int playerY;        //player current Y position
 
 public:
     //constructor to create the map with 4 rooms

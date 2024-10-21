@@ -18,7 +18,9 @@ int main() {
 	Dialog dialog;
 	Map dungeonMap;
 
-	dialog.DisplayRoomSideDescription("s");
+	//tests if DisplayRoomSideDescription works, for more info on the function, view Dialog.h
+	cout << dialog.DisplayRoomSideDescription(0,"n");
+
 	dialog.GetIntroMessage();
 	dungeonMap.DisplayMap(player_1.GetPlayerAxisX(), player_1.GetPlayerAxisY());
 

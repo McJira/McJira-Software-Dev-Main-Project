@@ -9,9 +9,13 @@ class Dialog {
 
 public:
 
-    static const string lobbyDescriptions[4];
+    //Function to display introduction message
 	void SetIntroMessage(string);
-    string DisplayRoomSideDescription(string);
+    //Setter for the descriptions array
+    void SetUpDescriptionsArray();
+    //function to display room side description to the player - takes an int for the room number and a string - which will be converted to int within the method - for room side 
+    string DisplayRoomSideDescription(int,string);
+    //Function to display introduction message to player
 	string GetIntroMessage() const;
     Dialog();
 
@@ -46,11 +50,15 @@ private:
 	  making you shiver. As you Enter the mansion, you feel a cold air rise around you. You walk into the room and as you do, 
 	  the doors behind you lock, you desperately try to open them but to no avail, and you realise that you are locked in the mansion)";
 
-    //Descriptions for lobby Sides.
-    static const string LOBBY_EAST; 
-    static const string LOBBY_WEST;
-    static const string LOBBY_NORTH;
-    static const string LOBBY_SOUTH;
+    //Descriptions for lobby Sides
+    const string LOBBY_EAST = "You are in the eastern side of the lobby, locked doors are infront of you, a sign above says Advising Office\n";
+    const string LOBBY_NORTH = "You are in the northern side of the lobby, a long hallway is infront of you, to your left a door lay open, a key positioned under it\n";
+    const string LOBBY_SOUTH = "You are in the southern side of the lobby, infront of you is a broken stairway, going up, under it lays another stairway going down, locked by gate, a key hole situated inside\n";
+    const string LOBBY_WEST = "You are in the western side of the lobby, double doors lay behind you, to your right lay a couch and a table\n";
+    //An array to hold room descritions - to be manually enlarged when more room descriptions are added - row stand for Room number - i.e lobby - column stand for side - i.e north.
+    string roomDescriptions[4][1];
+
+
 
 
        
