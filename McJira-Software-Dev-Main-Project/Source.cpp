@@ -9,7 +9,7 @@ using namespace std;
 int main() {
 
 	
-	
+
 	string playerInput;
 	InputValidation inputValid;
 
@@ -25,11 +25,19 @@ int main() {
 	dungeonMap.DisplayMap(player_1.GetPlayerAxisX(), player_1.GetPlayerAxisY());
 
 	while (true) {
+		cout << "Enter 'Stats' to view player stats: ";
 		cin >> playerInput;
 		inputValid.ToLowerCase(playerInput);
 		if (playerInput == "m")
 		{
 			dungeonMap.DisplayMap(player_1.GetPlayerAxisX(), player_1.GetPlayerAxisY());
+		}
+
+		else if (playerInput == "Stats")
+		{
+
+			player_1.DisplayStats();
+
 		}
 		else
 		{
@@ -37,6 +45,7 @@ int main() {
 		}
 	}
 
+	return 0;
 
 }
 

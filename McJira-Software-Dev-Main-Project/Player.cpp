@@ -27,6 +27,9 @@ void Player::GainHealth(int healAmmount)
 
 }
 
+
+
+
 //Sets the players move based on input
 void Player::SetMove(string move)
 {
@@ -67,6 +70,21 @@ int Player::GetPlayerAxisY() const {
 	return playerAxisYLocation;
 
 }
+
+int Player::GetAttackPower() const
+
+{
+    return attackPower;
+}
+
+// Displays the player's stats (health and attack power)
+void Player::DisplayStats() const
+{
+    cout << "Player Stats:" << endl;
+    cout << "Health: " << currentHealth << "/" << maxHealth << endl;
+    cout << "Attack Power: " << attackPower << endl;
+}
+
 
 void Player::PlayerMovement(string inputDirection) {  //function to prompt the user for movement move
     cout << "Enter direction (north, south, east, west, n, s, e, w) or 'm' to view the map: ";
