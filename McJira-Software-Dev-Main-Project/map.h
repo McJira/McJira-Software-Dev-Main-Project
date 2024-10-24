@@ -22,6 +22,10 @@ public:
     //function to convert a string to lowercase so that the case does not matte  
 
     void DisplayMap(int,int) const;
+    void GetRoomDescription(int x, int y) const
+    {
+        return dungeon[x][y].DisplayRoomInfo();
+    }
 };
 
 

@@ -40,6 +40,7 @@ int main() {
 		else
 		{
 			player_1.PlayerMovement(playerInput);
+			dungeonMap.GetRoomDescription(player_1.GetPlayerAxisX(), player_1.GetPlayerAxisY());
 		}
 	}
 
