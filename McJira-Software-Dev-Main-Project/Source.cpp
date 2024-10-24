@@ -22,7 +22,7 @@ int main() {
 	dungeonMap.DisplayMap(player_1.GetPlayerAxisX(), player_1.GetPlayerAxisY());
 
 	while (true) {
-		cout << "Enter direction a direction, 'm' to view the map, or stats for your player's stats: " << endl;
+		cout << "Enter either 'stats', 'm', or the direction you'd like to head next: " << endl;
 		getline(cin, playerInput); // changed this to getline because it makes more sense
 		inputValid.ToLowerCase(playerInput);
 

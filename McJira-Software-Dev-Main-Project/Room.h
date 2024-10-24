@@ -40,6 +40,6 @@ public:
     
     void DisplayRoomInfo() const {//method to display room information
         cout << "Room Name: " << RoomName << endl;
-        cout << "Room Description: " << RoomDescription << endl;
+        cout << RoomDescription << endl;
     }
 };

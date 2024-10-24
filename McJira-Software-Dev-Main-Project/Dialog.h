@@ -29,7 +29,8 @@ You find yourself in the Math/CS Department in the Zenn at FDU.
 
 Dr. Darwish has just given you an important mission. 
 Last summer, a few of his students took on a project to build Ian, our mascot, a robot exoskeleton. One that could engage with students full time.
-However, soon after those students had graduated, Ian 2.0 begun to make decisions on his own. He has begun creating his own minions, setting traps, and has hidden himself away somewhere in the FDU Mansion.
+However, soon after those students had graduated, Ian 2.0 begun to make decisions on his own. 
+He has begun creating his own minions, setting traps, and has hidden himself away somewhere in the FDU Mansion.
 
 As you make your way through the mansion, be careful. Each room may hold enemies, traps, or items to assist you.
 Each time you clear a room, you will be given a list of options on where to go next.
@@ -46,10 +47,16 @@ If you'd like to check out your players stats, type stats!
 And if you dont remember where you are, just type m for map!
 Pay attention to any words in UPPERCASE, you can interact with them! Just type that uppercase word into the console.
 
+----------------------------------------------------------------------------------------------------------------------
+
+You leave the CS/Math department and head over to the mansion. It's dark, the wind is howling and you shiver violently.
+Infront of you is a large wooden door. As you push it open, it squeaks, cutting through the silence.
+You instantly want to turn back, but you realize the door has locked behind you! You desperately try to open it, but to no avail.
+There is no other option but to continue deeper into the mansion.
+
   )";
-    /*
     
-    Moved all the into below into Map.H 
+    //Moved all the into below into Map.H 
 
 	const string ROOM1DESCRIPTION = R"(Infront of you lay large wooden doors, you push them open, you hear their wood sqiuck, 
 	  making you shiver. As you Enter the mansion, you feel a cold air rise around you. You walk into the room and as you do, 
@@ -62,6 +69,5 @@ Pay attention to any words in UPPERCASE, you can interact with them! Just type t
     const string LOBBY_WEST = "You are in the western side of the lobby, double doors lay behind you, to your right lay a couch and a table\n";
     //An array to hold room descritions - to be manually enlarged when more room descriptions are added - row stand for Room number - i.e lobby - column stand for side - i.e north.
     string roomDescriptions[4][1];
-    */
 
 };
