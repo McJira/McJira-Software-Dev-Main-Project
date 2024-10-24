@@ -19,6 +19,21 @@ public:
 	string GetIntroMessage() const;
     Dialog();
 
+    // below are all the descriptions for when you pick up an item
+    string GetKeyDescription() const
+    {
+        return "You find a small, rusty key that looks like it can open a door.\n";
+    }
+
+    string GetIanDescription() const
+    {
+        return "Uh oh, you've challenged Ian to a duel. Let's hope you're prepared.\n";
+    }
+
+    string GetSwordDescription() const
+    {
+        return "Professor Vallone sees you eyeing his sword, eagerly\nHe speaks, 'Are you the student they've sent to fix this Ian mess? Well, you're gonna need this.'\nVallone passes you his sword. You grip it tightly.\nHe also offers you apples and cookies, but you aren't hungry.\n";
+    }
 
 private:
 
@@ -55,6 +70,10 @@ You instantly want to turn back, but you realize the door has locked behind you!
 There is no other option but to continue deeper into the mansion.
 
   )";
+
+    const string KEYDESCRIPTION = "";
+    const string IANDESCRIPTION = "";
+    const string SWORDDESCRIPTION = "";
     
     //Moved all the into below into Map.H 
 

@@ -39,6 +39,18 @@ int main() {
 			player_1.DisplayStats();
 
 		}
+		else if (playerInput == "key")
+		{
+			cout << dialog.GetKeyDescription();
+		}
+		else if (playerInput == "ian")
+		{
+			cout << dialog.GetIanDescription();
+		}
+		else if (playerInput == "sword")
+		{
+			cout << dialog.GetSwordDescription();
+		}
 		else
 		{
 			player_1.PlayerMovement(playerInput);
