@@ -7,33 +7,31 @@
 using namespace std;
 
 int main() {
-
-	
-
 	string playerInput;
 	InputValidation inputValid;
 
 	Player player_1;
-	
 	Dialog dialog;
 	Map dungeonMap;
 
-	//tests if DisplayRoomSideDescription works, for more info on the function, view Dialog.h
+	// Displays intro message
+	cout << dialog.GetIntroMessage();
+	// Tests if DisplayRoomSideDescription works, for more info on the function, view Dialog.h
 	cout << dialog.DisplayRoomSideDescription(0,"n");
 
-	dialog.GetIntroMessage();
 	dungeonMap.DisplayMap(player_1.GetPlayerAxisX(), player_1.GetPlayerAxisY());
 
 	while (true) {
 		cout << "Enter 'Stats' to view player stats: ";
-		cin >> playerInput;
+		getline(cin, playerInput); // changed this to getline because it makes more sense
 		inputValid.ToLowerCase(playerInput);
+
 		if (playerInput == "m")
 		{
 			dungeonMap.DisplayMap(player_1.GetPlayerAxisX(), player_1.GetPlayerAxisY());
 		}
 
-		else if (playerInput == "Stats")
+		else if (playerInput == "stats")
 		{
 
 			player_1.DisplayStats();

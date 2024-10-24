@@ -27,9 +27,6 @@ void Player::GainHealth(int healAmmount)
 
 }
 
-
-
-
 //Sets the players move based on input
 void Player::SetMove(string move)
 {
@@ -51,8 +48,6 @@ void Player::SetPlayerAxisY(int playerAxisYLocation) {
 	this->playerAxisYLocation = playerAxisYLocation;
 
 }
-
-
 
 //Returns the current health of the player
 int Player::GetHealth() const
@@ -89,8 +84,6 @@ void Player::DisplayStats() const
 void Player::PlayerMovement(string inputDirection) {  //function to prompt the user for movement move
     cout << "Enter direction (north, south, east, west, n, s, e, w) or 'm' to view the map: ";
 
-
-    
     if ((inputDirection == "north" || inputDirection == "n") && GetPlayerAxisY() > 0) {      //handle movement based on the direction entered, also makes sure the move is within the array.
         SetPlayerAxisY(GetPlayerAxisY() - 1);
     }
