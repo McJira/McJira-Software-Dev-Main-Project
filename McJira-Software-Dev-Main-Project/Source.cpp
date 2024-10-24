@@ -42,14 +42,17 @@ int main() {
 		else if (playerInput == "key")
 		{
 			cout << dialog.GetKeyDescription();
+			// here we have to make it so that when you grab the key it goes into your inventory
 		}
 		else if (playerInput == "ian")
 		{
 			cout << dialog.GetIanDescription();
+			// this triggers the final boss sequence. we might wanna make it to where if the user doesnt pick up vallones sword they instantly die if they interact with ian
 		}
 		else if (playerInput == "sword")
 		{
 			cout << dialog.GetSwordDescription();
+			// needs to add sword to inventory and also update the amount of damage the player does now that they have a sword
 		}
 		else
 		{
