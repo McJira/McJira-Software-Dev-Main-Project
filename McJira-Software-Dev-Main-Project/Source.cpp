@@ -16,13 +16,13 @@ int main() {
 
 	// Displays intro message
 	cout << dialog.GetIntroMessage();
-	// Tests if DisplayRoomSideDescription works, for more info on the function, view Dialog.h
-	cout << dialog.DisplayRoomSideDescription(0,"n");
+	// changed it to GetRoomDesc can be found in Map.h
+	dungeonMap.GetRoomDescription(player_1.GetPlayerAxisX(), player_1.GetPlayerAxisY());
 
 	dungeonMap.DisplayMap(player_1.GetPlayerAxisX(), player_1.GetPlayerAxisY());
 
 	while (true) {
-		cout << "Enter 'Stats' to view player stats: ";
+		cout << "Enter direction a direction, 'm' to view the map, or stats for your player's stats: " << endl;
 		getline(cin, playerInput); // changed this to getline because it makes more sense
 		inputValid.ToLowerCase(playerInput);
 

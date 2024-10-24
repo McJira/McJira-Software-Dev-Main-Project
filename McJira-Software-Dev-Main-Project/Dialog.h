@@ -41,7 +41,15 @@ Be sure to strategize, preserve your health, and items to survive Ian's onslaugh
 Dr. Darwish of course would have taken on this mission himself, had he not destroyed his shoulder while moving a car battery.
 Are you up for the task? Of course you are!
 
+To move through the dungeon, type the direction you want to head (north, south, east, west, n, s, e, w).
+If you'd like to check out your players stats, type stats!
+And if you dont remember where you are, just type m for map!
+Pay attention to any words in UPPERCASE, you can interact with them! Just type that uppercase word into the console.
+
   )";
+    /*
+    
+    Moved all the into below into Map.H 
 
 	const string ROOM1DESCRIPTION = R"(Infront of you lay large wooden doors, you push them open, you hear their wood sqiuck, 
 	  making you shiver. As you Enter the mansion, you feel a cold air rise around you. You walk into the room and as you do, 
@@ -54,14 +62,6 @@ Are you up for the task? Of course you are!
     const string LOBBY_WEST = "You are in the western side of the lobby, double doors lay behind you, to your right lay a couch and a table\n";
     //An array to hold room descritions - to be manually enlarged when more room descriptions are added - row stand for Room number - i.e lobby - column stand for side - i.e north.
     string roomDescriptions[4][1];
-
-
-
-
-       
-
-	
-
-
+    */
 
 };
