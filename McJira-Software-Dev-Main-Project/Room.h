@@ -20,26 +20,16 @@ public:
     Room(const string& name, const string& description)
         : RoomName(name), RoomDescription(description){}    //constructor to initialize the room with specific values
 
-    string GetRoomName() const { //getter for RoomName
-        return RoomName;
-    }
-
-
-    void SetRoomName(const string& name) { //setter for RoomName
-        RoomName = name;
-    }
-
-    string GetRoomDescription() const { // getter for RoomDesc
-        return RoomDescription;
-    }
-
-    void SetRoomDescription(const string& description) { // setter for RoomDesc
-        RoomDescription = description;
-    }
-
+    string GetRoomName() const;
     
-    void DisplayRoomInfo() const {//method to display room information
-        cout << "Room Name: " << RoomName << endl;
-        cout << RoomDescription << endl;
-    }
+
+
+    void SetRoomName(const string& name); 
+
+    string GetRoomDescription() const; 
+
+    void SetRoomDescription(const string& description); 
+    
+    void DisplayRoomInfo() const;
+
 };

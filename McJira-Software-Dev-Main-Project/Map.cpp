@@ -17,3 +17,9 @@ void Map::DisplayMap(int playerAxisX, int playerAxisY) const {
         cout << endl;
     }
 }
+
+void Map::GetRoomDescription(int x, int y) const{
+    cout << endl;
+    return dungeon[x][y].DisplayRoomInfo();
+
+}

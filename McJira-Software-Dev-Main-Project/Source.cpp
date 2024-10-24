@@ -29,6 +29,8 @@ int main() {
 		if (playerInput == "m")
 		{
 			dungeonMap.DisplayMap(player_1.GetPlayerAxisX(), player_1.GetPlayerAxisY());
+			dungeonMap.GetRoomDescription(player_1.GetPlayerAxisX(), player_1.GetPlayerAxisY());
+
 		}
 
 		else if (playerInput == "stats")
