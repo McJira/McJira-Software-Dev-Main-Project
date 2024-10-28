@@ -1,3 +1,7 @@
+#ifndef ITEM_H
+#define ITEM_H
+
+
 #include <iostream>
 #include <string>
 using namespace std;
@@ -6,6 +10,9 @@ using namespace std;
 
 class Item {
 private:
+
+    
+
     int ItemID;            // The item's ID which can be used to reference the item in the catalog
     string ItemName;       // Item's name
     int UseCount;          // How many times the item can be used until it breaks or is depleted
@@ -14,6 +21,8 @@ private:
 public:
     // Constructor for Item
     Item(int,const string&,int,const string&);
+
+    Item();
 
     // Setter for ItemName
     void SetItemName(const string& name);
@@ -42,3 +51,6 @@ public:
     // Setter for ItemID
     void SetItemID(int id);
 };
+
+#endif //ITEM_H
+

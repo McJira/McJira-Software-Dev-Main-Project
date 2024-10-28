@@ -1,3 +1,5 @@
+#pragma once
+
 #include "Item.h"
 
 void Item::DisplayItem() const{
@@ -46,3 +48,8 @@ int Item::GetItemID() const {
 
 Item::Item(int id = -1, const string& name = "", int count = 0, const string& description = "")
     : ItemID(id), ItemName(name), UseCount(count), ItemDescription(description) {};
+
+Item::Item()
+{
+
+}
