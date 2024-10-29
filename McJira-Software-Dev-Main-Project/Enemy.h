@@ -11,18 +11,20 @@ private:
 	//Define the Enemies attribute variables: Health, Attack Damage, Name and their introduction
 	double health;
 	double attackDamage;
+	string enemyName;
 	string enemyIntro;
+	string enemyOutro;
 	
 
 public:
 	//Default constructor for a default enemy
-	Enemy() : health(25.0), attackDamage(12.0), enemyIntro("Prepare to fight!") {}
+	Enemy();
 
 	//Constructor to create custom enemies
-	Enemy(double h, double dmg, string name, string intro) : health(h), attackDamage(dmg), enemyIntro(intro) {}
+	Enemy(double h, double dmg, string name, string intro, string outro);
 
 	//Deconstructor for after enemy is defeated
-	~Enemy() {}
+	~Enemy();
 
 	//Getter function for the health of the enemy
 	double getHealth() const; 
@@ -36,9 +38,24 @@ public:
 	//Setter function for the attack damage of the enemy
 	void setAttackDamage(double dmg);
 
+	//Getter function for the name of the enemy
+	string getEnemyName() const;
+
+	//Setter function for the name of the enemy
+	void setenemyName(const string& name);
+
 	//Getter function for the introduction of the enemy
 	string getEnemyIntro() const;
 
 	//Setter function for the introduction of the enemy
 	void setenemyIntro(const string& intro);
+
+	//Getter function for the outro of the enemy
+	string getEnemyOutro() const;
+
+	//Setter function for the outro of the enemy
+	void setenemyOutro(const string& outro);
+
+	//Display function for the enemy at the start of the battle
+	void displayEnemyInfo() const;
 };

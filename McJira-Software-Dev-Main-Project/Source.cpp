@@ -4,15 +4,20 @@
 #include "Map.h"
 #include "Room.h"
 #include "Dialog.h"
+#include "Enemy.h"
+
 using namespace std;
 
 int main() {
 	string playerInput;
 	InputValidation inputValid;
-
 	Player player_1;
 	Dialog dialog;
 	Map dungeonMap;
+	Enemy ian(25.0, 10.0,"IAN", "I am IAN! You really think you can defeat me? Give it your best shot!", "no... NOO... THIS CAN'T BE....");
+
+	//Variable for the test combat system that will be expanded upon in the future
+	char attack;
 
 	// Displays intro message
 	cout << dialog.GetIntroMessage();
@@ -46,7 +51,27 @@ int main() {
 		}
 		else if (playerInput == "ian")
 		{
-			cout << dialog.GetIanDescription();
+			//display the info of IAN and start a test combat system
+			ian.displayEnemyInfo();
+			cout << "Enter A to attack IAN" << endl;
+			cin >> attack;
+			
+			//ignore any remaining characters in the stream
+			cin.ignore();
+
+			//accepts a simple attack input to simulate how the combat will be to go through the different outputs of the enemy
+			if (attack == 'A' || attack == 'a')
+			{
+				cout << "You have successfully defeated IAN!" << endl;
+				cout << ian.getEnemyName() << ": " << ian.getEnemyOutro() << endl;
+				cin.clear();
+			}
+			else //input validation
+			{
+				cout << "Invalid input. No attack took place." << endl;
+			}
+
+			//cout << dialog.GetIanDescription();
 			// this triggers the final boss sequence. we might wanna make it to where if the user doesnt pick up vallones sword they instantly die if they interact with ian
 		}
 		else if (playerInput == "sword")
