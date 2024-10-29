@@ -25,38 +25,20 @@ public:
 	~Enemy() {}
 
 	//Getter function for the health of the enemy
-	double getHealth() const
-	{
-		return health;
-	}
+	double getHealth() const; 
 
 	//Setter function for the health of the enemy
-	void setHealth(double h)
-	{
-		health = h;
-	}
+	void setHealth(double h);
 
 	//Getter function for the attack damage of the enemy
-	double getAttackDamage(double dmg) const
-	{
-		return attackDamage;
-	}
+	double getAttackDamage(double dmg) const;
 
 	//Setter function for the attack damage of the enemy
-	void setAttackDamage(double dmg)
-	{
-		attackDamage = dmg;
-	}
+	void setAttackDamage(double dmg);
 
 	//Getter function for the introduction of the enemy
-	string getEnemyIntro() const
-	{
-		return enemyIntro;
-	}
+	string getEnemyIntro() const;
 
 	//Setter function for the introduction of the enemy
-	void setenemyIntro(const string& intro)
-	{
-		enemyIntro = intro;
-	}
+	void setenemyIntro(const string& intro);
 };
