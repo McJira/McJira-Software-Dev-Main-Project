@@ -149,6 +149,7 @@
   <ItemGroup>
     <ClInclude Include="Area.h" />
     <ClInclude Include="Dialog.h" />
+    <ClInclude Include="Enemy.h" />
     <ClInclude Include="InputValidation.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="Map.h" />
