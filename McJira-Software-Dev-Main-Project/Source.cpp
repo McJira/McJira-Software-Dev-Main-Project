@@ -51,25 +51,35 @@ int main() {
 		}
 		else if (playerInput == "ian")
 		{
-			//display the info of IAN and start a test combat system
-			ian.displayEnemyInfo();
-			cout << "Enter A to attack IAN" << endl;
-			cin >> attack;
-			
-			//ignore any remaining characters in the stream
-			cin.ignore();
+			//check if IAN has already been fought to elimate instance repetition
+			if (ian.getIsAlive())
+			{
+				//display the info of IAN and start a test combat system
+				ian.displayEnemyInfo();
+				cout << "Enter A to attack IAN" << endl;
+				cin >> attack;
 
-			//accepts a simple attack input to simulate how the combat will be to go through the different outputs of the enemy
-			if (attack == 'A' || attack == 'a')
-			{
-				cout << "You have successfully defeated IAN!" << endl;
-				cout << ian.getEnemyName() << ": " << ian.getEnemyOutro() << endl;
-				cin.clear();
+				//ignore any remaining characters in the stream
+				cin.ignore();
+
+				//accepts a simple attack input to simulate how the combat will be to go through the different outputs of the enemy
+				if (attack == 'A' || attack == 'a')
+				{
+					cout << "You have successfully defeated IAN!" << endl;
+					cout << ian.getEnemyName() << ": " << ian.getEnemyOutro() << endl;
+					cin.clear();
+					ian.setIsAlive(false);
+				}
+				else //input validation
+				{
+					cout << "Invalid input. No attack took place." << endl;
+				}
 			}
-			else //input validation
+			else
 			{
-				cout << "Invalid input. No attack took place." << endl;
+				cout << "You see IAN's remains on the ground.  You have already defeated him." << endl << endl;
 			}
+			
 
 			//cout << dialog.GetIanDescription();
 			// this triggers the final boss sequence. we might wanna make it to where if the user doesnt pick up vallones sword they instantly die if they interact with ian

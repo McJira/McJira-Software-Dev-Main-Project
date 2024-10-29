@@ -25,7 +25,7 @@ void Enemy::setHealth(double h)
 }
 
 //Getter function for the attack damage of the enemy
-double Enemy::getAttackDamage(double dmg) const
+double Enemy::getAttackDamage() const
 {
 	return attackDamage;
 }
@@ -72,9 +72,29 @@ void Enemy::setenemyOutro(const string& outro)
 	enemyOutro = outro;
 }
 
+
+//Getter function for the boolean isAlive to check if the enemy is alive or not
+bool Enemy::getIsAlive() const
+{
+	return isAlive;
+}
+
+//Setter function for the boolean isAlive to check if the enemy is alive or not
+void Enemy::setIsAlive(bool life)
+{
+	isAlive = life;
+}
+
 //Display the stats of the enemy at the beginning of the fight
 void Enemy::displayEnemyInfo() const
 {
-	cout << "\n" << enemyIntro << endl;
-	cout << "\n" << enemyName << " has:\n" << "Health: " << health << "\n" << "Attack Damage: " << attackDamage << endl;
+	if(isAlive)
+	{
+		cout << "\n" << enemyIntro << endl;
+		cout << "\n" << enemyName << " has:\n" << "Health: " << health << "\n" << "Attack Damage: " << attackDamage << endl;
+	}
+	else
+	{
+		cout << "You see IAN's remains on the ground.  You have already defeated him." << endl;
+	}
 }

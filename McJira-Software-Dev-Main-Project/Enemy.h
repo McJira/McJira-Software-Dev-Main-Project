@@ -14,7 +14,7 @@ private:
 	string enemyName;
 	string enemyIntro;
 	string enemyOutro;
-	
+	bool isAlive; 
 
 public:
 	//Default constructor for a default enemy
@@ -33,7 +33,7 @@ public:
 	void setHealth(double h);
 
 	//Getter function for the attack damage of the enemy
-	double getAttackDamage(double dmg) const;
+	double getAttackDamage() const;
 
 	//Setter function for the attack damage of the enemy
 	void setAttackDamage(double dmg);
@@ -55,6 +55,12 @@ public:
 
 	//Setter function for the outro of the enemy
 	void setenemyOutro(const string& outro);
+
+	//Getter function for the boolean isAlive to check if the enemy is alive or not
+	bool getIsAlive() const;
+
+	//Setter function for the boolean isAlive to check if the enemy is alive or not
+	void setIsAlive(bool life);
 
 	//Display function for the enemy at the start of the battle
 	void displayEnemyInfo() const;
