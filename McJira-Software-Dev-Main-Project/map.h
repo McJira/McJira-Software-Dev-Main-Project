@@ -5,6 +5,94 @@
 
 using namespace std;
 
+#pragma once
+#include "Room.h"
+#include <unordered_map>
+#include <string>
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+class Map {
+private:
+    unordered_map<string, Room> rooms;  //stores rooms by name
+    unordered_map<string, vector<string>> connections;  //stores room connections
+    string currentRoomName;  //track the player's current room by name
+
+public:
+    //constructor to initialize rooms and connections based on input
+    Map() {
+        //initialize rooms with custom sizes and names
+        rooms["Room 1"] = Room(3, 3, "Room 1");
+        rooms["Room 2"] = Room(3, 3, "Room 2");
+        rooms["Room 3"] = Room(3, 3, "Room 3");
+        rooms["Room 4"] = Room(3, 3, "Room 4");
+        rooms["Room 5"] = Room(3, 3, "Room 5");
+
+        //define connections based on the diagram in teams
+        connections["Room 1"] = { "Room 2", "Room 4", "Room 5" };
+        connections["Room 2"] = { "Room 1", "Room 3", "Room 5" };
+        connections["Room 3"] = { "Room 2", "Room 5" };
+        connections["Room 4"] = { "Room 1", "Room 5" };
+        connections["Room 5"] = { "Room 1", "Room 2", "Room 3", "Room 4" };
+
+        //start the player in Room 1
+        currentRoomName = "Room 1";
+    }
+
+    //display the dungeon map with the player's current room
+    void DisplayFullMap() const {
+        cout << "Dungeon Map:" << endl;
+        for (const auto& room : rooms) {
+            cout << room.first << (room.first == currentRoomName ? " [P]" : "") << endl;
+        }
+        cout << endl;
+    }
+
+    //display the map of the current room and show available room connections
+    void DisplayCurrentRoomMap() const {
+        rooms.at(currentRoomName).DisplayRoomMap();
+        //show available rooms the player can move to
+        DisplayConnections();
+    }
+
+    //display possible room connections from the current room
+    void DisplayConnections() const {
+        cout << "You can move to the following rooms: ";
+        for (const auto& connectedRoom : connections.at(currentRoomName)) {
+            cout << connectedRoom << " ";
+        }
+        cout << endl;
+    }
+
+    //move player between connected rooms
+    void MovePlayerToRoom(const string& targetRoom) {
+        if (find(connections[currentRoomName].begin(), connections[currentRoomName].end(), targetRoom) != connections[currentRoomName].end()) {
+            currentRoomName = targetRoom;
+            cout << "Moved to " << targetRoom << endl;
+        }
+        else {
+            cout << "No direct connection to " << targetRoom << " from " << currentRoomName << endl;
+        }
+
+        DisplayFullMap();
+        DisplayCurrentRoomMap();
+    }
+
+    //move player within the current room
+    void MovePlayerInRoom(char direction) {
+        bool moved = rooms[currentRoomName].MovePlayer(direction);
+        if (!moved) {
+            cout << "Hit the boundary within " << currentRoomName << endl;
+        }
+        DisplayCurrentRoomMap();
+    }
+};
+
+
+/*
 class Map {
 private:
     Room dungeon[2][2]; //2x2 grid of Room objects (4 rooms)
@@ -27,3 +115,4 @@ public:
 };
 
 
+*/
