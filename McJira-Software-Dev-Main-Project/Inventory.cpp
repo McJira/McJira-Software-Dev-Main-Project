@@ -5,9 +5,10 @@
 void Inventory::AddItemToInventory(Item& itemToBeAdded){
 
 	//checks if the amount of items allowed in the hotbar has been exceeded
-	if (inventory.size() > 5)
+	if (inventory.size() > hotBarSize - 1)
 	{
 		//Function to push to backpack
+		cout << "Hot bar full, Item added to backpack " << endl;
 	}	
 	else
 	{

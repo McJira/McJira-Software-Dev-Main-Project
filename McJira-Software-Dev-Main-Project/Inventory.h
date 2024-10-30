@@ -15,6 +15,7 @@ private:
 	//Data structure to store Items: This case it is a Vector of items, which are objects from the Item class
 
 	vector<Item>inventory;
+	int hotBarSize = 5;
 
 
 public:
