@@ -4,20 +4,20 @@
 #include "Map.h"
 #include "Room.h"
 #include "Dialog.h"
-#include "Item.h"
-#include "Inventory.h"
+#include "Enemy.h"
+
 using namespace std;
 
 int main() {
 	string playerInput;
 	InputValidation inputValid;
-
-	//Added a default sword to test how inventory class works
-	Item sword(1,"Sword",1,"a");
-	Inventory inventory;
 	Player player_1;
 	Dialog dialog;
 	Map dungeonMap;
+	Enemy ian(25.0, 10.0,"IAN", "I am IAN! You really think you can defeat me? Give it your best shot!", "no... NOO... THIS CAN'T BE....");
+
+	//Variable for the test combat system that will be expanded upon in the future
+	char attack;
 
 	// Displays intro message
 	cout << dialog.GetIntroMessage();
@@ -51,23 +51,38 @@ int main() {
 		}
 		else if (playerInput == "ian")
 		{
-			cout << dialog.GetIanDescription();
+			//check if IAN has already been fought to elimate instance repetition
+			if (ian.getIsAlive())
+			{
+				//display the info of IAN and start a test combat system
+				ian.displayEnemyInfo();
+				cout << "Enter A to attack IAN" << endl;
+				cin >> attack;
+
+				//ignore any remaining characters in the stream
+				cin.ignore();
+
+				//accepts a simple attack input to simulate how the combat will be to go through the different outputs of the enemy
+				if (attack == 'A' || attack == 'a')
+				{
+					cout << "You have successfully defeated IAN!" << endl;
+					cout << ian.getEnemyName() << ": " << ian.getEnemyOutro() << endl;
+					cin.clear();
+					ian.setIsAlive(false);
+				}
+				else //input validation
+				{
+					cout << "Invalid input. No attack took place." << endl;
+				}
+			}
+			else
+			{
+				cout << "You see IAN's remains on the ground.  You have already defeated him." << endl << endl;
+			}
+			
+
+			//cout << dialog.GetIanDescription();
 			// this triggers the final boss sequence. we might wanna make it to where if the user doesnt pick up vallones sword they instantly die if they interact with ian
-		}
-		else if (playerInput == "sword")
-		{
-			cout << dialog.GetSwordDescription();
-			inventory.AddItemToInventory(sword);
-			// needs to add sword to inventory and also update the amount of damage the player does now that they have a sword
-		}
-		else if (playerInput == "remove")
-		{
-			inventory.RemoveItemFromInventory();
-		}
-		else if (playerInput == "inv" || playerInput == "inventory")
-		{
-			inventory.ShowInventory();
-			//displays the current inventory
 		}
 		else
 		{

@@ -104,7 +104,7 @@ public:
         dungeon[0][0] = Room("Entrance", "You have entered into the grand lobby of the mansion.\nThere are locked doors behind you, and a sign above that says Advising Office\nYou can hear a creek in the distance, giving you a feeling you're not alone.\n");
         dungeon[0][1] = Room("Hallway", "You find yourself gazing down the stretch of a long hallway.\nAt the end, you notice that one of the rooms were left open.\nAfter entering, you see something glimmering in the distance, a KEY.\n");
         dungeon[1][0] = Room("Armory", "As you're walking, you hear the clanking of metal.\nImmediately, you fear the worst, but decide to enter anyways.\nInside, you see Professor Vallone hammering away at what looks to be a SWORD.\n ");
-        dungeon[1][1] = Room("Treasure Room", "You enter the door. Inside, is a classroom that has become indistinguishable.\n There are desks flipped over, papers torn, and books on fire.\nBehind the chaos sits IAN menacingly, looking for a fight.\n");
+        dungeon[1][1] = Room("Treasure Room", "You enter the door. Inside, is a classroom that has become indistinguishable.\nThere are desks flipped over, papers torn, and books on fire.\nBehind the chaos sits IAN menacingly, looking for a fight.\n");
     }
 
     //function to convert a string to lowercase so that the case does not matte  
