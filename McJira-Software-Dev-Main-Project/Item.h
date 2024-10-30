@@ -1,3 +1,7 @@
+#ifndef ITEM_H
+#define ITEM_H
+
+
 #include <iostream>
 #include <string>
 using namespace std;
@@ -6,6 +10,9 @@ using namespace std;
 
 class Item {
 private:
+
+    
+
     int ItemID;            // The item's ID which can be used to reference the item in the catalog
     string ItemName;       // Item's name
     int UseCount;          // How many times the item can be used until it breaks or is depleted
@@ -13,54 +20,37 @@ private:
 
 public:
     // Constructor for Item
-    Item(int id = -1, const string& name = "", int count = 0, const string& description = "")
-        : ItemID(id), ItemName(name), UseCount(count), ItemDescription(description) {}
+    Item(int,const string&,int,const string&);
 
-    // Getter for ItemID
-    int GetItemID() const {
-        return ItemID;
-    }
-
-    // Setter for ItemID
-    void SetItemID(int id) {
-        ItemID = id;
-    }
-
-    // Getter for ItemName
-    string GetItemName() const {
-        return ItemName;
-    }
+    Item();
 
     // Setter for ItemName
-    void SetItemName(const string& name) {
-        ItemName = name;
-    }
+    void SetItemName(const string& name);
 
     // Getter for UseCount
-    int GetUseCount() const {
-        return UseCount;
-    }
+    int GetUseCount() const;
 
     // Setter for UseCount
-    void SetUseCount(int count) {
-        UseCount = count;
-    }
-
-    // Getter for ItemDescription
-    string GetItemDescription() const {
-        return ItemDescription;
-    }
+    void SetUseCount(int count);
 
     // Setter for ItemDescription
-    void SetItemDescription(const string& description) {
-        ItemDescription = description;
-    }
+    void SetItemDescription(const string& description);
 
     // Display item details
-    void DisplayItem() const {
-        cout << "Item ID: " << ItemID << endl;
-        cout << "Item Name: " << ItemName << endl;
-        cout << "Use Count: " << UseCount << endl;
-        cout << "Description: " << ItemDescription << endl;
-    }
+    void DisplayItem() const;
+    
+    // Getter for ItemID
+    int GetItemID() const;
+
+    // Getter for ItemName
+    string GetItemName() const;
+
+    // Getter for ItemDescription
+    string GetItemDescription() const;
+
+    // Setter for ItemID
+    void SetItemID(int id);
 };
+
+#endif //ITEM_H
+

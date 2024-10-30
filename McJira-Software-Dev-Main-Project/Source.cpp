@@ -4,12 +4,17 @@
 #include "Map.h"
 #include "Room.h"
 #include "Dialog.h"
+#include "Item.h"
+#include "Inventory.h"
 using namespace std;
 
 int main() {
 	string playerInput;
 	InputValidation inputValid;
 
+	//Added a default sword to test how inventory class works
+	Item sword(1,"Sword",1,"a");
+	Inventory inventory;
 	Player player_1;
 	Dialog dialog;
 	Map dungeonMap;
@@ -22,7 +27,7 @@ int main() {
 	dungeonMap.DisplayMap(player_1.GetPlayerAxisX(), player_1.GetPlayerAxisY());
 
 	while (true) {
-		cout << "Enter either 'stats', 'm', or the direction you'd like to head next: " << endl;
+		cout << "Enter either 'stats', 'm', 'inv' or the direction you'd like to head next: " << endl;
 		getline(cin, playerInput); // changed this to getline because it makes more sense
 		inputValid.ToLowerCase(playerInput);
 
@@ -52,7 +57,17 @@ int main() {
 		else if (playerInput == "sword")
 		{
 			cout << dialog.GetSwordDescription();
+			inventory.AddItemToInventory(sword);
 			// needs to add sword to inventory and also update the amount of damage the player does now that they have a sword
+		}
+		else if (playerInput == "remove")
+		{
+			inventory.RemoveItemFromInventory();
+		}
+		else if (playerInput == "inv" || playerInput == "inventory")
+		{
+			inventory.ShowInventory();
+			//displays the current inventory
 		}
 		else
 		{
@@ -60,6 +75,8 @@ int main() {
 			dungeonMap.GetRoomDescription(player_1.GetPlayerAxisX(), player_1.GetPlayerAxisY());
 		}
 	}
+	
+
 
 	return 0;
 
