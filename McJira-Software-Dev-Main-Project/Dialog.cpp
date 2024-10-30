@@ -17,8 +17,8 @@ void Dialog::SetUpDescriptionsArray()
 
 	roomDescriptions[0][0] = LOBBY_EAST;
 	roomDescriptions[0][1] = LOBBY_NORTH;
-	roomDescriptions[0][2] = LOBBY_SOUTH;
-	roomDescriptions[0][3] = LOBBY_WEST;
+	roomDescriptions[1][0] = LOBBY_SOUTH;
+	roomDescriptions[1][1] = LOBBY_WEST;
 
 
 }

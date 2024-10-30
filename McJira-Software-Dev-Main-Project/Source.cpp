@@ -27,7 +27,7 @@ int main() {
 	dungeonMap.DisplayMap(player_1.GetPlayerAxisX(), player_1.GetPlayerAxisY());
 
 	while (true) {
-		cout << "Enter either 'stats', 'm', or the direction you'd like to head next: " << endl;
+		cout << "Enter either 'stats', 'm', 'inv' or the direction you'd like to head next: " << endl;
 		getline(cin, playerInput); // changed this to getline because it makes more sense
 		inputValid.ToLowerCase(playerInput);
 
@@ -84,17 +84,14 @@ int main() {
 			//cout << dialog.GetIanDescription();
 			// this triggers the final boss sequence. we might wanna make it to where if the user doesnt pick up vallones sword they instantly die if they interact with ian
 		}
-		else if (playerInput == "sword")
-		{
-			cout << dialog.GetSwordDescription();
-			// needs to add sword to inventory and also update the amount of damage the player does now that they have a sword
-		}
 		else
 		{
 			player_1.PlayerMovement(playerInput);
 			dungeonMap.GetRoomDescription(player_1.GetPlayerAxisX(), player_1.GetPlayerAxisY());
 		}
 	}
+	
+
 
 	return 0;
 
