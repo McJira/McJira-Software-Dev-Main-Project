@@ -1,40 +1,36 @@
-
-
-#include "Room.h"
-#include "Player.h"
-
-using namespace std;
-
 #pragma once
-#include "Room.h"
-#include <unordered_map>
-#include <string>
+#pragma once
+
+
 #include <iostream>
-#include <vector>
-#include <algorithm>
+#include <string>
+
 
 using namespace std;
 
-class Map {
 
+class Room {
 private:
-    Room dungeon[2][2]; //2x2 grid of Room objects (4 rooms)
+    string RoomName;//name of the room
+    string RoomDescription;
 
 public:
-    //constructor to create the map with 4 rooms
 
-    //function to convert a string to lowercase so that the case does not matte  
+    Room() : RoomName("Unnamed"), RoomDescription("Unavailable") {} //default constructors
 
-    void DisplayMap(int, int) const;
-    void GetRoomDescription(int x, int y) const;
+    Room(const string& name, const string& description)
+        : RoomName(name), RoomDescription(description) {}    //constructor to initialize the room with specific values
+
+    string GetRoomName() const;
+
+
+
+    void SetRoomName(const string& name);
+
+    string GetRoomDescription() const;
+
+    void SetRoomDescription(const string& description);
+
+    void DisplayRoomInfo() const;
+
 };
-
-
-/*
-class Map {
-
-   
-};
-
-
-*/

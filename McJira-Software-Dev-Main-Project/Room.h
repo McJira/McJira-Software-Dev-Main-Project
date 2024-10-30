@@ -6,7 +6,7 @@
 #include <string>
 
 
-using namespace std; 
+using namespace std;
 
 
 class Room {
@@ -15,22 +15,22 @@ private:
     string RoomDescription;
 
 public:
-    
+
     Room() : RoomName("Unnamed"), RoomDescription("Unavailable") {} //default constructors
 
     Room(const string& name, const string& description)
-        : RoomName(name), RoomDescription(description){}    //constructor to initialize the room with specific values
+        : RoomName(name), RoomDescription(description) {}    //constructor to initialize the room with specific values
 
     string GetRoomName() const;
-    
 
 
-    void SetRoomName(const string& name); 
 
-    string GetRoomDescription() const; 
+    void SetRoomName(const string& name);
 
-    void SetRoomDescription(const string& description); 
-    
+    string GetRoomDescription() const;
+
+    void SetRoomDescription(const string& description);
+
     void DisplayRoomInfo() const;
 
 };
