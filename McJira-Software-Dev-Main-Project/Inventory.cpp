@@ -29,8 +29,10 @@ void Inventory::ShowInventory(){
 	{
 		for (int i = 0; i < inventory.size(); i++)
 		{
-			cout << inventory[i].GetItemName();
+			cout << i+1 << ": " << inventory[i].GetItemName() << "   ";
 		}
+
+		cout << endl;
 	}
 	
 
