@@ -1,4 +1,5 @@
-// Player class
+#pragma once;
+
 #include "Player.h"
 
 
@@ -31,7 +32,8 @@ void Player::GainHealth(int healAmmount)
 void Player::SetMove(string move)
 {
 
-	this->move = move;
+    this->move = move;
+    validate.ToLowerCase(this->move);
 
 }
 
@@ -80,6 +82,16 @@ void Player::DisplayStats() const
     cout << "Attack Power: " << attackPower << endl;
 }
 
+void Player::RequestPlayerMove()
+{
+
+    string command;
+    cout << "Enter command: ";
+    cin >> command;
+    SetMove(command);
+
+
+}
 
 void Player::PlayerMovement(string inputDirection) {  //function to prompt the user for movement move
 
