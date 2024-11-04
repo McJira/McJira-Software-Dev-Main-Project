@@ -8,7 +8,7 @@
 
 using namespace std;
 
-/*
+
 
 int main() {
 	//initializaiton of variables
@@ -100,4 +100,3 @@ int main() {
 
 }
 
-*/
