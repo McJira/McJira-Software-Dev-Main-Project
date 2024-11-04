@@ -1,6 +1,6 @@
 #ifndef PLAYER_H
 #define PLAYER_H
-
+#include "InputValidation.h"
 #include <iostream>
 
 using namespace std;
@@ -27,6 +27,7 @@ public:
 	
 	//Other Functions
 	void PlayerMovement(string);
+	void RequestPlayerMove();
 
 	//Constructors
 	Player();
@@ -40,6 +41,7 @@ private:
 	int playerAxisXLocation;
 	int playerAxisYLocation;
 	string move;
+	InputValidation validate;
 
 
 

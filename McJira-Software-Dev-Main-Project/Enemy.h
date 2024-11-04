@@ -61,7 +61,8 @@ public:
 
 	//Setter function for the boolean isAlive to check if the enemy is alive or not
 	void setIsAlive(bool life);
-
+	//function to make enemy take damage;
+	void EnemyTakeDamage(int);
 	//Display function for the enemy at the start of the battle
 	void displayEnemyInfo() const;
 };

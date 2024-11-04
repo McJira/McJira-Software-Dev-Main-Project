@@ -8,7 +8,10 @@
 
 using namespace std;
 
+
+
 int main() {
+	//initializaiton of variables
 	string playerInput;
 	InputValidation inputValid;
 	Player player_1;
@@ -18,7 +21,7 @@ int main() {
 
 	//Variable for the test combat system that will be expanded upon in the future
 	char attack;
-
+	
 	// Displays intro message
 	cout << dialog.GetIntroMessage();
 	// changed it to GetRoomDesc can be found in Map.h
