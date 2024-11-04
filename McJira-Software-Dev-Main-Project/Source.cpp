@@ -8,6 +8,8 @@
 
 using namespace std;
 
+/*
+
 int main() {
 	//initializaiton of variables
 	string playerInput;
@@ -98,3 +100,4 @@ int main() {
 
 }
 
+*/

@@ -1,3 +1,5 @@
+#ifndef INPUTVALIDATION_H
+#define INPUTVALIDATION_H
 
 #include <string>
 using namespace std;
@@ -17,3 +19,5 @@ private:
 
 
 };
+
+#endif // !INPUTVALIDATION_H

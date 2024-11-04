@@ -72,6 +72,13 @@ void Enemy::setenemyOutro(const string& outro)
 	enemyOutro = outro;
 }
 
+void Enemy::EnemyTakeDamage(int damageToBeRecieved)
+{
+
+	health -= damageToBeRecieved;
+	setHealth(health);
+
+}
 
 //Getter function for the boolean isAlive to check if the enemy is alive or not
 bool Enemy::getIsAlive() const

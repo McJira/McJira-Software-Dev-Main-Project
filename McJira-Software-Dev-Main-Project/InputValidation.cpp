@@ -1,3 +1,5 @@
+#pragma once
+
 #include "InputValidation.h"
 
 
@@ -8,3 +10,5 @@
         }
     }
     }
+
+
