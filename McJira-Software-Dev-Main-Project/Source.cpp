@@ -1,102 +1,68 @@
 #include <iostream>
-#include "Player.h"
-#include "InputValidation.h"
+#include <string>
 #include "Map.h"
-#include "Room.h"
-#include "Dialog.h"
 #include "Enemy.h"
 
 using namespace std;
 
-
-
 int main() {
-	//initializaiton of variables
-	string playerInput;
-	InputValidation inputValid;
-	Player player_1;
-	Dialog dialog;
-	Map dungeonMap;
-	Enemy ian(25.0, 10.0,"IAN", "I am IAN! You really think you can defeat me? Give it your best shot!", "no... NOO... THIS CAN'T BE....");
+    Map dungeonMap;
+    string input;
 
-	//Variable for the test combat system that will be expanded upon in the future
-	char attack;
-	
-	// Displays intro message
-	cout << dialog.GetIntroMessage();
-	// changed it to GetRoomDesc can be found in Map.h
-	dungeonMap.GetRoomDescription(player_1.GetPlayerAxisX(), player_1.GetPlayerAxisY());
+    // Create and place the enemy "Ian" in "Room 1" at coordinates (1,1)
+    Enemy ian(25.0, 10.0, "IAN", "I am IAN! You really think you can defeat me? Give it your best shot!", "no... NOO... THIS CAN'T BE....");
+    Enemy ian2(25.0, 10.0, "IAN", "I am IAN! You really think you can defeat me? Give it your best shot!", "no... NOO... THIS CAN'T BE....");
+    bool added = dungeonMap.GetRoom("Room 1").AddEnemy(ian, 1, 1);  // Assuming GetRoom and AddEnemy are implemented
 
-	dungeonMap.DisplayMap(player_1.GetPlayerAxisX(), player_1.GetPlayerAxisY());
+    if (added) {
+        cout << "Ian has been added to Room 1 at position [1,1]." << endl;
+    }
+    else {
+        cout << "Failed to add Ian to the room." << endl;
+    }
+    bool added2 = dungeonMap.GetRoom("Room 2").AddEnemy(ian2, 2, 2);  // Assuming GetRoom and AddEnemy are implemented
 
-	while (true) {
-		cout << "Enter either 'stats', 'm', 'inv' or the direction you'd like to head next: " << endl;
-		getline(cin, playerInput); // changed this to getline because it makes more sense
-		inputValid.ToLowerCase(playerInput);
+    if (added2) {
+        cout << "Ian has been added to Room 1 at position [1,1]." << endl;
+    }
+    else {
+        cout << "Failed to add Ian to the room." << endl;
+    }
 
-		if (playerInput == "m")
-		{
-			dungeonMap.DisplayMap(player_1.GetPlayerAxisX(), player_1.GetPlayerAxisY());
-			dungeonMap.GetRoomDescription(player_1.GetPlayerAxisX(), player_1.GetPlayerAxisY());
+    // Display welcome message and initial map
 
-		}
+    dungeonMap.DisplayFullMap();
+    dungeonMap.DisplayCurrentRoomMap();
 
-		else if (playerInput == "stats")
-		{
+    while (true) {
+        cout << "\nCommands:" << endl;
+        cout << "'n'/'s'/'e'/'w' to move within the room" << endl;
+        cout << "Room name (e.g., 'Room 2') to move to a connected room" << endl;
+        cout << "'map' to display the full map, 'current' to display the current room map" << endl;
 
-			player_1.DisplayStats();
+        cout << "\nEnter your command: ";
+        getline(cin, input);
 
-		}
-		else if (playerInput == "key")
-		{
-			cout << dialog.GetKeyDescription();
-			// here we have to make it so that when you grab the key it goes into your inventory
-		}
-		else if (playerInput == "ian")
-		{
-			//check if IAN has already been fought to elimate instance repetition
-			if (ian.getIsAlive())
-			{
-				//display the info of IAN and start a test combat system
-				ian.displayEnemyInfo();
-				cout << "Enter A to attack IAN" << endl;
-				cin >> attack;
+        if (input == "map") {
+            dungeonMap.DisplayFullMap();
+        }
+        else if (input == "current") {
+            dungeonMap.DisplayCurrentRoomMap();
+        }
+        else if (input == "n" || input == "s" || input == "e" || input == "w") {
+            dungeonMap.MovePlayerInRoom(input[0]);
+        }
+        else {
+            dungeonMap.MovePlayerToRoom(input);
+        }
 
-				//ignore any remaining characters in the stream
-				cin.ignore();
+        // Check if Ian is in the current room and display his info
+        Room& currentRoom = dungeonMap.GetRoom(dungeonMap.GetCurrentRoomName());
+        if (currentRoom.HasEnemy("IAN")) {
+            cout << "\nYou encounter Ian!" << endl;
+            ian.displayEnemyInfo();
+        }
+    }
 
-				//accepts a simple attack input to simulate how the combat will be to go through the different outputs of the enemy
-				if (attack == 'A' || attack == 'a')
-				{
-					cout << "You have successfully defeated IAN!" << endl;
-					cout << ian.getEnemyName() << ": " << ian.getEnemyOutro() << endl;
-					cin.clear();
-					ian.setIsAlive(false);
-				}
-				else //input validation
-				{
-					cout << "Invalid input. No attack took place." << endl;
-				}
-			}
-			else
-			{
-				cout << "You see IAN's remains on the ground.  You have already defeated him." << endl << endl;
-			}
-			
-
-			//cout << dialog.GetIanDescription();
-			// this triggers the final boss sequence. we might wanna make it to where if the user doesnt pick up vallones sword they instantly die if they interact with ian
-		}
-		else
-		{
-			player_1.PlayerMovement(playerInput);
-			dungeonMap.GetRoomDescription(player_1.GetPlayerAxisX(), player_1.GetPlayerAxisY());
-		}
-	}
-	
-
-
-	return 0;
-
+    return 0;
 }
-

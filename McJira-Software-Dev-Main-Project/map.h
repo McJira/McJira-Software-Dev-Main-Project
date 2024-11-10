@@ -1,63 +1,106 @@
+// In Map.h
 #pragma once
-#pragma once
-
 
 #include "Room.h"
-#include "Player.h"
+#include <unordered_map>
+#include <string>
+#include <vector>
+#include <iostream>
 
 using namespace std;
 
 class Map {
-#include <string>
-#include <iostream>
-#include <vector>
-#include <algorithm>
+private:
+    unordered_map<string, Room> rooms;  // Stores rooms by name
+    unordered_map<string, vector<string>> connections;  // Stores room connections
+    string currentRoomName;  // Track the player's current room by name
 
-using namespace std;
-
-class Map {
-
-#include <string>
-#include <iostream>
-#include <vector>
-#include <algorithm>
-
-using namespace std;
-
-class Map {
-
-#include <string>
-#include <iostream>
-#include <vector>
-#include <algorithm>
-
-    //constructor to create the map with 4 rooms
+public:
+    // Constructor to initialize rooms and connections
     Map() {
-        //creating the 4 rooms. (more will be added later)
-        dungeon[0][0] = Room("Entrance", "You have entered into the grand lobby of the mansion.\nThere are locked doors behind you, and a sign above that says Advising Office\nYou can hear a creek in the distance, giving you a feeling you're not alone.\n");
-        dungeon[0][1] = Room("Hallway", "You find yourself gazing down the stretch of a long hallway.\nAt the end, you notice that one of the rooms were left open.\nAfter entering, you see something glimmering in the distance, a KEY.\n");
-        dungeon[1][0] = Room("Armory", "As you're walking, you hear the clanking of metal.\nImmediately, you fear the worst, but decide to enter anyways.\nInside, you see Professor Vallone hammering away at what looks to be a SWORD.\n ");
-        dungeon[1][1] = Room("Treasure Room", "You enter the door. Inside, is a classroom that has become indistinguishable.\nThere are desks flipped over, papers torn, and books on fire.\nBehind the chaos sits IAN menacingly, looking for a fight.\n");
+        // Initialize rooms with custom sizes and names
+        rooms["Room 1"] = Room(3, 3, "Room 1");
+        rooms["Room 2"] = Room(4, 4, "Room 2");
+        rooms["Room 3"] = Room(3, 3, "Room 3");
+        rooms["Room 4"] = Room(3, 3, "Room 4");
+        rooms["Room 5"] = Room(3, 3, "Room 5");
+
+        // Define connections based on the diagram
+        connections["Room 1"] = { "Room 2", "Room 4", "Room 5" };
+        connections["Room 2"] = { "Room 1", "Room 3", "Room 5" };
+        connections["Room 3"] = { "Room 2", "Room 5" };
+        connections["Room 4"] = { "Room 1", "Room 5" };
+        connections["Room 5"] = { "Room 1", "Room 2", "Room 3", "Room 4" };
+
+        // Start the player in Room 1
+        currentRoomName = "Room 1";
+    }
+    string GetCurrentRoomName() const {
+        return currentRoomName;
     }
 
-class Map {
+    Room& GetRoom(const string& roomName) {
+        return rooms.at(roomName);  // Assumes roomName exists
+    }
+    // Method to add an enemy to a specific room by name
+    bool AddEnemyToRoom(const string& roomName, Enemy& enemy, int x, int y) {
+        if (rooms.find(roomName) != rooms.end()) {
+            return rooms[roomName].AddEnemy(enemy, x, y);
+        }
+        else {
+            cout << "Room " << roomName << " does not exist." << endl;
+            return false;
+        }
+    }
 
-    void DisplayMap(int, int) const;
-    void GetRoomDescription(int x, int y) const;
+
+    void DisplayConnections() const {
+        cout << "You can move to the following rooms: ";
+        for (const auto& connectedRoom : connections.at(currentRoomName)) {
+            cout << connectedRoom << " ";
+        }
+        cout << endl;
+    }
+    // Display the dungeon map with the player's current room
+    void DisplayFullMap() const {
+        cout << "Dungeon Map:" << endl;
+        for (const auto& room : rooms) {
+            cout << room.first << (room.first == currentRoomName ? " [P]" : "") << endl;
+        }
+        cout << endl;
+    }
+    void MovePlayerToRoom(const string& targetRoom) {
+        if (find(connections[currentRoomName].begin(), connections[currentRoomName].end(), targetRoom) != connections[currentRoomName].end()) {
+            currentRoomName = targetRoom;
+            cout << "Moved to " << targetRoom << endl;
+        }
+        else {
+            cout << "No direct connection to " << targetRoom << " from " << currentRoomName << endl;
+        }
+
+        DisplayFullMap();
+        DisplayCurrentRoomMap();
+    }
+
+
+
+
+    // Display the map of the current room and show available room connections
+    void DisplayCurrentRoomMap() const {
+        rooms.at(currentRoomName).DisplayRoomMap();
+        DisplayConnections();
+    }
+
+    // Other methods remain unchanged...
+
+    void MovePlayerInRoom(char direction) {
+        bool moved = rooms[currentRoomName].MovePlayer(direction);
+        if (!moved) {
+            cout << "Hit the boundary within " << currentRoomName << endl;
+        }
+        DisplayCurrentRoomMap();
+    }
+
+
 
 };
-    string GetRoomName() const;
-
-    void DisplayMap(int, int) const;
-};
-
-
-/*
-class Map {
-
-   
-};
-
-    void DisplayRoomInfo() const;
-
-*/
