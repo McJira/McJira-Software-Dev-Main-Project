@@ -47,8 +47,11 @@ int main() {
 
     while (true) {
         cout << "\nCommands:" << endl;
-        cout << "'n'/'s'/'e'/'w' to move within the room" << endl;
-        cout << "Room name (e.g., 'Hennessy Hall' or 'HH' Shorthand) to move to a connected room" << endl;
+        cout << "'w' to move north" << endl;
+        cout << "'a' to move west" << endl;
+        cout << "'s' to move south" << endl;
+        cout << "'d' to move east" << endl;
+        cout << "Enter room name (e.g., 'Hennessy Hall' or shorthand 'HH') to move to a connected room" << endl;
         cout << "'map' to display the full map, 'current' to display the current room map" << endl;
 
         cout << "\nEnter your command: ";
@@ -60,14 +63,14 @@ int main() {
         else if (input == "current") {
             dungeonMap.DisplayCurrentRoomMap();
         }
-        else if (input == "n" || input == "s" || input == "e" || input == "w") {
+        else if (input == "w" || input == "a" || input == "s" || input == "d") {
             dungeonMap.MovePlayerInRoom(input[0]);
         }
         else {
             dungeonMap.MovePlayerToRoom(input);
         }
 
-        //check if Ian is in the current room and display his info
+        // Check if Ian is in the current room and display his info
         Room& currentRoom = dungeonMap.GetRoom(dungeonMap.GetCurrentRoomName());
         if (currentRoom.HasEnemy("IAN")) {
             cout << "\nYou encounter Ian!" << endl;
