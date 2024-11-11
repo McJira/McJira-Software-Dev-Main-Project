@@ -71,7 +71,7 @@ public:
 
     // Method to add an enemy at a specific position in the enemy grid
     bool AddEnemy(const Enemy& enemy, int x, int y) {
-        if (x >= 0 && x < enemygrid.size() && y >= 0 && y < enemygrid[0].size()) {
+        if (x >= 0 && x < enemygrid.size() && y >= 0 && y < enemygrid[0].size() && x != playerX && y != playerY) {
             enemygrid[x][y] = enemy;
             grid[x][y] = 'E';  // Mark enemy position in the room layout
             return true;
