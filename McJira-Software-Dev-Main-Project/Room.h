@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include "enemy.h"
+#include "Item.h"
 using namespace std;
 
 class Room {
@@ -12,13 +13,18 @@ private:
     vector<vector<char>> grid;  // Room layout
     vector<vector<Enemy>> enemygrid;  // 2D grid to store enemies
     //Implmentation of an Item vector can start here.
-
+    vector<vector<Item>> Itemgrid;
     int playerX, playerY;  // Player's position within the room
 
 public:
     // Constructor to initialize a room with any size, a custom name, and an empty enemy grid
     Room(int rows = 2, int cols = 2, const string& name = "Unnamed")
-        : RoomName(name), grid(rows, vector<char>(cols, ' ')), enemygrid(rows, vector<Enemy>(cols)), playerX(0), playerY(0) {
+        : RoomName(name),
+        grid(rows, vector<char>(cols, ' ')),
+        enemygrid(rows, vector<Enemy>(cols)),  // Initialize enemygrid with room dimensions
+        Itemgrid(rows, vector<Item>(cols)),
+        playerX(0),
+        playerY(0) {
         // Mark player's initial position
         grid[playerX][playerY] = 'P';
     }
@@ -36,6 +42,19 @@ public:
         return false;
     }
 
+    void AddItem(const Item& item, int x, int y) {
+        if (x >= 0 && x < Itemgrid.size() && y >= 0 && y < Itemgrid[0].size()) {
+            Itemgrid[x][y] = item;  // Place item at the specified position
+        }
+    }
+    bool HasItem() const {
+        const Item& itemAtPosition = Itemgrid[playerX][playerY];
+        if (itemAtPosition.GetUseCount() > 0) {  // Check if item is usable based on UseCount
+            cout << "An item is at your current location!" << endl;
+            return true;
+        }
+        return false;
+    }
 
     // Setter for RoomName
     void SetRoomName(const string& name) {

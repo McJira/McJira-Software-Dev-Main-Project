@@ -30,7 +30,7 @@ public:
 
     //Setter for ItemDamage
     void SetItemDamage(int);
-
+    
     // Getter for UseCount
     int GetUseCount() const;
 
@@ -57,6 +57,8 @@ public:
 
     // Setter for ItemID
     void SetItemID(int id);
+
+    bool IsItemBroken();
 };
 
 #endif //ITEM_H

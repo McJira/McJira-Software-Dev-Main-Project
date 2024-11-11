@@ -54,6 +54,14 @@ int Item::GetItemID() const {
 int Item::GetItemDamage() const {
     return ItemDamage;
 }
+bool IsItemBroken(Item Usable) {
+    if (Usable.GetUseCount() >= 1) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
 
 Item::Item(int id = -1, const string& name = "", int count = 0, const string& description = "", int itemDamage = 0)
     : ItemID(id), ItemName(name), UseCount(count), ItemDescription(description), ItemDamage(itemDamage) {};

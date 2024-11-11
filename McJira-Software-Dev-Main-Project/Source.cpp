@@ -2,17 +2,22 @@
 #include <string>
 #include "Map.h"
 #include "Enemy.h"
-
+#include <cstdlib>  //for rand and srand
+#include <ctime>    //for time
 using namespace std;
 
 int main() {
     Map dungeonMap;
     string input;
 
+    //random implmentation for room 1
+    srand(static_cast<unsigned>(time(0)));
+    int Room1randint1 = rand() % 3;
+    int Room1randint2 = rand() % 3;
     // Create and place the enemy "Ian" in "Room 1" at coordinates (1,1)
     Enemy ian(25.0, 10.0, "IAN", "I am IAN! You really think you can defeat me? Give it your best shot!", "no... NOO... THIS CAN'T BE....");
     Enemy ian2(25.0, 10.0, "IAN", "I am IAN! You really think you can defeat me? Give it your best shot!", "no... NOO... THIS CAN'T BE....");
-    bool added = dungeonMap.GetRoom("Room 1").AddEnemy(ian, 1, 1);  // Assuming GetRoom and AddEnemy are implemented
+    bool added = dungeonMap.GetRoom("Room 1").AddEnemy(ian, Room1randint1, Room1randint2);  // Assuming GetRoom and AddEnemy are implemented
 
     if (added) {
         cout << "Ian has been added to Room 1 at position [1,1]." << endl;
@@ -28,9 +33,8 @@ int main() {
     else {
         cout << "Failed to add Ian to the room." << endl;
     }
-
     // Display welcome message and initial map
-
+    cout << "Welcome to the dungeon." << endl;
     dungeonMap.DisplayFullMap();
     dungeonMap.DisplayCurrentRoomMap();
 
