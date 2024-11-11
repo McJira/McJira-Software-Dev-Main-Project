@@ -39,8 +39,9 @@ public:
 
     //adds an Item to a room in the map
     void AddItem(const Item& item, int x, int y) {
-        if (x >= 0 && x < Itemgrid.size() && y >= 0 && y < Itemgrid[0].size()) {
+        if (x >= 0 && x < Itemgrid.size() && y >= 0 && y < Itemgrid[0].size() && x != playerX && y != playerY) {
             Itemgrid[x][y] = item;  // Place item at the specified position
+            grid[x][y] = 'I';
         }
     }
     //retruns true if player is at the same posiiotn as an item in te room.

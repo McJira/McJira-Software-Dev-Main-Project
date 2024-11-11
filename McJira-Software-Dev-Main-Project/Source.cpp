@@ -20,6 +20,10 @@ int main() {
     srand(static_cast<unsigned>(time(0)));
     int Zenrandint1 = rand() % 3;
     int Zenrandint2 = rand() % 3;
+    //Adding item to the map
+    Item sword(1, "sword", 0, dialog.GetSwordDescription(),15);
+    dungeonMap.GetRoom("Zen").AddItem(sword, 3, 3);
+        
     //create and place the enemy Ian in Zen at random coordinates
     Enemy ian(25.0, 10.0, "IAN", "I am IAN! You really think you can defeat me? Give it your best shot!", "no... NOO... THIS CAN'T BE....");
     Enemy ian2(25.0, 10.0, "IAN", "I am IAN! You really think you can defeat me? Give it your best shot!", "no... NOO... THIS CAN'T BE....");
