@@ -35,6 +35,8 @@ public:
         return "Professor Vallone sees you eyeing his sword, eagerly\nHe speaks, 'Are you the student they've sent to fix this Ian mess? Well, you're gonna need this.'\nVallone passes you his sword. You grip it tightly.\nHe also offers you apples and cookies, but you aren't hungry.\n";
     }
 
+    string GetInstructions() const;
+
 private:
 
 	//Static descriptions for the beginning of the game
@@ -88,5 +90,7 @@ There is no other option but to continue deeper into the mansion.
     const string LOBBY_WEST = "You are in the western side of the lobby, double doors lay behind you, to your right lay a couch and a table\n";
     //An array to hold room descritions - to be manually enlarged when more room descriptions are added - row stand for Room number - i.e lobby - column stand for side - i.e north.
     string roomDescriptions[4][1];
+
+    const string INSTRUCTIONS = "\nCommands: \n 'w' to move up\n 'a' to move left\n 's' to move down\n 'd' to move right\n Enter room name (e.g., 'Hennessy Hall' or shorthand 'HH') to move to a connected room\n 'map' to display the full map, 'current' to display the current room map\n";
 
 };

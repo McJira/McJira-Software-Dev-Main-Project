@@ -87,7 +87,7 @@ void Player::RequestPlayerMove()
 
     string command;
     cout << "Enter command: ";
-    cin >> command;
+    getline(cin, command);
     SetMove(command);
 
 

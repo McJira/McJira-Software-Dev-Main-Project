@@ -46,28 +46,22 @@ int main() {
     dungeonMap.DisplayCurrentRoomMap();
 
     while (true) {
-        cout << "\nCommands:" << endl;
-        cout << "'w' to move north" << endl;
-        cout << "'a' to move west" << endl;
-        cout << "'s' to move south" << endl;
-        cout << "'d' to move east" << endl;
-        cout << "Enter room name (e.g., 'Hennessy Hall' or shorthand 'HH') to move to a connected room" << endl;
-        cout << "'map' to display the full map, 'current' to display the current room map" << endl;
+        
+        cout << dialog.GetInstructions();
 
-        cout << "\nEnter your command: ";
-        getline(cin, input);
+        player_1.RequestPlayerMove();
 
-        if (input == "map") {
+        if (player_1.GetMove() == "map") {
             dungeonMap.DisplayFullMap();
         }
-        else if (input == "current") {
+        else if (player_1.GetMove() == "current") {
             dungeonMap.DisplayCurrentRoomMap();
         }
-        else if (input == "w" || input == "a" || input == "s" || input == "d") {
-            dungeonMap.MovePlayerInRoom(input[0]);
+        else if (player_1.GetMove() == "w" || player_1.GetMove() == "a" || player_1.GetMove() == "s" || player_1.GetMove() == "d") {
+            dungeonMap.MovePlayerInRoom(player_1.GetMove()[0]);
         }
         else {
-            dungeonMap.MovePlayerToRoom(input);
+            dungeonMap.MovePlayerToRoom(player_1.GetMove());
         }
 
         // Check if Ian is in the current room and display his info

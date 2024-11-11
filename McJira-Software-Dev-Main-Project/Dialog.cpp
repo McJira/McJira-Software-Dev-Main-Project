@@ -12,6 +12,13 @@ string Dialog::GetIntroMessage() const{
 	return INTROMESSAGE;
 }
 
+string Dialog::GetInstructions() const
+{
+
+	return INSTRUCTIONS;
+
+}
+
 void Dialog::SetUpDescriptionsArray()
 {
 
