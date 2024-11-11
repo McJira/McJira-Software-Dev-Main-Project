@@ -1,5 +1,3 @@
-#pragma once
-#pragma once
 
 
 #include "Room.h"
@@ -8,29 +6,10 @@
 using namespace std;
 
 class Map {
-#include <string>
-#include <iostream>
-#include <vector>
-#include <algorithm>
+private:
+    Room dungeon[2][2]; //2x2 grid of Room objects (4 rooms)
 
-using namespace std;
-
-class Map {
-
-#include <string>
-#include <iostream>
-#include <vector>
-#include <algorithm>
-
-using namespace std;
-
-class Map {
-
-#include <string>
-#include <iostream>
-#include <vector>
-#include <algorithm>
-
+public:
     //constructor to create the map with 4 rooms
     Map() {
         //creating the 4 rooms. (more will be added later)
@@ -40,24 +19,9 @@ class Map {
         dungeon[1][1] = Room("Treasure Room", "You enter the door. Inside, is a classroom that has become indistinguishable.\nThere are desks flipped over, papers torn, and books on fire.\nBehind the chaos sits IAN menacingly, looking for a fight.\n");
     }
 
-class Map {
+    //function to convert a string to lowercase so that the case does not matte  
 
     void DisplayMap(int, int) const;
     void GetRoomDescription(int x, int y) const;
 
 };
-    string GetRoomName() const;
-
-    void DisplayMap(int, int) const;
-};
-
-
-/*
-class Map {
-
-   
-};
-
-    void DisplayRoomInfo() const;
-
-*/
