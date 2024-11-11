@@ -5,6 +5,10 @@ VisualStudioVersion = 17.1.32407.343
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "McJira-Software-Dev-Main-Project", "McJira-Software-Dev-Main-Project\McJira-Software-Dev-Main-Project.vcxproj", "{1ACD772D-D7D4-4E02-B279-D87B38F3FF45}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "McJiraAutoTest", "McJiraAutoTest", "{D5F7F0A8-E859-40D0-81A0-FEAA3D745F00}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "McJiraAutomatedTestProject", "McJiraAutomatedTestProject", "{64B3E418-5917-4DEB-AF07-0EC6F594477E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
