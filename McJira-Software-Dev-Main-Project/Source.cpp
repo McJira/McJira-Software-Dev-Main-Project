@@ -54,8 +54,13 @@ int main() {
 
     while (true) {
         
-        cout << dialog.GetInstructions();
-
+        // I added this line to the code so that the user doesnt get multiple instructions at once
+        // and so the instructions dont loop while youre doing combat
+        Room& currentRoom = dungeonMap.GetRoom(dungeonMap.GetCurrentRoomName()); 
+        if (!currentRoom.HasEnemy("IAN") && !currentRoom.HasItem())
+        {
+            cout << dialog.GetInstructions();
+        }
         player_1.RequestPlayerMove();
 
         if (player_1.GetMove() == "stats")
@@ -79,28 +84,36 @@ int main() {
             dungeonMap.MovePlayerToRoom(player_1.GetMove());
         }
 
-        // Check if Ian is in the current room and display his info
-        Room& currentRoom = dungeonMap.GetRoom(dungeonMap.GetCurrentRoomName());
+        // Check if Ian is in the current room and display his info 
+        // Room& currentRoom = dungeonMap.GetRoom(dungeonMap.GetCurrentRoomName()); - moved this line of code higher up
         if (currentRoom.HasEnemy("IAN")) {
             cout << "\nYou encounter Ian!" << endl;
             ian.displayEnemyInfo();
         }
         if (currentRoom.HasItem())
         {
-            cout << "You found an item!!! " << endl;
-            cout << "Enter yes to pick up Sword and no to continue: " << endl;
-            player_1.RequestPlayerMove();
+            while (true) {
+                cout << "You found an item!!! " << endl;
+                cout << "Enter yes to pick up Sword and no to continue: " << endl;
+                player_1.RequestPlayerMove();
 
-            if (player_1.GetMove() == "yes")
-            {
-                inventory.AddItemToInventory(sword);
-                player_1.AddAttackPower(sword.GetItemDamage());
+                if (player_1.GetMove() == "yes")
+                {
+                    inventory.AddItemToInventory(sword);
+                    player_1.AddAttackPower(sword.GetItemDamage());
+                    break;
+                }
+                if (player_1.GetMove() == "no")
+                {
+                    cout << dialog.GetInstructions(); // added this back in so that the user gets instructions after replying yes or no
+                    break;
+                }
+                else
+                {
+                    cout << "Please answer yes or no!" << endl; // so user doesnt break the game
+                }
+
             }
-            if(player_1.GetMove() == "no");
-            {
-                continue;
-            }       
-
         }
         
     }
