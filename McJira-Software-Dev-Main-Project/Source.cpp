@@ -7,6 +7,7 @@
 #include "InputValidation.h"
 #include "Player.h"
 #include "Dialog.h"
+#include "Inventory.h"
 using namespace std;
 
 int main() {
@@ -16,6 +17,7 @@ int main() {
     InputValidation inputValid;
     Player player_1;
     Dialog dialog;
+    Inventory inventory;
     //random implmentation for Zen
     srand(static_cast<unsigned>(time(0)));
     int Zenrandint1 = rand() % 3;
@@ -60,7 +62,11 @@ int main() {
         {
             player_1.DisplayStats();
         }
-        if (player_1.GetMove() == "map") {
+        else if (player_1.GetMove() == "inv")
+        {
+            inventory.ShowInventory();
+        }
+        else if (player_1.GetMove() == "map") {
             dungeonMap.DisplayFullMap();
         }
         else if (player_1.GetMove() == "current") {
@@ -79,6 +85,24 @@ int main() {
             cout << "\nYou encounter Ian!" << endl;
             ian.displayEnemyInfo();
         }
+        if (currentRoom.HasItem())
+        {
+            cout << "You found an item!!! " << endl;
+            cout << "Enter yes to pick up Sword and no to continue: " << endl;
+            player_1.RequestPlayerMove();
+
+            if (player_1.GetMove() == "yes")
+            {
+                inventory.AddItemToInventory(sword);
+                player_1.AddAttackPower(sword.GetItemDamage());
+            }
+            if(player_1.GetMove() == "no");
+            {
+                continue;
+            }       
+
+        }
+        
     }
 
     return 0;

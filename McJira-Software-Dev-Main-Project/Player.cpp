@@ -28,6 +28,11 @@ void Player::GainHealth(int healAmmount)
 
 }
 
+void Player::AddAttackPower(int damageAddition)
+{
+    attackPower += damageAddition;
+}
+
 //Sets the players move based on input
 void Player::SetMove(string move)
 {

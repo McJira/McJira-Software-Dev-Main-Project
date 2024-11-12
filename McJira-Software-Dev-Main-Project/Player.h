@@ -12,6 +12,7 @@ public:
 	//Setter Functions
 	void TakeDamage(int);
 	void GainHealth(int);
+	void AddAttackPower(int);
 	void SetPlayerAxisX(int);
 	void SetPlayerAxisY(int);
 	void SetMove(string);

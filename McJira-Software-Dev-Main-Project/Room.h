@@ -11,6 +11,7 @@ class Room {
 private:
     string RoomName;  //name of the room
     vector<vector<char>> grid;  //room layout
+    vector<vector<char>> ObjectsGrid;
     vector<vector<Enemy>> enemygrid;  //2D grid to store enemies
     vector<vector<Item>> Itemgrid; //Item vector stores items in the room.
     int playerX, playerY;  // Player's position within the room
@@ -20,6 +21,7 @@ public:
     Room(int rows = 2, int cols = 2, const string& name = "Unnamed")
         : RoomName(name),
         grid(rows, vector<char>(cols, ' ')),
+        ObjectsGrid(rows, vector<char>(cols, ' ')),
         enemygrid(rows, vector<Enemy>(cols)),  //initialize enemygrid with room dimensions
         Itemgrid(rows, vector<Item>(cols)), //initialize Itemgrid with room dimensions
         playerX(0),
@@ -41,16 +43,21 @@ public:
     void AddItem(const Item& item, int x, int y) {
         if (x >= 0 && x < Itemgrid.size() && y >= 0 && y < Itemgrid[0].size() && x != playerX && y != playerY) {
             Itemgrid[x][y] = item;  // Place item at the specified position
+            ObjectsGrid[x][y] = 'I';
             grid[x][y] = 'I';
         }
     }
     //retruns true if player is at the same posiiotn as an item in te room.
     bool HasItem() const {
-        const Item& itemAtPosition = Itemgrid[playerX][playerY];
-        if (itemAtPosition.GetUseCount() > 0) {  // Check if item is usable based on UseCount
+
+        if (ObjectsGrid[playerX][playerY] == ObjectsGrid[3][3]) {  // Check if item is usable based on UseCount
+
+
             cout << "An item is at your current location!" << endl;
+
             return true;
         }
+        cout << grid[playerX][playerY];
         return false;
     }
 

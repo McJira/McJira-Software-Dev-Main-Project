@@ -18,12 +18,14 @@ private:
     int UseCount;          // How many times the item can be used until it breaks or is depleted
     string ItemDescription; // A description of the item
     int ItemDamage;         //The amount of damage the item will deal to an enemy
+    char ItemIdentifier = 'P';
 
 public:
     // Constructor for Item
     Item(int,const string&,int,const string&,int);
 
     Item();
+
 
     // Setter for ItemName
     void SetItemName(const string& name);
@@ -48,6 +50,9 @@ public:
 
     //Getter for ItemDamage
     int GetItemDamage () const;
+
+    //Getter for item Identifier
+    char GetItemIdentifier() const;
 
     // Getter for ItemName
     string GetItemName() const;
