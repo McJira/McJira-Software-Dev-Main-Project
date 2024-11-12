@@ -21,13 +21,13 @@ int main() {
     int Zenrandint1 = rand() % 3;
     int Zenrandint2 = rand() % 3;
     //Adding item to the map
-    Item sword(1, "sword", 0, dialog.GetSwordDescription(),15);
-    dungeonMap.GetRoom("Zen").AddItem(sword, 3, 3);
+    Item sword(1, "sword", 3, dialog.GetSwordDescription(),15);
+    dungeonMap.GetRoom("zen").AddItem(sword, 3, 3);
         
     //create and place the enemy Ian in Zen at random coordinates
     Enemy ian(25.0, 10.0, "IAN", "I am IAN! You really think you can defeat me? Give it your best shot!", "no... NOO... THIS CAN'T BE....");
     Enemy ian2(25.0, 10.0, "IAN", "I am IAN! You really think you can defeat me? Give it your best shot!", "no... NOO... THIS CAN'T BE....");
-    bool added = dungeonMap.GetRoom("Zen").AddEnemy(ian, Zenrandint1, Zenrandint2);  //using GetRoom and AddEnemy with random ints
+    bool added = dungeonMap.GetRoom("zen").AddEnemy(ian, Zenrandint1, Zenrandint2);  //using GetRoom and AddEnemy with random ints
 
     if (added) {
         cout << "Ian has been added to Zen at position [1,1]." << endl;
@@ -35,7 +35,8 @@ int main() {
     else {
         cout << "Failed to add Ian to the room." << endl;
     }
-    bool added2 = dungeonMap.GetRoom("Hennessy Hall").AddEnemy(ian2, 2, 2);  //using GetRoom and AddEnemy with static ints.
+
+    bool added2 = dungeonMap.GetRoom("hennessy hall").AddEnemy(ian2, 2, 2);  //using GetRoom and AddEnemy with static ints.
 
     if (added2) {
         cout << "Ian has been added to Zen at position [1,1]." << endl;

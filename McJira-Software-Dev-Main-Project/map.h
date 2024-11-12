@@ -20,27 +20,27 @@ public:
     //constructor to initialize rooms and connections
     Map() {
         //initialize rooms with custom sizes and names
-        rooms["Zen"] = Room(4, 4, "Zen");
-        rooms["Hennessy Hall"] = Room(4, 6, "Hennessy Hall");
-        rooms["Science Building"] = Room(4, 4, "Science Building");
-        rooms["Rec Center"] = Room(4, 3, "Rec Center");
-        rooms["Dreyfuss"] = Room(5, 4, "Dreyfuss");
+        rooms["zen"] = Room(4, 4, "zen");
+        rooms["hennessy hall"] = Room(4, 6, "hennessy hall");
+        rooms["science building"] = Room(4, 4, "science Building");
+        rooms["rec center"] = Room(4, 3, "rec center");
+        rooms["dreyfuss"] = Room(5, 4, "dreyfuss");
 
         //define connections based on the diagram
-        connections["Zen"] = { "Hennessy Hall", "Rec Center", "Dreyfuss" };
-        connections["Hennessy Hall"] = { "Zen", "Science Building", "Dreyfuss" };
-        connections["Science Building"] = { "Hennessy Hall", "Dreyfuss" };
-        connections["Rec Center"] = { "Zen", "Dreyfuss" };
-        connections["Dreyfuss"] = { "Zen", "Hennessy Hall", "Science Building", "Rec Center" };
+        connections["zen"] = { "hennessy hall", "rec center", "dreyfuss" };
+        connections["hennessy hall"] = { "zen", "science building", "dreyfuss" };
+        connections["science building"] = { "hennessy hall", "dreyfuss" };
+        connections["rec center"] = { "zen", "dreyfuss" };
+        connections["dreyfuss"] = { "zen", "hennessy hall", "science building", "rec center" };
 
         //define shorthand mappings
-        shorthandToFullName["Z"] = "Zen";
-        shorthandToFullName["HH"] = "Hennessy Hall";
-        shorthandToFullName["SB"] = "Science Building";
-        shorthandToFullName["RC"] = "Rec Center";
-        shorthandToFullName["D"] = "Dreyfuss";
+        shorthandToFullName["z"] = "zen";
+        shorthandToFullName["hh"] = "hennessy hall";
+        shorthandToFullName["sb"] = "science building";
+        shorthandToFullName["rc"] = "rec center";
+        shorthandToFullName["d"] = "dreyfuss";
         //start the player in Zen
-        currentRoomName = "Zen";
+        currentRoomName = "zen";
     }
     string GetCurrentRoomName() const {
         return currentRoomName;
