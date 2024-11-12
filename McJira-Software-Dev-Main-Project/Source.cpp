@@ -56,6 +56,10 @@ int main() {
 
         player_1.RequestPlayerMove();
 
+        if (player_1.GetMove() == "stats")
+        {
+            player_1.DisplayStats();
+        }
         if (player_1.GetMove() == "map") {
             dungeonMap.DisplayFullMap();
         }
