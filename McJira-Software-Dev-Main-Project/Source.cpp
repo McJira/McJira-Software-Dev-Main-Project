@@ -2,6 +2,7 @@
 #include <string>
 #include "Map.h"
 #include "Enemy.h"
+#include "Combat.h"
 #include <cstdlib>  //for rand and srand
 #include <ctime>    //for time
 #include "InputValidation.h"
@@ -23,12 +24,12 @@ int main() {
     int Zenrandint1 = rand() % 3;
     int Zenrandint2 = rand() % 3;
     //Adding item to the map
-    Item sword(1, "sword", 3, dialog.GetSwordDescription(),15);
+    Item sword(1, "sword", 3, dialog.GetSwordDescription(), 15);
     dungeonMap.GetRoom("zen").AddItem(sword, 3, 3);
-        
+
     //create and place the enemy Ian in Zen at random coordinates
-    Enemy ian(25.0, 10.0, "IAN", "I am IAN! You really think you can defeat me? Give it your best shot!", "no... NOO... THIS CAN'T BE....");
-    Enemy ian2(25.0, 10.0, "IAN", "I am IAN! You really think you can defeat me? Give it your best shot!", "no... NOO... THIS CAN'T BE....");
+    Enemy ian(25.0, 10.0, 23, 27, 10, "IAN", "I am IAN! You really think you can defeat me? Give it your best shot!", "no... NOO... THIS CAN'T BE....");
+    Enemy ian2(25.0, 10.0, 20, 30, 30, "IAN", "I am IAN! You really think you can defeat me? Give it your best shot!", "no... NOO... THIS CAN'T BE....");
     bool added = dungeonMap.GetRoom("zen").AddEnemy(ian, Zenrandint1, Zenrandint2);  //using GetRoom and AddEnemy with random ints
 
     if (added) {
@@ -89,6 +90,32 @@ int main() {
         if (currentRoom.HasEnemy("IAN")) {
             cout << "\nYou encounter Ian!" << endl;
             ian.displayEnemyInfo();
+
+            string ianInput;
+            //prompt the player to fight IAN
+            cin.ignore();
+            cout << "Type IAN if you think you can take him." << endl;
+            cin >> ianInput;
+
+            if (ianInput == "IAN")
+            {
+                Combat combat(player_1, ian);
+                combat.fight();                                                             //Need to add a remove enemy function to get rid of enemy after it is defeated
+
+                //Check if the player is still alive and if the game should keep going
+                if (!player_1.isAlive())
+                {
+                    cout << "You have died. GAME OVER!" << endl;
+                    return 0; //ENDS GAME
+                }
+
+            }
+            else
+            {
+                cout << "Invalid input. Try again" << endl;
+            }
+
+
         }
         if (currentRoom.HasItem())
         {

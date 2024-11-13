@@ -90,7 +90,7 @@ public:
     // Method to check if a specific enemy is alive at the player's location
     bool HasEnemy(const string& enemyName) const {
         const Enemy& enemyAtPosition = enemygrid[playerX][playerY];
-        if (enemyAtPosition.getIsAlive() && enemyAtPosition.getEnemyName() == enemyName) {
+        if (enemyAtPosition.isAlive() && enemyAtPosition.getEnemyName() == enemyName) {
             return true;
         }
         return false;
