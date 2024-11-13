@@ -2,7 +2,7 @@
 #include <string>
 #include "Map.h"
 #include "Enemy.h"
-#include "Combat.h"
+#include "Combat.h"// missing in justines kit
 #include <cstdlib>  //for rand and srand
 #include <ctime>    //for time
 #include "InputValidation.h"
@@ -85,9 +85,9 @@ int main() {
             dungeonMap.MovePlayerToRoom(player_1.GetMove());
         }
 
-        // Check if Ian is in the current room and display his info 
-        // Room& currentRoom = dungeonMap.GetRoom(dungeonMap.GetCurrentRoomName()); - moved this line of code higher up
-        if (currentRoom.HasEnemy("IAN")) {
+        // Check if Ian is in the current room and display his info
+        
+        if (currentRoom.HasEnemy("IAN")) {                                                      //Needs to become its own function so it can be repeatable
             cout << "\nYou encounter Ian!" << endl;
             ian.displayEnemyInfo();
 
