@@ -1,4 +1,5 @@
 #pragma once
+#pragma once
 #include <iostream>
 #include <string>
 
@@ -8,26 +9,28 @@ using namespace std;
 class Enemy
 {
 private:
-	//Define the Enemies attribute variables: Health, Attack Damage, Name and their introduction
+	//Define the Enemies attribute variables: Health, Attack Damage, Name, their introduction and outro
 	double health;
 	double attackDamage;
+	int hitZoneStart;
+	int hitZoneEnd;
+	int attackSpeed;
 	string enemyName;
 	string enemyIntro;
 	string enemyOutro;
-	bool isAlive; 
 
 public:
 	//Default constructor for a default enemy
 	Enemy();
 
 	//Constructor to create custom enemies
-	Enemy(double h, double dmg, string name, string intro, string outro);
+	Enemy(double h, double dmg, int widthS, int widthE, int speed, string name, string intro, string outro);
 
 	//Deconstructor for after enemy is defeated
 	~Enemy();
 
 	//Getter function for the health of the enemy
-	double getHealth() const; 
+	double getHealth() const;
 
 	//Setter function for the health of the enemy
 	void setHealth(double h);
@@ -37,6 +40,15 @@ public:
 
 	//Setter function for the attack damage of the enemy
 	void setAttackDamage(double dmg);
+
+	//Getter Function for the hit zone start of the enemy
+	int getHitZoneStart() const;
+
+	//Getter Function for the hit zone end of the enemy
+	int getHitZoneEnd() const;
+
+	//Getter function for the attack speed required
+	int getAttackSpeed() const;
 
 	//Getter function for the name of the enemy
 	string getEnemyName() const;
@@ -56,13 +68,12 @@ public:
 	//Setter function for the outro of the enemy
 	void setenemyOutro(const string& outro);
 
-	//Getter function for the boolean isAlive to check if the enemy is alive or not
-	bool getIsAlive() const;
+	//Function to check if enemy is alive
+	bool isAlive() const;
 
-	//Setter function for the boolean isAlive to check if the enemy is alive or not
-	void setIsAlive(bool life);
 	//function to make enemy take damage;
 	void EnemyTakeDamage(int);
+
 	//Display function for the enemy at the start of the battle
 	void displayEnemyInfo() const;
 };

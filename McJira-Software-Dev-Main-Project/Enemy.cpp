@@ -1,13 +1,13 @@
 #include "Enemy.h"
 #include <iostream>
 
-using namespace std; 
+using namespace std;
 
 //Implementation of default enemy constructor
 Enemy::Enemy() : health(25.0), attackDamage(10.0), enemyIntro("Default Enemy") {}
 
 //Implementation of custom enemy constructor
-Enemy::Enemy(double h, double dmg, string name, string intro, string outro) : health(h), attackDamage(dmg), enemyName(name), enemyIntro(intro), enemyOutro(outro) {}
+Enemy::Enemy(double h, double dmg, int widthS, int widthE, int speed, string name, string intro, string outro) : health(h), attackDamage(dmg), hitZoneStart(widthS), hitZoneEnd(widthE), attackSpeed(speed), enemyName(name), enemyIntro(intro), enemyOutro(outro) {}
 
 //Implementation of the deconstructor
 Enemy::~Enemy() {}
@@ -34,6 +34,24 @@ double Enemy::getAttackDamage() const
 void Enemy::setAttackDamage(double dmg)
 {
 	attackDamage = dmg;
+}
+
+//Getter function for the hit zone start of the enemy
+int Enemy::getHitZoneStart() const
+{
+	return hitZoneStart;
+}
+
+// Getter function for the hit zone end of the enemy
+int Enemy::getHitZoneEnd() const
+{
+	return hitZoneEnd;
+}
+
+//Getter function for the enemies hit zone sliders speed
+int Enemy::getAttackSpeed() const
+{
+	return attackSpeed;
 }
 
 //Getter function for the name of the enemy
@@ -77,31 +95,23 @@ void Enemy::EnemyTakeDamage(int damageToBeRecieved)
 
 	health -= damageToBeRecieved;
 	setHealth(health);
-
+	if (health < 0)
+	{
+		health = 0;
+	}
 }
 
-//Getter function for the boolean isAlive to check if the enemy is alive or not
-bool Enemy::getIsAlive() const
+bool Enemy::isAlive() const 
 {
-	return isAlive;
-}
-
-//Setter function for the boolean isAlive to check if the enemy is alive or not
-void Enemy::setIsAlive(bool life)
-{
-	isAlive = life;
+	return health > 0;
 }
 
 //Display the stats of the enemy at the beginning of the fight
 void Enemy::displayEnemyInfo() const
 {
-	if(isAlive)
-	{
-		cout << "\n" << enemyIntro << endl;
-		cout << "\n" << enemyName << " has:\n" << "Health: " << health << "\n" << "Attack Damage: " << attackDamage << endl;
-	}
-	else
-	{
-		cout << "You see IAN's remains on the ground.  You have already defeated him." << endl;
-	}
+	
+	cout << "\n" << enemyIntro << endl;
+	cout << "\n" << enemyName << " has:\n" << "Health: " << health << "\n" << "Attack Damage: " << attackDamage << endl;
+   //cout << "You see IAN's remains on the ground.  You have already defeated him." << endl;
+	
 }

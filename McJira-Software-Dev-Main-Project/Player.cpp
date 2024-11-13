@@ -10,21 +10,31 @@
 //Sets initial health to max health when game starts, to be called in constructor
 void Player::SetInitialHealth()
 {
-	currentHealth = maxHealth;
+    currentHealth = maxHealth;
 }
 
 //funtion to decrease health based on a damage parameter
 void Player::TakeDamage(int damage)
 {
 
-	currentHealth -= damage;
+    currentHealth -= damage;
+    if (currentHealth < 0)
+    {
+        currentHealth = 0;
+    }
 
+}
+
+//Function to check if the player is still alive
+bool Player::isAlive() const
+{
+    return currentHealth > 0;
 }
 
 void Player::GainHealth(int healAmmount)
 {
 
-	currentHealth += healAmmount;
+    currentHealth += healAmmount;
 
 }
 
@@ -42,34 +52,34 @@ void Player::SetMove(string move)
 
 }
 
-void Player::SetPlayerAxisX(int playerAxisXLocation){
+void Player::SetPlayerAxisX(int playerAxisXLocation) {
 
 
-	this->playerAxisXLocation = playerAxisXLocation;
+    this->playerAxisXLocation = playerAxisXLocation;
 
 }
 
 void Player::SetPlayerAxisY(int playerAxisYLocation) {
 
 
-	this->playerAxisYLocation = playerAxisYLocation;
+    this->playerAxisYLocation = playerAxisYLocation;
 
 }
 
 //Returns the current health of the player
 int Player::GetHealth() const
 {
-	return currentHealth;
+    return currentHealth;
 }
 
 int Player::GetPlayerAxisX() const {
 
-	return playerAxisXLocation;
+    return playerAxisXLocation;
 
 }
 int Player::GetPlayerAxisY() const {
 
-	return playerAxisYLocation;
+    return playerAxisYLocation;
 
 }
 
@@ -123,7 +133,7 @@ void Player::PlayerMovement(string inputDirection) {  //function to prompt the u
 //Gets the players move 
 string Player::GetMove() const
 {
-	return move;
+    return move;
 }
 
 
@@ -132,9 +142,9 @@ string Player::GetMove() const
 Player::Player()
 {
 
-	Player::SetInitialHealth();
-	Player::SetPlayerAxisX(0);
-	Player::SetPlayerAxisY(0);
+    Player::SetInitialHealth();
+    Player::SetPlayerAxisX(0);
+    Player::SetPlayerAxisY(0);
 
 };
 
@@ -142,7 +152,7 @@ Player::Player()
 Player::~Player()
 {
 
-	cout << "Player object destroyed.";
+    cout << "Player object destroyed.";
 
 }
 

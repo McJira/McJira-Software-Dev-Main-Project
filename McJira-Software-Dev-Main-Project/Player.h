@@ -25,10 +25,11 @@ public:
 	int GetPlayerAxisX() const;
 	int GetPlayerAxisY() const;
 	int GetAttackPower() const;
-	
+
 	//Other Functions
 	void PlayerMovement(string);
 	void RequestPlayerMove();
+	bool isAlive() const;
 
 	//Constructors
 	Player();
@@ -43,10 +44,6 @@ private:
 	int playerAxisYLocation;
 	string move;
 	InputValidation validate;
-
-
-
-
 
 };
 
