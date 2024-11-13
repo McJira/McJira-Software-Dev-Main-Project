@@ -109,13 +109,9 @@ bool Enemy::isAlive() const
 //Display the stats of the enemy at the beginning of the fight
 void Enemy::displayEnemyInfo() const
 {
-	if (isAlive)
-	{
-		cout << "\n" << enemyIntro << endl;
-		cout << "\n" << enemyName << " has:\n" << "Health: " << health << "\n" << "Attack Damage: " << attackDamage << endl;
-	}
-	else
-	{
-		cout << "You see IAN's remains on the ground.  You have already defeated him." << endl;
-	}
+	
+	cout << "\n" << enemyIntro << endl;
+	cout << "\n" << enemyName << " has:\n" << "Health: " << health << "\n" << "Attack Damage: " << attackDamage << endl;
+   //cout << "You see IAN's remains on the ground.  You have already defeated him." << endl;
+	
 }

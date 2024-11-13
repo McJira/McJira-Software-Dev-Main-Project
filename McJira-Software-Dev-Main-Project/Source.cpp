@@ -28,7 +28,7 @@ int main() {
     dungeonMap.GetRoom("zen").AddItem(sword, 3, 3);
 
     //create and place the enemy Ian in Zen at random coordinates
-    Enemy ian(25.0, 10.0, 23, 27, 10, "IAN", "I am IAN! You really think you can defeat me? Give it your best shot!", "no... NOO... THIS CAN'T BE....");
+    Enemy ian(25.0, 10.0, 0, 50, 5, "IAN", "I am IAN! You really think you can defeat me? Give it your best shot!", "no... NOO... THIS CAN'T BE....");
     Enemy ian2(25.0, 10.0, 20, 30, 30, "IAN", "I am IAN! You really think you can defeat me? Give it your best shot!", "no... NOO... THIS CAN'T BE....");
     bool added = dungeonMap.GetRoom("zen").AddEnemy(ian, Zenrandint1, Zenrandint2);  //using GetRoom and AddEnemy with random ints
 
@@ -93,7 +93,6 @@ int main() {
 
             string ianInput;
             //prompt the player to fight IAN
-            cin.ignore();
             cout << "Type IAN if you think you can take him." << endl;
             cin >> ianInput;
 

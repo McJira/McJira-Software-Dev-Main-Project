@@ -18,7 +18,7 @@ void Combat::displayAttackBar(int position)
     //Gets the hitZone start and End from the values of the Enemy class constructor
     int hitZoneStart = enemy.getHitZoneStart();
     int hitZoneEnd = enemy.getHitZoneEnd();
-    system("CLS");  // Clear console screen
+    //system("CLS");  // Clear console screen
 
     //Create the bar
     for (int i = 0; i < attackBarWidth; i++)
