@@ -62,6 +62,7 @@ public:
     //this function shows the player where they can move from there current room.
     void DisplayConnections() const {
         cout << "You can move to the following rooms: ";
+
         const auto& connectedRooms = connections.at(currentRoomName);
 
         for (size_t i = 0; i < connectedRooms.size(); ++i) {

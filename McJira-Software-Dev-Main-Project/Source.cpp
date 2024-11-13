@@ -8,6 +8,9 @@
 #include "Player.h"
 #include "Dialog.h"
 #include "Inventory.h"
+#include <Windows.h>
+#include <mmsystem.h>
+#include "Sounds.h"
 using namespace std;
 
 int main() {
@@ -49,6 +52,8 @@ int main() {
 
     //display welcome message and initial map
     cout << dialog.GetIntroMessage();
+    //Method used to play the sound
+    playSound("testmain.wav"); // Read the "Sound.cpp" file for more information
     dungeonMap.DisplayFullMap();
     dungeonMap.DisplayCurrentRoomMap();
 
