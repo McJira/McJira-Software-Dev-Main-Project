@@ -62,7 +62,7 @@ public:
     bool HasItem() const {
         for (const auto& row : Itemgrid) {
             for (const auto& item : row) {
-                if (item.GetItemName() != "") {  // Checks if the item is not the default/empty item
+                if (item.GetItemName() != "" && ObjectsGrid[playerX][playerY] != ' ') {  // Checks if the item is not the default/empty item
                     return true;
                 }
             }
