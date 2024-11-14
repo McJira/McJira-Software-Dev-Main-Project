@@ -33,8 +33,8 @@ int main() {
     dungeonMap.GetRoom("zen").AddItem(sword, 3, 3);
 
     // Create and place the enemy Ian in Zen at random coordinates
-    Enemy ian(25.0, 10.0, 24, 26, 5, "IAN", "I am IAN! You really think you can defeat me? Give it your best shot!", "no... NOO... THIS CAN'T BE....");
-    Enemy ian2(25.0, 10.0, 20, 30, 30, "IAN", "I am IAN! You really think you can defeat me? Give it your best shot!", "no... NOO... THIS CAN'T BE....");
+    Enemy ian(50.0, 10.0, 24, 26, 5, "IAN", "I am IAN! You really think you can defeat me? Give it your best shot!", "no... NOO... THIS CAN'T BE....");
+    Enemy ian2(50.0, 10.0, 20, 30, 30, "IAN", "I am IAN! You really think you can defeat me? Give it your best shot!", "no... NOO... THIS CAN'T BE....");
     bool added = dungeonMap.GetRoom("zen").AddEnemy(ian, Zenrandint1, Zenrandint2);  // Using GetRoom and AddEnemy with random coordinates
 
     if (added) {
