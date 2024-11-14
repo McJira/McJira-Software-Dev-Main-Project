@@ -93,6 +93,7 @@ int main() {
 
                 if (ianInput == "IAN") {
                     Combat combat(player_1, ian);
+                    cin.ignore();
                     combat.fight();
 
                     //If Ian is defeated, remove him from the room

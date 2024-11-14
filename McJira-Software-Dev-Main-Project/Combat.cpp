@@ -109,7 +109,7 @@ void Combat::playerAttacks()
     {
         int playerDmg = player.GetAttackPower();
         enemy.EnemyTakeDamage(playerDmg);
-        cout << "You have dealt " << playerDmg << " damage." << enemy.getEnemyName() << "'s HP is now " << enemy.getHealth() << endl;
+        cout << "You have dealt " << playerDmg << " damage. " << enemy.getEnemyName() << "'s HP is now " << enemy.getHealth() << endl;
     }
     else
     {
@@ -133,19 +133,23 @@ void Combat::fight()
     //creates a loop that will run until either the player or enemy dies
     while (player.isAlive() && enemy.isAlive())
     {
-        //verifys the player succeded their attack
-        if (combatMinigame())
-        {
-            playerAttacks();
-        }
-
+        //Players turn
+        cout << "It is your turn to attack." << endl;
+        playerAttacks();
+       
         //verifies the enemy didn't die from that attack and exits the function if it did
         if (!enemy.isAlive())
         {
             cout << "You have killed " << enemy.getEnemyName() << "!" << endl;
             break;
         }
+
+        //Creates pauses in between each turn to create a turn based combat and give time for the player to see the attack damage taken and health
+        cout << "Press Enter to countinue to the enemies turn." << endl;
+        cin.get();
+
         //Now the enemy attacks if it didn't die
+        cout << "Now it is " << enemy.getEnemyName() << "'s turn!" << endl;
         enemyAttacks();
 
         //Checks if the player is still alive before going back through the loop
@@ -153,5 +157,10 @@ void Combat::fight()
         {
             cout << "You have been killed by " << enemy.getEnemyName() << "!" << endl;
         }
+
+        //Creates pauses in between each turn to create a turn based combat and give time for the player to see the attack damage taken and health
+        cout << "Press Enter to countinue to your next turn!" << endl;
+        cin.get();
+        
     }
 }
