@@ -47,19 +47,29 @@ public:
             grid[x][y] = 'I';
         }
     }
-    //retruns true if player is at the same posiiotn as an item in te room.
-    bool HasItem() const {
-
-        if (ObjectsGrid[playerX][playerY] == ObjectsGrid[3][3]) {  // Check if item is usable based on UseCount
-
-
-            cout << "An item is at your current location!" << endl;
-
+    // Method to remove an item from a specific position in the room
+    bool RemoveItem(int x, int y) {
+        if (x >= 0 && x < Itemgrid.size() && y >= 0 && y < Itemgrid[0].size()) {
+            Itemgrid[x][y] = Item();  // Reset the item to a default (inactive) item
+            ObjectsGrid[x][y] = ' ';  // Clear item marker in ObjectsGrid
+            grid[x][y] = ' ';         // Clear item marker in the room layout
             return true;
         }
-        cout << grid[playerX][playerY];
+        cout << "Invalid position to remove item!" << endl;
         return false;
     }
+    //retruns true if player is at the same posiiotn as an item in te room.
+    bool HasItem() const {
+        for (const auto& row : Itemgrid) {
+            for (const auto& item : row) {
+                if (item.GetItemName() != "") {  // Checks if the item is not the default/empty item
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
 
     // Method to display room information
     void DisplayRoomInfo() const {
@@ -87,10 +97,24 @@ public:
         cout << "Invalid enemy position!" << endl;
         return false;
     }
+    //This function removes an enemy from the room.
+    
+    bool RemoveEnemy(int x, int y) {
+        if (x >= 0 && x < enemygrid.size() && y >= 0 && y < enemygrid[0].size()) {
+            enemygrid[x][y] = Enemy();  // Replace enemy with a default blank enemy
+            grid[x][y] = ' ';           // Clear the position on the room layout
+            return true;
+        }
+        cout << "Invalid position to remove enemy!" << endl;
+        return false;
+    }
+
+    
     // Method to check if a specific enemy is alive at the player's location
     bool HasEnemy(const string& enemyName) const {
         const Enemy& enemyAtPosition = enemygrid[playerX][playerY];
-        if (enemyAtPosition.isAlive() && enemyAtPosition.getEnemyName() == enemyName) {
+        // Check if the enemy's health is greater than zero and matches the specified name
+        if (enemyAtPosition.getHealth() > 0 && enemyAtPosition.getEnemyName() == enemyName) {
             return true;
         }
         return false;
