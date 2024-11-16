@@ -29,8 +29,8 @@ void Item::SetItemName(const string& name) {
 }
 
 //Setter for ItemDamage
-void Item::SetItemDamage(int itemDamage){
-    ItemDamage = itemDamage;
+void Item::SetItemUseAmount(int itemUseAmount){
+    ItemUse = itemUseAmount;
 }
 // Getter for ItemName
 string Item::GetItemName() const {
@@ -51,8 +51,8 @@ int Item::GetItemID() const {
     return ItemID;
 }
 
-int Item::GetItemDamage() const {
-    return ItemDamage;
+int Item::GetItemUse() const {
+    return ItemUse;
 }
 
 char Item::GetItemIdentifier() const {
@@ -61,8 +61,8 @@ char Item::GetItemIdentifier() const {
 
 }
 
-Item::Item(int id = -1, const string& name = "", int count = 0, const string& description = "", int itemDamage = 0)
-    : ItemID(id), ItemName(name), UseCount(count), ItemDescription(description), ItemDamage(itemDamage) {};
+Item::Item(int id = -1, const string& name = "", int count = 0, const string& description = "", int itemUse = 0)
+    : ItemID(id), ItemName(name), UseCount(count), ItemDescription(description), ItemUse(itemUse) {};
 
 Item::Item()
 {

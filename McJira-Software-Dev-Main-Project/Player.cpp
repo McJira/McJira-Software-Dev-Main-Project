@@ -34,7 +34,12 @@ bool Player::isAlive() const
 void Player::GainHealth(int healAmmount)
 {
 
+   
     currentHealth += healAmmount;
+    if (currentHealth >= 100)
+    {
+        currentHealth = 100;
+    }
 
 }
 

@@ -17,10 +17,11 @@ void Inventory::AddItemToInventory(Item itemToBeAdded){
 	}
 
 }
-void Inventory::InspectItemFromHotBar(string desiredItem)
+void Inventory::InspectItemFromHotBar(string desiredItem, Player& player)
 {
 	//bool to check if the item was found in the data structure or not
 	bool itemFound = false;
+	
 	//for loop that looks for the specified item, by iterating through the inventory structure and returning when found
 	for (int i = 0; i < inventory.size(); i++)
 	{
@@ -36,7 +37,30 @@ void Inventory::InspectItemFromHotBar(string desiredItem)
 			}
 			if(playerCommand.GetMove() == "use")
 			{
-				cout << "This item has no use currently";
+				getItemUseFromInventory(inventory.at(i).GetItemUse());
+
+				switch (inventory.at(i).GetItemID())
+				{
+
+				case 1: {
+					if (player.GetHealth() >= 100){
+						cout << "Health is currently full " << endl;
+						break;
+					}
+					else {
+						player.GainHealth(inventory.at(i).GetItemUse());
+						RemoveItemFromInventory(i);
+						break;
+					}
+					
+				}
+				case 2: {
+					player.AddAttackPower(inventory.at(i).GetItemUse());
+					break;
+				}
+				default:
+					break;
+				}
 			}
 
 			break;
@@ -60,6 +84,12 @@ void Inventory::InspectItemFromHotBar(string desiredItem)
 	
 
 }
+
+int Inventory::getItemUseFromInventory(int itemUseAmount) const {
+
+	return itemUseAmount;
+
+}
 void Inventory::InspectItemFromHotBar(string desiredItem, Enemy& enemy)
 {
 
@@ -80,7 +110,7 @@ void Inventory::InspectItemFromHotBar(string desiredItem, Enemy& enemy)
 			}
 			if (playerCommand.GetMove() == "use")
 			{
-				enemy.EnemyTakeDamage(inventory[i].GetItemDamage());
+				enemy.EnemyTakeDamage(inventory[i].GetItemUse());
 			}
 
 			break;

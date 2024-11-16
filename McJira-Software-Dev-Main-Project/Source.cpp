@@ -11,6 +11,17 @@
 #include "Inventory.h"
 using namespace std;
 
+/*
+
+USE THIS SECTION FOR NEEDED SPECIFICATIONS
+
+ITEM ID's:
+
+1. healing potion ID: 1
+2. basic sword ID: 2
+3. Add more when adding new items please, this will be used with the inventory
+
+*/
 int main() {
     Map dungeonMap;
     string input;
@@ -29,9 +40,10 @@ int main() {
     int Zenrandint2 = rand() % 3;
     
     // Section for item declerations and definitions
-    Item basicSword(1, "sword", 3, dialog.GetSwordDescription(), 15);
     Item healingPotion(1, "healing", 1, "A glass bottle filled with a shimmering red liquid ", 15);
+    Item basicSword(2, "sword", 3, dialog.GetSwordDescription(), 15);
 
+    // Section for adding items to the map
     dungeonMap.GetRoom("zen").AddItem(basicSword, 3, 3);
     dungeonMap.GetRoom("zen").AddItem(healingPotion, 1, 1);
 
@@ -81,7 +93,7 @@ int main() {
             dungeonMap.MovePlayerInRoom(player_1.GetMove()[0]);
         } else if(player_1.GetMove() == "inspect"){
             player_1.RequestPlayerMove();
-            inventory.InspectItemFromHotBar(player_1.GetMove());
+            inventory.InspectItemFromHotBar(player_1.GetMove(), player_1);
         } else{
             dungeonMap.MovePlayerToRoom(player_1.GetMove());
         }
@@ -123,7 +135,7 @@ int main() {
         // Check if the current room has an item and if the sword hasn't been picked up
         if (currentRoom.HasItem()) {
             cout << "A " << currentRoom.GetItemAtPlayerPosition().GetItemName() <<  "is at your current location!" << endl;
-            cout << "Enter yes to pick up " << currentRoom.GetItemAtPlayerPosition().GetItemName() << "and no to continue: " << endl;
+            cout << "Enter yes to pick up " << currentRoom.GetItemAtPlayerPosition().GetItemName() << " and no to continue: " << endl;
             player_1.RequestPlayerMove();
 
             if (player_1.GetMove() == "yes") {
