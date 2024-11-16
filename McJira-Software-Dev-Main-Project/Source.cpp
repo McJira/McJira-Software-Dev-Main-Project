@@ -92,6 +92,7 @@ int main() {
         } else if (player_1.GetMove() == "w" || player_1.GetMove() == "a" || player_1.GetMove() == "s" || player_1.GetMove() == "d") {
             dungeonMap.MovePlayerInRoom(player_1.GetMove()[0]);
         } else if(player_1.GetMove() == "inspect"){
+            cout << "Which item would you like to inspect " << endl;
             player_1.RequestPlayerMove();
             inventory.InspectItemFromHotBar(player_1.GetMove(), player_1);
         } else{
@@ -140,7 +141,7 @@ int main() {
 
             if (player_1.GetMove() == "yes") {
                 inventory.AddItemToInventory(currentRoom.GetItemAtPlayerPosition());
-                currentRoom.RemoveItem(currentRoom.GetPlayerPositionX(), currentRoom.GetPlayerPositionY());  //remove the item from the map
+                currentRoom.RemoveItem(currentRoom.GetPlayerPositionRow(), currentRoom.GetPlayerPositionColumn());  //remove the item from the map
             } else if (player_1.GetMove() == "no") {
                 cout << dialog.GetInstructions();  //display instructions after replying no
             } else {

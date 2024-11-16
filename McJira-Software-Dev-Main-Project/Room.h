@@ -80,12 +80,14 @@ public:
 
     }
 
-    int GetPlayerPositionX() const
+    //function to return player's Row Position
+    int GetPlayerPositionRow() const
     {
         return playerX;
     }
 
-    int GetPlayerPositionY() const
+    //function to return player's Column Position
+    int GetPlayerPositionColumn() const
     {
         return playerY;
     }
