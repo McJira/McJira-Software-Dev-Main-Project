@@ -25,7 +25,7 @@ public:
 
 
 	//function to add an item to the inventory;
-	void AddItemToInventory(Item&);
+	void AddItemToInventory(Item);
 	//function to inspect/select a specified item
 	void InspectItemFromHotBar(string);
 	//overloaded function to use an item on an enemy

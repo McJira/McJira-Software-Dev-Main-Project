@@ -60,6 +60,7 @@ char Item::GetItemIdentifier() const {
     return ItemIdentifier;
 
 }
+
 Item::Item(int id = -1, const string& name = "", int count = 0, const string& description = "", int itemDamage = 0)
     : ItemID(id), ItemName(name), UseCount(count), ItemDescription(description), ItemDamage(itemDamage) {};
 

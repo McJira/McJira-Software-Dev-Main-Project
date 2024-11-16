@@ -28,9 +28,12 @@ int main() {
     int Zenrandint1 = rand() % 3;
     int Zenrandint2 = rand() % 3;
     
-    // Adding item to the map
+    // Section for item declerations and definitions
     Item sword(1, "sword", 3, dialog.GetSwordDescription(), 15);
+    Item healingPotion(1, "Healing Potion ", 1, "A glass bottle filled with a shimmering red liquid ", 15);
+
     dungeonMap.GetRoom("zen").AddItem(sword, 3, 3);
+    dungeonMap.GetRoom("zen").AddItem(healingPotion, 1, 1);
 
     // Create and place the enemy Ian in Zen at random coordinates
     Enemy ian(50.0, 10.0, 24, 26, 5, "IAN", "I am IAN! You really think you can defeat me? Give it your best shot!", "no... NOO... THIS CAN'T BE....");
@@ -115,17 +118,15 @@ int main() {
         }
 
         // Check if the current room has an item and if the sword hasn't been picked up
-        if (!swordPickedUp && currentRoom.HasItem()) {
-            cout << "An item is at your current location!" << endl;
-            cout << "You found an item!!!" << endl;
-            cout << "Enter yes to pick up Sword and no to continue: " << endl;
+        if (currentRoom.HasItem()) {
+            cout << "A " << currentRoom.GetItemAtPlayerPosition().GetItemName() <<  "is at your current location!" << endl;
+            cout << "Enter yes to pick up " << currentRoom.GetItemAtPlayerPosition().GetItemName() << "and no to continue: " << endl;
             player_1.RequestPlayerMove();
 
             if (player_1.GetMove() == "yes") {
-                inventory.AddItemToInventory(sword);
+                inventory.AddItemToInventory(currentRoom.GetItemAtPlayerPosition());
                 player_1.AddAttackPower(sword.GetItemDamage());
-                currentRoom.RemoveItem(3, 3);  //remove the item from the map
-                swordPickedUp = true;  //Set flag to prevent further prompts
+                currentRoom.RemoveItem(3,3);  //remove the item from the map
             } else if (player_1.GetMove() == "no") {
                 cout << dialog.GetInstructions();  //display instructions after replying no
             } else {

@@ -72,6 +72,14 @@ public:
         return false;
     }
 
+    //funtion to return the item at the players current position
+    Item GetItemAtPlayerPosition() const
+    {
+
+        return Itemgrid[playerX][playerY];
+
+    }
+
 
     // Method to display room information
     void DisplayRoomInfo() const {

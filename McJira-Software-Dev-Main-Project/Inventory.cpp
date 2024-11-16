@@ -2,7 +2,7 @@
 
 #include "Inventory.h"
 
-void Inventory::AddItemToInventory(Item& itemToBeAdded){
+void Inventory::AddItemToInventory(Item itemToBeAdded){
 
 	//checks if the amount of items allowed in the hotbar has been exceeded
 	if (inventory.size() > hotBarSize - 1)
