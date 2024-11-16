@@ -1,4 +1,6 @@
-#pragma once
+#ifndef ENEMY_H
+#define ENEMY_H
+
 #pragma once
 #include <iostream>
 #include <string>
@@ -77,3 +79,5 @@ public:
 	//Display function for the enemy at the start of the battle
 	void displayEnemyInfo() const;
 };
+
+#endif // !ENEMY_H

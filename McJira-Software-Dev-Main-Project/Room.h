@@ -1,3 +1,5 @@
+#ifndef ROOM_H
+
 #pragma once
 
 #include <iostream>
@@ -153,3 +155,6 @@ public:
         }
     }
 };
+
+#endif // !ROOM_H
+

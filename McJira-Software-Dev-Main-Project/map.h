@@ -1,4 +1,7 @@
 // In Map.h
+#ifndef MAP_H
+#define MAP_H
+
 #pragma once
 
 #include "Room.h"
@@ -123,3 +126,5 @@ public:
     }
 
 };
+
+#endif // !MAP_H

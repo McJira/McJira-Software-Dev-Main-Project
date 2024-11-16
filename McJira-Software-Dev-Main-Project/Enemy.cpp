@@ -1,3 +1,6 @@
+
+#pragma once
+
 #include "Enemy.h"
 #include <iostream>
 
