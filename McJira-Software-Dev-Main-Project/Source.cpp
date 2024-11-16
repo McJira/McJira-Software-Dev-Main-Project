@@ -29,10 +29,10 @@ int main() {
     int Zenrandint2 = rand() % 3;
     
     // Section for item declerations and definitions
-    Item sword(1, "sword", 3, dialog.GetSwordDescription(), 15);
-    Item healingPotion(1, "Healing Potion ", 1, "A glass bottle filled with a shimmering red liquid ", 15);
+    Item basicSword(1, "sword", 3, dialog.GetSwordDescription(), 15);
+    Item healingPotion(1, "healing", 1, "A glass bottle filled with a shimmering red liquid ", 15);
 
-    dungeonMap.GetRoom("zen").AddItem(sword, 3, 3);
+    dungeonMap.GetRoom("zen").AddItem(basicSword, 3, 3);
     dungeonMap.GetRoom("zen").AddItem(healingPotion, 1, 1);
 
     // Create and place the enemy Ian in Zen at random coordinates
@@ -79,7 +79,10 @@ int main() {
             dungeonMap.DisplayCurrentRoomMap();
         } else if (player_1.GetMove() == "w" || player_1.GetMove() == "a" || player_1.GetMove() == "s" || player_1.GetMove() == "d") {
             dungeonMap.MovePlayerInRoom(player_1.GetMove()[0]);
-        } else {
+        } else if(player_1.GetMove() == "inspect"){
+            player_1.RequestPlayerMove();
+            inventory.InspectItemFromHotBar(player_1.GetMove());
+        } else{
             dungeonMap.MovePlayerToRoom(player_1.GetMove());
         }
 
@@ -125,8 +128,7 @@ int main() {
 
             if (player_1.GetMove() == "yes") {
                 inventory.AddItemToInventory(currentRoom.GetItemAtPlayerPosition());
-                player_1.AddAttackPower(sword.GetItemDamage());
-                currentRoom.RemoveItem(3,3);  //remove the item from the map
+                currentRoom.RemoveItem(currentRoom.GetPlayerPositionX(), currentRoom.GetPlayerPositionY());  //remove the item from the map
             } else if (player_1.GetMove() == "no") {
                 cout << dialog.GetInstructions();  //display instructions after replying no
             } else {

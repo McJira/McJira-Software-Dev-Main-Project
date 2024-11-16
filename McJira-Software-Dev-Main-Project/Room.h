@@ -80,6 +80,16 @@ public:
 
     }
 
+    int GetPlayerPositionX() const
+    {
+        return playerX;
+    }
+
+    int GetPlayerPositionY() const
+    {
+        return playerY;
+    }
+
 
     // Method to display room information
     void DisplayRoomInfo() const {
