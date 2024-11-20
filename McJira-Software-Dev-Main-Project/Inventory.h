@@ -17,7 +17,7 @@ private:
 	//Data structure to store Items: This case it is a Vector of items, which are objects from the Item class
 
 	Player playerCommand;
-	vector<Item>inventory;
+	vector<Item>inventory; //A good Idea to change this to a List.
 	int hotBarSize = 5;
 
 
