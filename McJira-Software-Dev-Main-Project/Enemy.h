@@ -11,6 +11,11 @@ using namespace std;
 class Enemy
 {
 private:
+
+	
+
+	static int enemiesRemaining; // This variable corresponds to the amount of enemies instanced and destoryed(check constructor and destructor)
+
 	//Define the Enemies attribute variables: Health, Attack Damage, Name, their introduction and outro
 	double health;
 	double attackDamage;
@@ -51,6 +56,9 @@ public:
 
 	//Getter function for the attack speed required
 	int getAttackSpeed() const;
+
+	//Getter function for the amount of enemies left
+	static int getRemainingEnemies();
 
 	//Getter function for the name of the enemy
 	string getEnemyName() const;

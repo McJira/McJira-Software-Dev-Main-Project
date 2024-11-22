@@ -7,13 +7,30 @@
 using namespace std;
 
 //Implementation of default enemy constructor
-Enemy::Enemy() : health(25.0), attackDamage(10.0), enemyIntro("Default Enemy") {}
+Enemy::Enemy() : health(25.0), attackDamage(10.0), enemyIntro("Default Enemy"), attackSpeed(10.0), hitZoneEnd(1), hitZoneStart(0)
+{
+
+	enemiesRemaining++;
+
+}
 
 //Implementation of custom enemy constructor
-Enemy::Enemy(double h, double dmg, int widthS, int widthE, int speed, string name, string intro, string outro) : health(h), attackDamage(dmg), hitZoneStart(widthS), hitZoneEnd(widthE), attackSpeed(speed), enemyName(name), enemyIntro(intro), enemyOutro(outro) {}
+Enemy::Enemy(double h, double dmg, int widthS, int widthE, int speed, string name, string intro, string outro) : health(h), attackDamage(dmg), hitZoneStart(widthS), hitZoneEnd(widthE), attackSpeed(speed), enemyName(name), enemyIntro(intro), enemyOutro(outro)
+{
+
+	enemiesRemaining++;
+
+}
 
 //Implementation of the deconstructor
-Enemy::~Enemy() {}
+Enemy::~Enemy() 
+{
+
+	enemiesRemaining--;
+}
+
+//initializer for enemy count
+int Enemy::enemiesRemaining = 0;
 
 //Getter function for the health of the enemy
 double Enemy::getHealth() const
@@ -55,6 +72,11 @@ int Enemy::getHitZoneEnd() const
 int Enemy::getAttackSpeed() const
 {
 	return attackSpeed;
+}
+
+int Enemy::getRemainingEnemies() 
+{
+	return enemiesRemaining;
 }
 
 //Getter function for the name of the enemy
@@ -118,3 +140,4 @@ void Enemy::displayEnemyInfo() const
    //cout << "You see IAN's remains on the ground.  You have already defeated him." << endl;
 	
 }
+

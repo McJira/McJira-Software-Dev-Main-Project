@@ -32,10 +32,13 @@ public:
 	void InspectItemFromHotBar(string, Enemy&);
 	//function to show hotbar inventory
 	void ShowInventory();
+	//Function to reset inventory vector to be empty
+	void ResetInventory();
 	//function to remove item from inventory
 	void RemoveItemFromInventory(int);
 	//Funtion to return the use of an Item
 	int getItemUseFromInventory(int) const;
+
 	
 	
 

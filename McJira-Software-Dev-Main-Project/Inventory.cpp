@@ -149,6 +149,13 @@ void Inventory::ShowInventory(){
 
 }
 
+void Inventory::ResetInventory()
+{
+
+	inventory.clear();
+
+}
+
 void Inventory::RemoveItemFromInventory(int itemToBeRemoved){
 
 	//checks if the data structure has any items left in it before removing more
