@@ -22,6 +22,8 @@ ITEM ID's:
 3. Add more when adding new items please, this will be used with the inventory
 
 */
+
+/*
 int main() {
     Map dungeonMap;
     string input;
@@ -152,3 +154,5 @@ int main() {
 
     return 0;
 }
+
+*/

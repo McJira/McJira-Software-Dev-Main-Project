@@ -10,11 +10,30 @@ using namespace std;
 Enemy::Enemy() : health(25.0), attackDamage(10.0), enemyIntro("Default Enemy") {}
 
 //Implementation of custom enemy constructor
-Enemy::Enemy(double h, double dmg, int widthS, int widthE, int speed, string name, string intro, string outro) : health(h), attackDamage(dmg), hitZoneStart(widthS), hitZoneEnd(widthE), attackSpeed(speed), enemyName(name), enemyIntro(intro), enemyOutro(outro) {}
+Enemy::Enemy(double h, double dmg, int widthS, int widthE, int speed, string name, string intro, string outro) : health(h), attackDamage(dmg), hitZoneStart(widthS), hitZoneEnd(widthE), attackSpeed(speed), enemyName(name), enemyIntro(intro), enemyOutro(outro)
+{
+
+	enemiesRemaining++;
+
+}
 
 //Implementation of the deconstructor
-Enemy::~Enemy() {}
+Enemy::~Enemy() 
+{
 
+	enemiesRemaining--;
+
+}
+
+int Enemy::enemiesRemaining = 0;
+
+//Getter for functiojn for enemies remaining
+int Enemy::getRemainingEnemies()
+{
+
+	return enemiesRemaining;
+
+}
 //Getter function for the health of the enemy
 double Enemy::getHealth() const
 {
