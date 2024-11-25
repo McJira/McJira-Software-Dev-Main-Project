@@ -7,6 +7,7 @@
 #include "Enemy.h"
 #include "Item.h"
 #include "Inventory.h"
+#include "Combat.h"
 
 /*
 * THIS FILE IS SOLEY FOR TESTING YOUR CODE
@@ -21,13 +22,14 @@
 */
 
 
+//Function to instantiate all class instances and create pointers to dynamically allocated objects within the vectors
 void instantiateGame(Player&, Inventory&, Map&, vector<Enemy*>&, vector<Item*>&);
+//Function to delete the dynamically allocated objects within the vectors and free their memory
 void clearGameMemory(vector<Enemy*>&, vector<Item*>&);
 int main()
 {
-
+    srand(static_cast<unsigned>(time(0)));
     bool playAgain = true;
-
 
     while (playAgain)
     {
@@ -43,39 +45,43 @@ int main()
         vector<Item*>items;
         instantiateGame(player_1, inventory, dungeonMap, enemies, items);
 
-
-
-
-
-
-
-
         // Display welcome message and initial map
         cout << dialog.GetIntroMessage();
         dungeonMap.DisplayFullMap();
         dungeonMap.DisplayCurrentRoomMap();
-
+        cout << Enemy::getRemainingEnemies();
         while (true) {
 
+            //This if statement checks for how many enemies are left in the map, for functionallity of getRemainingEnemies() refer to Enemy.cpp and Enemy.h
+            if(Enemy::getRemainingEnemies() + 190 <= 0) {
 
-            if (player_1.GetMove() == "quit")
-            {
-               
+                cout << "\n Congrtulations!!!\n You have defeated all the enemies, would you like to restart: \n";
+
+                while (true) {
+
                     player_1.RequestPlayerMove();
-                    if (player_1.GetMove() == "yes")
-                    {
-
+                    if (player_1.GetMove() == "yes"){
+                        //upon the request to restart this will clear up all dynamic memory
                         clearGameMemory(enemies, items);
                         break;
                     }
-                    if (player_1.GetMove() == "no")
-                    {
+                    if (player_1.GetMove() == "no"){
                         playAgain = false;
-                        break; 
+                        break;
                     }
+                    else{
+                        cout << "Player enter yes or no \n";
+                    }
+
+                }
+
+                break;
+               
+                    
                 
             }
             // Avoid displaying instructions multiple times
+           // Avoid displaying instructions multiple times
             Room& currentRoom = dungeonMap.GetRoom(dungeonMap.GetCurrentRoomName());
             if (!currentRoom.HasEnemy("IAN") && !currentRoom.HasItem()) {
                 cout << dialog.GetInstructions();
@@ -107,6 +113,41 @@ int main()
                 dungeonMap.MovePlayerToRoom(player_1.GetMove());
             }
 
+            // Check if Ian is in the current room and alive
+            if (currentRoom.HasEnemy("IAN")) {
+                cout << "\nYou encounter Ian!" << endl;
+                enemies[0]->displayEnemyInfo();
+
+                //prompt only if Ian's health is above 0
+                if (enemies[0]->getHealth() > 0) {
+                    cout << "Type IAN if you think you can take him." << endl;
+                    player_1.RequestPlayerMove();
+
+                    if (player_1.GetMove() == "ian") {
+                        Combat combat(player_1, *enemies[0]);
+                        combat.fight();
+
+                        //If Ian is defeated, remove him from the room
+                        if (enemies[0]->getHealth() <= 0) {
+                            cout << "You have defeated Ian!" << endl;
+                            //destructs the enemy and decrements remaining enemies
+                            enemies[0]->~Enemy();
+                            currentRoom.RemoveEnemy(1, 1);
+                        }
+
+                        //Check if the player is still alive
+                        if (!player_1.isAlive()) {
+                            cout << "You have died. GAME OVER!" << endl;
+                            return 0;
+                        }
+                    }
+                    else {
+                        cout << "Invalid input. Try again" << endl;
+                    }
+                }
+            }
+
+            // Check if the current room has an item and if the sword hasn't been picked up
             if (currentRoom.HasItem()) {
                 cout << "A " << currentRoom.GetItemAtPlayerPosition().GetItemName() << "is at your current location!" << endl;
                 cout << "Enter yes to pick up " << currentRoom.GetItemAtPlayerPosition().GetItemName() << " and no to continue: " << endl;
@@ -123,7 +164,11 @@ int main()
                     cout << "Please answer yes or no!" << endl;  //prevent invalid input from breaking the game
                 }
             }
+            
 
+        }
+        if (!playAgain){
+            break;
         }
 
     }
@@ -137,9 +182,12 @@ int main()
 void instantiateGame(Player& player, Inventory& inventory, Map& dungeon, vector<Enemy*>& enemy, vector<Item*>& item)
 {
 
-    srand(static_cast<unsigned>(time(0)));
+    /*
     int Zenrandint1 = rand() % 3;
     int Zenrandint2 = rand() % 3;
+    cout << Zenrandint1;
+    cout << Zenrandint2;
+    */
 
     //overwrites object's current state with a fresh state
     player = Player();
