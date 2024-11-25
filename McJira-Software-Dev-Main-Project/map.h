@@ -109,21 +109,28 @@ public:
     }
 
     //other methods that remain unchanged
-    void MovePlayerInRoom(char direction) {
+    bool MovePlayerInRoom(char direction) {
         char adjustedDirection;
         switch (direction) {
         case 'w': adjustedDirection = 'n'; break;
         case 'a': adjustedDirection = 'w'; break;
         case 's': adjustedDirection = 's'; break;
         case 'd': adjustedDirection = 'e'; break;
-        default: cout << "Invalid direction!" << endl; return;
+        default:
+            cout << "Invalid direction!" << endl;
+            return false; // Movement failed
         }
+
+        // Check if the move is successful
         bool moved = rooms[currentRoomName].MovePlayer(adjustedDirection);
         if (!moved) {
             cout << "Hit the boundary within " << currentRoomName << endl;
         }
-        DisplayCurrentRoomMap();
+
+        DisplayCurrentRoomMap(); // Show updated map
+        return moved; // Return whether the movement was successful
     }
+
 
 };
 

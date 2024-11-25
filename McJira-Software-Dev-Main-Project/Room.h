@@ -141,6 +141,15 @@ public:
         }
         return false;
     }
+    Enemy* GetEnemyAtPlayerPosition() {
+        if (playerX >= 0 && playerX < enemygrid.size() &&
+            playerY >= 0 && playerY < enemygrid[0].size() &&
+            enemygrid[playerX][playerY].isAlive()) {
+            return &enemygrid[playerX][playerY]; // Return the enemy pointer if alive
+        }
+        return nullptr; // No enemy or enemy is dead
+    }
+
 
     // Move player in the room based on direction
     bool MovePlayer(char direction) {
