@@ -9,6 +9,7 @@
 #include "Player.h"
 #include "Dialog.h"
 #include "Inventory.h"
+#include "Sounds.h"
 using namespace std;
 
 /*
