@@ -20,10 +20,12 @@ private:
 	string enemyName;
 	string enemyIntro;
 	string enemyOutro;
-	//Static variable to hold enmies created and destroyed
-	static int enemiesRemaining;
+	
 
 public:
+
+	//Static variable to hold enmies created and destroyed
+	static int enemiesRemaining;
 	//Default constructor for a default enemy
 	Enemy();
 

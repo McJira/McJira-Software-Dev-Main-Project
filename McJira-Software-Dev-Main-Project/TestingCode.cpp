@@ -22,6 +22,7 @@
 */
 
 
+
 //Function to instantiate all class instances and create pointers to dynamically allocated objects within the vectors
 void instantiateGame(Player&, Inventory&, Map&, vector<Enemy*>&, vector<Item*>&);
 //Function to delete the dynamically allocated objects within the vectors and free their memory
@@ -49,11 +50,11 @@ int main()
         cout << dialog.GetIntroMessage();
         dungeonMap.DisplayFullMap();
         dungeonMap.DisplayCurrentRoomMap();
-        cout << Enemy::getRemainingEnemies();
         while (true) {
+            cout << Enemy::getRemainingEnemies();
 
             //This if statement checks for how many enemies are left in the map, for functionallity of getRemainingEnemies() refer to Enemy.cpp and Enemy.h
-            if(Enemy::getRemainingEnemies() + 190 <= 0) {
+            if(Enemy::getRemainingEnemies() <= 0) {
 
                 cout << "\n Congrtulations!!!\n You have defeated all the enemies, would you like to restart: \n";
 
@@ -130,9 +131,9 @@ int main()
                         //If Ian is defeated, remove him from the room
                         if (enemies[0]->getHealth() <= 0) {
                             cout << "You have defeated Ian!" << endl;
+                            currentRoom.RemoveEnemy(1, 1);
                             //destructs the enemy and decrements remaining enemies
                             enemies[0]->~Enemy();
-                            currentRoom.RemoveEnemy(1, 1);
                         }
 
                         //Check if the player is still alive
@@ -149,7 +150,7 @@ int main()
 
             // Check if the current room has an item and if the sword hasn't been picked up
             if (currentRoom.HasItem()) {
-                cout << "A " << currentRoom.GetItemAtPlayerPosition().GetItemName() << "is at your current location!" << endl;
+                cout << "A " << currentRoom.GetItemAtPlayerPosition().GetItemName() << " is at your current location!" << endl;
                 cout << "Enter yes to pick up " << currentRoom.GetItemAtPlayerPosition().GetItemName() << " and no to continue: " << endl;
                 player_1.RequestPlayerMove();
 
@@ -193,11 +194,17 @@ void instantiateGame(Player& player, Inventory& inventory, Map& dungeon, vector<
     player = Player();
     inventory = Inventory();
     dungeon = Map();
+    Enemy::enemiesRemaining = 0;
+
     //add new dynamic objects to a corresponding vector, THESE OBJECTS HAVE TO GET DESTROYED UPON RESTART
     item.push_back(new Item(1, "healing", 1, "A glass bottle filled with a shimmering red liquid ", 15));
+    item.push_back(new Item(2, "sword", 1, "A Basic Sword", 100));
     enemy.push_back(new Enemy(50.0, 10.0, 24, 26, 5, "IAN", "I am IAN! You really think you can defeat me? Give it your best shot!", "no... NOO... THIS CAN'T BE...."));
+
     dungeon.GetRoom("zen").AddEnemy(*enemy[0], 1, 1);
     dungeon.GetRoom("zen").AddItem(*item[0], 2, 2);
+    dungeon.GetRoom("zen").AddItem(*item[1], 3, 3);
+
 
 
 

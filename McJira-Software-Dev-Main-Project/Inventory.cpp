@@ -38,7 +38,8 @@ void Inventory::InspectItemFromHotBar(string desiredItem, Player& player)
 			if(playerCommand.GetMove() == "use")
 			{
 				getItemUseFromInventory(inventory.at(i).GetItemUse());
-
+				
+				//this switch case to statement switches based on the items id, for ID track refrence top of source file
 				switch (inventory.at(i).GetItemID())
 				{
 
