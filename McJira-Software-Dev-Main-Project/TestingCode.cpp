@@ -51,7 +51,8 @@ int main()
         dungeonMap.DisplayFullMap();
         dungeonMap.DisplayCurrentRoomMap();
         while (true) {
-            cout << Enemy::getRemainingEnemies();
+            //returns remaning enemies
+            cout << "Remaining enemies: " << Enemy::getRemainingEnemies();
 
             //This if statement checks for how many enemies are left in the map, for functionallity of getRemainingEnemies() refer to Enemy.cpp and Enemy.h
             if(Enemy::getRemainingEnemies() <= 0) {
@@ -71,7 +72,7 @@ int main()
                         break;
                     }
                     else{
-                        cout << "Player enter yes or no \n";
+                        cout << "Enter yes or no \n";
                     }
 
                 }
@@ -139,7 +140,28 @@ int main()
                         //Check if the player is still alive
                         if (!player_1.isAlive()) {
                             cout << "You have died. GAME OVER!" << endl;
-                            return 0;
+                            cout << "Would you like to restart: \n";
+                            while (true) {
+                                
+                                player_1.RequestPlayerMove();
+
+                                if (player_1.GetMove() == "yes") {
+                                    //upon the request to restart this will clear up all dynamic memory
+                                    clearGameMemory(enemies, items);
+                                    break;
+                                }
+                                if (player_1.GetMove() == "no") {
+                                    playAgain = false;
+                                    break;
+                                }
+                                else {
+                                    cout << "Enter yes or no \n";
+                                }
+
+                            }
+
+                            break;
+
                         }
                     }
                     else {
