@@ -7,6 +7,7 @@
 #include "Enemy.h"
 #include "Item.h"
 #include "Inventory.h"
+#include "Combat.h"
 
 /*
 * THIS FILE IS SOLEY FOR TESTING YOUR CODE
@@ -16,6 +17,10 @@
 * When finished testing and getting ready to push DELETE ALL CODE IN THIS FILE! 
 * DO NOT DELETE THIS COMMENT PLEASE
 * 
-* NOTE: All present classes are included in this file, if need add your new class header under the last header(currently line 9) 
+* NOTE: All present classes are included in this file, if need add your new class header under the last header(currently line 10) 
 * 
 */
+
+
+
+

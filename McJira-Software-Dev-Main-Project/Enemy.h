@@ -20,8 +20,12 @@ private:
 	string enemyName;
 	string enemyIntro;
 	string enemyOutro;
+	
 
 public:
+
+	//Static variable to hold enmies created and destroyed
+	static int enemiesRemaining;
 	//Default constructor for a default enemy
 	Enemy();
 
@@ -30,6 +34,9 @@ public:
 
 	//Deconstructor for after enemy is defeated
 	~Enemy();
+
+	//Getter function for enemiesRemaining Variable
+	static int getRemainingEnemies();
 
 	//Getter function for the health of the enemy
 	double getHealth() const;

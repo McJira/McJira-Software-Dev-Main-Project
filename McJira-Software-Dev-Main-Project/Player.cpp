@@ -155,11 +155,7 @@ Player::Player()
 
 //destroys player object instance
 Player::~Player()
-{
-
-    cout << "Player object destroyed.";
-
-}
+{}
 
 
 
