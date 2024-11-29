@@ -113,6 +113,9 @@ int main() {
                 player_1.RequestPlayerMove();
                 inventory.InspectItemFromHotBar(player_1.GetMove(), player_1);
             }
+            else if (player_1.GetMove() == "remaining") {
+                cout << "Enemies remaining: " << Enemy::getRemainingEnemies() << endl;
+            }
             else {
                 dungeonMap.MovePlayerToRoom(player_1.GetMove());
             }
@@ -137,7 +140,9 @@ int main() {
                             cout << "You have defeated Ian!" << endl;
                             currentRoom.RemoveEnemy(1, 1);
                             //destructs the enemy and decrements remaining enemies
-                            enemies[0]->~Enemy();
+                            Enemy::enemiesRemaining--;
+                            delete enemies[0]; //free up some more memory
+                            enemies[0] = nullptr;
                         }
 
                         //Check if the player is still alive
@@ -170,9 +175,11 @@ int main() {
                         if (enemies[1]->getHealth() <= 0) {
                             enemies[1]->getEnemyOutro();//display Robots outro
                             cout << "You have defeated Ian!" << endl;
-                            currentRoom.RemoveEnemy(1, 1);
+                            currentRoom.RemoveEnemy(2, 3);
                             //destructs the enemy and decrements remaining enemies
-                            enemies[1]->~Enemy();
+                            Enemy::enemiesRemaining--;
+                            delete enemies[1]; 
+                            enemies[1] = nullptr;
                         }
 
                         //Check if the player is still alive
@@ -204,9 +211,11 @@ int main() {
                         if (enemies[2]->getHealth() <= 0) {
                             enemies[2]->getEnemyOutro();//display Robots outro
                             cout << "You have defeated Ian!" << endl;
-                            currentRoom.RemoveEnemy(1, 1);
+                            currentRoom.RemoveEnemy(3, 3);
                             //destructs the enemy and decrements remaining enemies
-                            enemies[2]->~Enemy();
+                            Enemy::enemiesRemaining--;
+                            delete enemies[2]; 
+                            enemies[2] = nullptr;
                         }
 
                         //Check if the player is still alive
@@ -238,9 +247,11 @@ int main() {
                         if (enemies[3]->getHealth() <= 0) {
                             cout << enemies[3]->getEnemyOutro(); // Display Statue's outro
                             cout << "You have defeated the Statue! The path is now clear." << endl;
-                            currentRoom.RemoveEnemy(0, 0); // Ensure the correct coordinates are used
+                            currentRoom.RemoveEnemy(2, 3); // Ensure the correct coordinates are used
                             // Destruct the enemy and decrement the remaining count
-                            enemies[3]->~Enemy();
+                            Enemy::enemiesRemaining--;
+                            delete enemies[3]; 
+                            enemies[3] = nullptr;
                         }
 
                         // Check if the player is still alive after combat

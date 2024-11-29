@@ -22,7 +22,7 @@ Enemy::Enemy(double h, double dmg, int widthS, int widthE, int speed, string nam
 Enemy::~Enemy() 
 {
 
-	enemiesRemaining--;
+;
 
 }
 
