@@ -133,6 +133,7 @@ int main() {
 
                         //If Ian is defeated, remove him from the room
                         if (enemies[0]->getHealth() <= 0) {
+                            enemies[0]->getEnemyOutro();//display ians outro
                             cout << "You have defeated Ian!" << endl;
                             currentRoom.RemoveEnemy(1, 1);
                             //destructs the enemy and decrements remaining enemies
@@ -150,6 +151,110 @@ int main() {
                     }
                 }
             }
+
+            // Check if Robotic Staff is in the current room and alive
+            if (currentRoom.HasEnemy("Robotic Staff")) {
+                cout << "\nYou encounter Robotic Staff!" << endl;
+                enemies[1]->displayEnemyInfo();
+
+                //prompt only if Ian's health is above 0
+                if (enemies[1]->getHealth() > 0) {
+                    cout << "Type rob if you think you can take him." << endl;
+                    player_1.RequestPlayerMove();
+
+                    if (player_1.GetMove() == "rob") {
+                        Combat combat2(player_1, *enemies[1]);
+                        combat2.fight();
+
+                        //If Robot staff is defeated, remove him from the room
+                        if (enemies[1]->getHealth() <= 0) {
+                            enemies[1]->getEnemyOutro();//display Robots outro
+                            cout << "You have defeated Ian!" << endl;
+                            currentRoom.RemoveEnemy(1, 1);
+                            //destructs the enemy and decrements remaining enemies
+                            enemies[1]->~Enemy();
+                        }
+
+                        //Check if the player is still alive
+                        if (!player_1.isAlive()) {
+                            cout << "You have died. GAME OVER!" << endl;
+                            return 0;
+                        }
+                    }
+                    else {
+                        cout << "Invalid input. Try again" << endl;
+                    }
+                }
+            }
+
+            if (currentRoom.HasEnemy("Ian's Minion")) {
+                cout << "\nYou encounter Ian's Minion" << endl;
+                enemies[2]->displayEnemyInfo();
+
+                //prompt only if Ian's health is above 0
+                if (enemies[2]->getHealth() > 0) {
+                    cout << "Type ianmin if you think you can take him." << endl;
+                    player_1.RequestPlayerMove();
+
+                    if (player_1.GetMove() == "ianmin") {
+                        Combat combat3(player_1, *enemies[2]);
+                        combat3.fight();
+
+                        //If Robot staff is defeated, remove him from the room
+                        if (enemies[2]->getHealth() <= 0) {
+                            enemies[2]->getEnemyOutro();//display Robots outro
+                            cout << "You have defeated Ian!" << endl;
+                            currentRoom.RemoveEnemy(1, 1);
+                            //destructs the enemy and decrements remaining enemies
+                            enemies[2]->~Enemy();
+                        }
+
+                        //Check if the player is still alive
+                        if (!player_1.isAlive()) {
+                            cout << "You have died. GAME OVER!" << endl;
+                            return 0;
+                        }
+                    }
+                    else {
+                        cout << "Invalid input. Try again" << endl;
+                    }
+                }
+            }
+
+            if (currentRoom.HasEnemy("Statue")) {
+                cout << "\nYou encounter the Statue!" << endl;
+                enemies[3]->displayEnemyInfo();
+
+                // Only prompt the player if the Statue's health is above 0
+                if (enemies[3]->getHealth() > 0) {
+                    cout << "Type 'statue' if you think you can defeat it." << endl;
+                    player_1.RequestPlayerMove();
+
+                    if (player_1.GetMove() == "statue") {
+                        Combat combat4(player_1, *enemies[3]);
+                        combat4.fight();
+
+                        // If the Statue is defeated, remove it from the room
+                        if (enemies[3]->getHealth() <= 0) {
+                            cout << enemies[3]->getEnemyOutro(); // Display Statue's outro
+                            cout << "You have defeated the Statue! The path is now clear." << endl;
+                            currentRoom.RemoveEnemy(0, 0); // Ensure the correct coordinates are used
+                            // Destruct the enemy and decrement the remaining count
+                            enemies[3]->~Enemy();
+                        }
+
+                        // Check if the player is still alive after combat
+                        if (!player_1.isAlive()) {
+                            cout << "You have been defeated by the Statue. GAME OVER!" << endl;
+                            return 0;
+                        }
+                    }
+                    else {
+                        cout << "Invalid input. Try again." << endl;
+                    }
+                }
+            }
+
 
             // Check if the current room has an item and if the sword hasn't been picked up
             if (currentRoom.HasItem()) {
@@ -203,10 +308,21 @@ void instantiateGame(Player& player, Inventory& inventory, Map& dungeon, vector<
     item.push_back(new Item(1, "healing", 1, "A glass bottle filled with a shimmering red liquid ", 15));
     item.push_back(new Item(2, "sword", 1, "A Basic Sword", 100));
     enemy.push_back(new Enemy(50.0, 10.0, 24, 26, 5, "IAN", "I am IAN! You really think you can defeat me? Give it your best shot!", "no... NOO... THIS CAN'T BE...."));
+    enemy.push_back(new Enemy(25, 5.0, 10.0, 30, 10, "Robotic Staff", "Hey,get out of here", "You have Bested me!"));
+    enemy.push_back(new Enemy(40, 10, 20, 30, 5, "Ian's Minion", "You encounter one of Ian's Minions! It growls and prepares to attack you.","The Minion collapses to the ground, defeated. You feel a small sense of victory."));
+    enemy.push_back(new Enemy(60, 5, 22, 28, 5, "Statue", "The Statue stands tall, its stone eyes glowing red as it comes to life. This is the guardian of the Zen, and it won't let you pass without a fight.","The Statue crumbles into a pile of rubble, its red eyes fading. The path to the Zen is now clear."));
 
-    dungeon.GetRoom("zen").AddEnemy(*enemy[0], 1, 1);
+
+    dungeon.GetRoom("zen").AddEnemy(*enemy[0], 1, 1);//Ian
+    dungeon.GetRoom("hennessy hall").AddEnemy(*enemy[1], 2, 3);//Robotic Staff
+    dungeon.GetRoom("hennessy hall").AddEnemy(*enemy[2], 3, 3);//Ian's minion
+    dungeon.GetRoom("zen").AddEnemy(*enemy[3], 2, 3); // Statue
+
     dungeon.GetRoom("zen").AddItem(*item[0], 2, 2);
     dungeon.GetRoom("zen").AddItem(*item[1], 3, 3);
+
+
+
 
 
 
