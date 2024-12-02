@@ -159,6 +159,7 @@
     <ClInclude Include="Dialog.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="InputValidation.h" />
+    <ClInclude Include="Instances.h" />
     <ClInclude Include="Inventory.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="Map.h" />

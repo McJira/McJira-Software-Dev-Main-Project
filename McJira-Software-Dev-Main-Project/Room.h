@@ -1,5 +1,5 @@
 #ifndef ROOM_H
-
+#define ROOM_H
 #pragma once
 
 #include <iostream>
@@ -7,6 +7,7 @@
 #include <vector>
 #include "enemy.h"
 #include "Item.h"
+#include "Instances.h"
 using namespace std;
 
 class Room {
@@ -16,6 +17,7 @@ private:
     vector<vector<char>> ObjectsGrid;
     vector<vector<Enemy>> enemygrid;  //2D grid to store enemies
     vector<vector<Item>> Itemgrid; //Item vector stores items in the room.
+    vector<vector<Instance>> InstanceGrid; //Instance vector stores items in the room.
     int playerX, playerY;  // Player's position within the room
 
 public:
@@ -26,6 +28,7 @@ public:
         ObjectsGrid(rows, vector<char>(cols, ' ')),
         enemygrid(rows, vector<Enemy>(cols)),  //initialize enemygrid with room dimensions
         Itemgrid(rows, vector<Item>(cols)), //initialize Itemgrid with room dimensions
+        InstanceGrid(rows, vector<Instance>(cols)), //initialize Instancegrid with room dimensions
         playerX(0),
         playerY(0) {
         //mark player's initial position
@@ -49,6 +52,19 @@ public:
             grid[x][y] = 'I';
         }
     }
+    //add an Instance to a room in the map
+    void AddInstance(const Instance& instance, int x, int y) {
+        if (x >= 0 && x < InstanceGrid.size() && y >= 0 && y < InstanceGrid[0].size() && x != playerX && y != playerY) {
+            if (ObjectsGrid[x][y] != ' ') {
+                return; // makes it not place where there's already another room type
+            }
+
+            InstanceGrid[x][y] = instance;  // Add instance
+            ObjectsGrid[x][y] = 'T';       // Mark the location in the ObjectsGrid
+            grid[x][y] = 'T';              // Mark the location in the room layout
+        }
+    }
+
     // Method to remove an item from a specific position in the room
     bool RemoveItem(int x, int y) {
         if (x >= 0 && x < Itemgrid.size() && y >= 0 && y < Itemgrid[0].size()) {
@@ -62,14 +78,27 @@ public:
     }
     //retruns true if player is at the same posiiotn as an item in te room.
     bool HasItem() const {
-        for (const auto& row : Itemgrid) {
-            for (const auto& item : row) {
-                if (item.GetItemName() != "" && ObjectsGrid[playerX][playerY] != ' ') {  // Checks if the item is not the default/empty item
-                    return true;
-                }
-            }
+        if (ObjectsGrid[playerX][playerY] == 'I') { // fixed it so that it checks for I specifically and doesnt loop dialogue when there isnt an item there
+            const Item& itemAtPosition = Itemgrid[playerX][playerY];
+            return !itemAtPosition.GetItemName().empty(); 
         }
         return false;
+    }
+    // returns if the player is at the same position as an item
+
+    bool HasInstance() const {
+        // checks if there is an instance where the player is
+        if (ObjectsGrid[playerX][playerY] == 'T') {
+            const Instance& instanceAtPosition = InstanceGrid[playerX][playerY];
+            return !instanceAtPosition.GetInstanceName().empty(); // checks its not empty
+        }
+        return false;
+    }
+
+    //function to return instance at the players current position
+    Instance GetInstanceAtPlayerPosition() const
+    {
+        return InstanceGrid[playerX][playerY];
     }
 
     //funtion to return the item at the players current position

@@ -10,6 +10,7 @@
 #include "Dialog.h"
 #include "Inventory.h"
 #include "Sounds.h"
+#include "Instances.h"
 using namespace std;
 
 /*
@@ -25,9 +26,9 @@ ITEM ID's:
 */
 
 //Function to instantiate all class instances and create pointers to dynamically allocated objects within the vectors
-void instantiateGame(Player&, Inventory&, Map&, vector<Enemy*>&, vector<Item*>&);
+void instantiateGame(Player&, Inventory&, Map&, vector<Enemy*>&, vector<Item*>&, vector<Instance*>&);
 //Function to delete the dynamically allocated objects within the vectors and free their memory
-void clearGameMemory(vector<Enemy*>&, vector<Item*>&);
+void clearGameMemory(vector<Enemy*>&, vector<Item*>&, vector<Instance*>&);
 
 int main() {
     
@@ -47,7 +48,8 @@ int main() {
         Inventory inventory;
         vector<Enemy*>enemies;
         vector<Item*>items;
-        instantiateGame(player_1, inventory, dungeonMap, enemies, items);
+        vector<Instance*>instances;
+        instantiateGame(player_1, inventory, dungeonMap, enemies, items, instances);
 
         // Display welcome message and initial map
         cout << dialog.GetIntroMessage();
@@ -66,7 +68,7 @@ int main() {
                     player_1.RequestPlayerMove();
                     if (player_1.GetMove() == "yes") {
                         //upon the request to restart this will clear up all dynamic memory
-                        clearGameMemory(enemies, items);
+                        clearGameMemory(enemies, items, instances);
                         break;
                     }
                     if (player_1.GetMove() == "no") {
@@ -96,7 +98,7 @@ int main() {
             if (player_1.GetMove() == "stats") {
                 player_1.DisplayStats();
             }
-            else if (player_1.GetMove() == "inv") {
+            else if (player_1.GetMove() == "inv" || player_1.GetMove() == "inventory") { // in case user types in inventory instead
                 inventory.ShowInventory();
             }
             else if (player_1.GetMove() == "map") {
@@ -285,6 +287,12 @@ int main() {
                 }
             }
 
+            // checks if current room has an instance
+            if (currentRoom.HasInstance())
+            {
+                cout << "You see " << currentRoom.GetInstanceAtPlayerPosition().GetInstanceName() << ". Press T to talk with them." << endl;
+            }
+
 
         }
         if (!playAgain) {
@@ -299,7 +307,7 @@ int main() {
 }
 
 
-void instantiateGame(Player& player, Inventory& inventory, Map& dungeon, vector<Enemy*>& enemy, vector<Item*>& item)
+void instantiateGame(Player& player, Inventory& inventory, Map& dungeon, vector<Enemy*>& enemy, vector<Item*>& item, vector<Instance*>& instances)
 {
 
     /*
@@ -322,6 +330,12 @@ void instantiateGame(Player& player, Inventory& inventory, Map& dungeon, vector<
     enemy.push_back(new Enemy(25, 5.0, 10.0, 30, 10, "Robotic Staff", "Hey,get out of here", "You have Bested me!"));
     enemy.push_back(new Enemy(40, 10, 20, 30, 5, "Ian's Minion", "You encounter one of Ian's Minions! It growls and prepares to attack you.","The Minion collapses to the ground, defeated. You feel a small sense of victory."));
     enemy.push_back(new Enemy(60, 5, 22, 28, 5, "Statue", "The Statue stands tall, its stone eyes glowing red as it comes to life. This is the guardian of the Zen, and it won't let you pass without a fight.","The Statue crumbles into a pile of rubble, its red eyes fading. The path to the Zen is now clear."));
+    
+    // adding instances
+    instances.push_back(new Instance("NPC 1", "Theyll give you something for a reward"));
+    instances.push_back(new Instance("NPC 2", "HELP ME IM DYING"));
+    instances.push_back(new Instance("Supply Closet", "a weapon or something"));
+    instances.push_back(new Instance("NPC 3", "Uhhh idk maybe likeee some lore?????"));
 
 
     dungeon.GetRoom("zen").AddEnemy(*enemy[0], 1, 1);//Ian
@@ -332,7 +346,11 @@ void instantiateGame(Player& player, Inventory& inventory, Map& dungeon, vector<
     dungeon.GetRoom("zen").AddItem(*item[0], 2, 2);
     dungeon.GetRoom("zen").AddItem(*item[1], 3, 3);
 
-
+    // one instance per room
+    dungeon.GetRoom("zen").AddInstance(*instances[0], 3, 1);
+    dungeon.GetRoom("hennessy hall").AddInstance(*instances[1], 1, 3);
+    dungeon.GetRoom("rec center").AddInstance(*instances[2], 2, 1);
+    dungeon.GetRoom("dreyfuss").AddInstance(*instances[3], 3, 2);
 
 
 
@@ -341,7 +359,7 @@ void instantiateGame(Player& player, Inventory& inventory, Map& dungeon, vector<
 }
 
 //Clear function to delete all dynamic objects
-void clearGameMemory(vector<Enemy*>& enemys, vector<Item*>& items)
+void clearGameMemory(vector<Enemy*>& enemys, vector<Item*>& items, vector<Instance*>& instances)
 {
 
     //both of this loops interate trhough the vectors and delete the objects, freeing the dynamically allocated memory 
@@ -356,4 +374,8 @@ void clearGameMemory(vector<Enemy*>& enemys, vector<Item*>& items)
         delete item;
     }
     items.clear();
+    for (Instance* instance : instances) {
+        delete instance;
+    }
+    instances.clear();
 }

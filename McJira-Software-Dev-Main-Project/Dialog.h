@@ -66,10 +66,8 @@ Pay attention to any words in UPPERCASE, you can interact with them! Just type t
 
 ----------------------------------------------------------------------------------------------------------------------
 
-You leave the CS/Math department and head over to the mansion. It's dark, the wind is howling and you shiver violently.
-Infront of you is a large wooden door. As you push it open, it squeaks, cutting through the silence.
-You instantly want to turn back, but you realize the door has locked behind you! You desperately try to open it, but to no avail.
-There is no other option but to continue deeper into the mansion.
+Dr. Darwish pushes you out of the CS/Math department.
+You decide to push onwards.
 
   )";
 
