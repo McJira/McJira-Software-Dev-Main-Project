@@ -95,6 +95,17 @@ public:
         return false;
     }
 
+    bool RemoveInstance(int x, int y){
+        if (x >= 0 && x < InstanceGrid.size() && y >= 0 && y < InstanceGrid[0].size()) {
+            InstanceGrid[x][y] = Instance();  
+            ObjectsGrid[x][y] = ' '; 
+            grid[x][y] = ' ';         
+            return true;
+        }
+        cout << "Invalid position to remove item!" << endl;
+        return false;
+    }
+
     //function to return instance at the players current position
     Instance GetInstanceAtPlayerPosition() const
     {

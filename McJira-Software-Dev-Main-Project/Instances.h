@@ -12,16 +12,19 @@ private:
     bool isCompleted;
 
 public:
-    // redundant whoopsie
+    // default constructor creates empty instances
     Instance() : instanceName(""), instanceDescription(""), isCompleted(false) {}
 
-    // umm im trying this again even tho I already made one but it isnt working so I'll try again here
+    // other constructor that initializes the instances using the descriptons and names from source
     Instance(const string& name, const string& description)
         : instanceName(name), instanceDescription(description), isCompleted(false) {}
 
+    // getters
     string GetInstanceName() const { return instanceName; }
     string GetInstanceDescription() const { return instanceDescription; }
     bool IsCompleted() const { return isCompleted; }
+
+    // sets instance to completed or not once the user talks to them
     void CompleteInstance() { isCompleted = true; }
 };
 

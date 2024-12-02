@@ -290,7 +290,19 @@ int main() {
             // checks if current room has an instance
             if (currentRoom.HasInstance())
             {
-                cout << "You see " << currentRoom.GetInstanceAtPlayerPosition().GetInstanceName() << ". Press T to talk with them." << endl;
+                cout << "You see " << currentRoom.GetInstanceAtPlayerPosition().GetInstanceName() << ". Type yes to talk with them, or no to continue!" << endl;
+                player_1.RequestPlayerMove();
+
+                if (player_1.GetMove() == "yes") {
+                    cout << currentRoom.GetInstanceAtPlayerPosition().GetInstanceDescription();
+                    currentRoom.RemoveInstance(currentRoom.GetPlayerPositionRow(), currentRoom.GetPlayerPositionColumn());  //remove the item from the map
+                }
+                else if (player_1.GetMove() == "no") {
+                    cout << dialog.GetInstructions();  //display instructions after replying no
+                }
+                else {
+                    cout << "Please answer yes or no!" << endl;  //prevent invalid input from breaking the game
+                }
             }
 
 
@@ -331,11 +343,11 @@ void instantiateGame(Player& player, Inventory& inventory, Map& dungeon, vector<
     enemy.push_back(new Enemy(40, 10, 20, 30, 5, "Ian's Minion", "You encounter one of Ian's Minions! It growls and prepares to attack you.","The Minion collapses to the ground, defeated. You feel a small sense of victory."));
     enemy.push_back(new Enemy(60, 5, 22, 28, 5, "Statue", "The Statue stands tall, its stone eyes glowing red as it comes to life. This is the guardian of the Zen, and it won't let you pass without a fight.","The Statue crumbles into a pile of rubble, its red eyes fading. The path to the Zen is now clear."));
     
-    // adding instances
-    instances.push_back(new Instance("NPC 1", "Theyll give you something for a reward"));
-    instances.push_back(new Instance("NPC 2", "HELP ME IM DYING"));
-    instances.push_back(new Instance("Supply Closet", "a weapon or something"));
-    instances.push_back(new Instance("NPC 3", "Uhhh idk maybe likeee some lore?????"));
+    // adding instances as new dynamic objects
+    instances.push_back(new Instance("Dr. Sinha", "\nDr. Sinha seems frustrated, so you ask her what's bothering her. \n'I'm becoming increasingly worried about how many weapons are on this campus'\n Sinha huffs, 'Isn't this supposed to be a closed campus? Where is public safety?\n'Why am I even here? I'm supposed to be on sabbatical. They don't pay me enough for this...'\n She wanders away.\n\n"));
+    instances.push_back(new Instance("Prof. Vallone", "\n'You enter a room to see Prof. Vallone stuck in a trap.\n'I tried making traps to avoid direct confontation with the robots, but they pushed me in!'\n'Please help me, I'll give you anything! Apples, cookies, even Scrum Legos!'\nAfter hearing Scrum Legos, you are filled with excitement and determination. \nYou release Prof. Vallone, and he thanks you.\n\n"));
+    instances.push_back(new Instance("Dr. Singh", "\nYou see Dr. Singh huddled over something in the back corner of an empty classroom.\nAs you get closer, you see him picking away at the skin of a public safety officer.\nBefore screaming, you realize that underneath the skin are layers and layers of wiring.\nDr. Singh states, 'It seems as though these Ian robots have been infiltrating our campus, replacing people with their own,'\n'That explains why public safety isn't helping us! Now excuse me, I need to concentrate...'\n\n")); 
+    instances.push_back(new Instance("Dr. Darwish", "\nYou wave at Dr. Darwish and he seems pleased to see you haven't been torn to pieces. \nAll of a sudden, his expression changes. He screams, 'Watch out!'. \nAn Ian Minion comes up behind you and puts you in a chokehold! \nAs you watch your life flash before your eyes, Dr. Darwish spills coffee on it and it immediately dies. \n'Think smarter not harder', Darwish laughs. You leave much sticker than you came in.\n\n")); 
 
 
     dungeon.GetRoom("zen").AddEnemy(*enemy[0], 1, 1);//Ian
@@ -347,10 +359,10 @@ void instantiateGame(Player& player, Inventory& inventory, Map& dungeon, vector<
     dungeon.GetRoom("zen").AddItem(*item[1], 3, 3);
 
     // one instance per room
-    dungeon.GetRoom("zen").AddInstance(*instances[0], 3, 1);
-    dungeon.GetRoom("hennessy hall").AddInstance(*instances[1], 1, 3);
-    dungeon.GetRoom("rec center").AddInstance(*instances[2], 2, 1);
-    dungeon.GetRoom("dreyfuss").AddInstance(*instances[3], 3, 2);
+    dungeon.GetRoom("zen").AddInstance(*instances[0], 3, 1); // Sinha
+    dungeon.GetRoom("hennessy hall").AddInstance(*instances[1], 1, 3); // Vallone
+    dungeon.GetRoom("rec center").AddInstance(*instances[2], 2, 1); // Singh
+    dungeon.GetRoom("dreyfuss").AddInstance(*instances[3], 3, 2); // Darwish
 
 
 
