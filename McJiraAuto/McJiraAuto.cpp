@@ -63,6 +63,60 @@ namespace McJiraAutomatedTestProject
 			std::string message = "Final health is " + std::to_string(player.GetHealth()) + "\n";
 			Logger::WriteMessage(message.c_str());
 		}
+		//Added by me
+		TEST_METHOD(PlayerAttackPowerModificationTests) {
+			Player player;
+			Logger::WriteMessage("Increase player's attack power and verify\n");
+			player.AddAttackPower(5);
+			Assert::AreEqual(player.GetAttackPower(), 15, L"Attack power increase failed!");
+
+			Logger::WriteMessage("Attempt to set negative attack power and ensure it remains unchanged\n");
+			player.AddAttackPower(-20);
+			Assert::AreEqual(player.GetAttackPower(), 15, L"Attack power incorrectly modified to negative!");
+		}
+
+		TEST_METHOD(PlayerInitialPositionTest)
+		{
+			Player player;
+			Logger::WriteMessage("Verify player's initial position is (0, 0)\n");
+			Assert::AreEqual(player.GetPlayerAxisX(), 0, L"Player's initial X-axis position is incorrect!");
+			Assert::AreEqual(player.GetPlayerAxisY(), 0, L"Player's initial Y-axis position is incorrect!");
+		}
+		TEST_METHOD(EnemyDefaultConstructorTest)
+		{
+			Enemy enemy;
+			Logger::WriteMessage("Verify default enemy has 25.0 health and correct default name\n");
+			Assert::AreEqual(enemy.getHealth(), 25.0, L"Default enemy health is incorrect!");
+			Assert::AreEqual(enemy.getEnemyName(), std::string("Default Enemy"), L"Default enemy name is incorrect!");
+		}
+
+		TEST_METHOD(PlayerFullHealthTest)
+		{
+			Player player;
+			Logger::WriteMessage("Set player's health to maximum and verify\n");
+			player.SetInitialHealth();
+			Assert::AreEqual(player.GetHealth(), 100, L"Player's health is not set to maximum!");
+		}
+
+		TEST_METHOD(EnemyTakesDamageTest)
+		{
+			Enemy enemy;
+			Logger::WriteMessage("Inflict damage on enemy and verify health decreases correctly\n");
+			enemy.EnemyTakeDamage(10);
+			Assert::AreEqual(enemy.getHealth(), 15.0, L"Enemy health after taking damage is incorrect!");
+		}
+
+		TEST_METHOD(PlayerIsAliveTest)
+		{
+			Player player;
+			Logger::WriteMessage("Verify player is alive with positive health\n");
+			Assert::IsTrue(player.isAlive(), L"Player is not alive when health is positive!");
+
+			Logger::WriteMessage("Reduce player health to zero and verify they are not alive\n");
+			player.TakeDamage(100);
+			Assert::IsFalse(player.isAlive(), L"Player is still alive with zero or negative health!");
+		}
+
 
 		// TBD test method
 		// Let's say we confine health between zero & maxHealth
