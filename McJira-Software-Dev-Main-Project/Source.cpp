@@ -139,7 +139,12 @@ int main() {
             if (currentRoom.isEnemyAtPlayerPosition()) {
                 cout << "\nYou encounter " << currentRoom.GetEnemyAtPlayerPosition()->getEnemyName();
                 enemies[currentRoom.GetEnemyAtPlayerPosition()->getEnemyID()]->displayEnemyInfo();
-
+                if (currentRoom.GetEnemyAtPlayerPosition()->getEnemyName() == "Knorr Bot") {
+                    playSound("Sounds\\Knorr.wav");
+                }
+                if (currentRoom.GetEnemyAtPlayerPosition()->getEnemyName() == "Zhu Bot") {
+                    playSound("Sounds\\Zhu.wav");
+                }
                 //prompt only if Ian's health is above 0
                 if (enemies[currentRoom.GetEnemyAtPlayerPosition()->getEnemyID()]->getHealth() > 0) {
                     cout << "Type " << currentRoom.GetEnemyAtPlayerPosition()->getEnemyName() << " if you think you can take them out\n";
