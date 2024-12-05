@@ -99,6 +99,7 @@ int main() {
             // Avoid displaying instructions multiple times
            // Avoid displaying instructions multiple times
             Room& currentRoom = dungeonMap.GetRoom(dungeonMap.GetCurrentRoomName());
+
             if (!currentRoom.HasEnemy("IAN") && !currentRoom.HasItem()) {
                 cout << dialog.GetInstructions();
             }
@@ -265,7 +266,18 @@ void instantiateGame(Player& player, Inventory& inventory, Map& dungeon, vector<
     enemy.push_back(new Enemy(25, 5.0, 10.0, 30, 10, 1, "Robotic Staff", "Hey,get out of here", "You have Bested me!"));
     enemy.push_back(new Enemy(40, 10, 20, 30, 5, 2, "Ian's Minion", "You encounter one of Ian's Minions! It growls and prepares to attack you.","The Minion collapses to the ground, defeated. You feel a small sense of victory."));
     enemy.push_back(new Enemy(60, 5, 22, 28, 5, 3,"Statue", "The Statue stands tall, its stone eyes glowing red as it comes to life. This is the guardian of the Zen, and it won't let you pass without a fight.","The Statue crumbles into a pile of rubble, its red eyes fading. The path to the Zen is now clear."));
-    
+    //enemy.push_back(new Enemy(30, 5, 15, 30, 5, 7, "Knorr Bot", "The Knorr Bot rolls into the room, chalk in hand, ready to test your understanding of quantum mechanics. 'Are you prepared to face the forces of physics? I am, quite literally, a force to be reckoned with!", "With a mechanical whine, the Knorr Bot collapses into a heap of wires and broken chalk. 'Even a perfect theory can break under pressure...'"));
+
+    //boss enemies
+    enemy.push_back(new Enemy(100, 15, 22, 28, 5, 4, "Ian The Devil", "You enter the Rec Center gym at FDU, the lights flicker and a sinister presence fills the air. Ian the Devil steps forward from the shadows, his voice echoing: 'So, you've dared to challenge me in my domain—your final workout begins now!", "With a final roar, Ian the Devil collapses onto the gym floor, his power fading away. As the Rec Center gym grows quiet, his voice lingers: 'You may have defeated me, but the strength of the darkness will haunt this place forever."));
+    enemy.push_back(new Enemy(120, 20, 24, 26, 10, 5, "Alva Dean Bot", "The Alva Dean Bot stands atop the Dreyfuss auditorium stage, holding a gavel in one hand and a stack of papers in the other. 'You've come to challenge my authority? Your time at this university ends now!", "The Dean of Doom drops his gavel, sighing as he fades into the shadows. 'Your degree may survive, but will your spirit endure"));
+    enemy.push_back(new Enemy(150, 25, 24, 26, 10, 6, "The Devil of Dickinson", "The lights in Hennessy Hall dim as an ominous laugh echoes. The Devil of Dickinson emerges from a fiery portal, his glowing eyes fixed on you. 'So, you've made it this far... But this is where your journey ends!", "With a final roar, the Devil of Dickinson collapses into the ground, his fiery form fading into smoke. 'This battle is yours... but the war is eternal..."));
+
+    //normal enemies
+    enemy.push_back(new Enemy(30, 5, 15, 30, 5, 7, "Knorr Bot", "The Knorr Bot rolls into the room, chalk in hand, ready to test your understanding of quantum mechanics. 'Are you prepared to face the forces of physics? I am, quite literally, a force to be reckoned with!", "With a mechanical whine, the Knorr Bot collapses into a heap of wires and broken chalk. 'Even a perfect theory can break under pressure...'"));
+    enemy.push_back(new Enemy(30, 5, 15, 30, 5, 8, "Zhu Bot", "A soft but determined voice greets you as the Prof Zhu Bot enters the room, holding a piece of chalk and a laser pointer. 'Welcome to the advanced physics challenge. I hope you're ready to learn... or to fail. The laws of motion will decide your fate!'", "With a calm smile, Prof Zhu Bot steps back, saying, 'You have proven your mastery over the forces of the universe. Remember, knowledge is the ultimate power.' The bot powers down gracefully."));
+
+
     // adding instances as new dynamic objects
     instances.push_back(new Instance("Dr. Sinha", "\nDr. Sinha seems frustrated, so you ask her what's bothering her. \n'I'm becoming increasingly worried about how many weapons are on this campus'\n Sinha huffs, 'Isn't this supposed to be a closed campus? Where is public safety?\n'Why am I even here? I'm supposed to be on sabbatical. They don't pay me enough for this...'\n She wanders away.\n\n"));
     instances.push_back(new Instance("Prof. Vallone", "\n'You enter a room to see Prof. Vallone stuck in a trap.\n'I tried making traps to avoid direct confontation with the robots, but they pushed me in!'\n'Please help me, I'll give you anything! Apples, cookies, even Scrum Legos!'\nAfter hearing Scrum Legos, you are filled with excitement and determination. \nYou release Prof. Vallone, and he thanks you.\n\n"));
@@ -277,6 +289,16 @@ void instantiateGame(Player& player, Inventory& inventory, Map& dungeon, vector<
     dungeon.GetRoom("hennessy hall").AddEnemy(*enemy[1], 2, 3);//Robotic Staff
     dungeon.GetRoom("hennessy hall").AddEnemy(*enemy[2], 3, 3);//Ian's minion
     dungeon.GetRoom("zen").AddEnemy(*enemy[3], 2, 3); // Statue
+    
+    //bosses
+    dungeon.GetRoom("rec center").AddEnemy(*enemy[4], 2, 2); //Ian The Devil
+    dungeon.GetRoom("dreyfuss").AddEnemy(*enemy[5], 3, 3); //Alva Dean Bot
+    dungeon.GetRoom("hennessy hall").AddEnemy(*enemy[6], 2, 5);//Devil of Dickinson
+    //normal enemies
+    dungeon.GetRoom("science building").AddEnemy(*enemy[7], 1, 1);
+    dungeon.GetRoom("science building").AddEnemy(*enemy[8], 2, 2);
+
+
 
 
     dungeon.GetRoom("zen").AddItem(*item[0], 2, 2);
