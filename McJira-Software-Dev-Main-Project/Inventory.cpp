@@ -135,6 +135,7 @@ void Inventory::InspectItemFromHotBar(string desiredItem, Enemy& enemy)
 }
 void Inventory::ShowInventory(){
 
+	cout << "Inventory: " << endl;
 	//checks if the vector is empty
 	if (inventory.empty())
 	{

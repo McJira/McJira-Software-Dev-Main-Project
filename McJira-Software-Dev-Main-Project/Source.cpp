@@ -109,6 +109,7 @@ int main() {
                 player_1.DisplayStats();
             }
             else if (player_1.GetMove() == "inv" || player_1.GetMove() == "inventory") { // in case user types in inventory instead
+                system("CLS");
                 inventory.ShowInventory();
             }
             else if (player_1.GetMove() == "map") {
@@ -118,6 +119,7 @@ int main() {
                 dungeonMap.DisplayCurrentRoomMap();
             }
             else if (player_1.GetMove() == "w" || player_1.GetMove() == "a" || player_1.GetMove() == "s" || player_1.GetMove() == "d") {
+                system("CLS");
                 dungeonMap.MovePlayerInRoom(player_1.GetMove()[0]);
             }
             else if (player_1.GetMove() == "inspect") {
@@ -228,6 +230,7 @@ int main() {
         if (!playAgain) {
             break;
         }
+
 
     }
 
