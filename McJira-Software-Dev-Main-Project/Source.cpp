@@ -292,7 +292,7 @@ void instantiateGame(Player& player, Inventory& inventory, Map& dungeon, vector<
     
     //bosses
     dungeon.GetRoom("rec center").AddEnemy(*enemy[4], 2, 2); //Ian The Devil
-    dungeon.GetRoom("dreyfuss").AddEnemy(*enemy[5], 3, 3); //Alva Dean Bot
+    dungeon.GetRoom("dreyfuss").AddEnemy(*enemy[5], 2, 3); //Alva Dean Bot
     dungeon.GetRoom("hennessy hall").AddEnemy(*enemy[6], 2, 5);//Devil of Dickinson
     //normal enemies
     dungeon.GetRoom("science building").AddEnemy(*enemy[7], 1, 1);
@@ -303,10 +303,15 @@ void instantiateGame(Player& player, Inventory& inventory, Map& dungeon, vector<
 
     dungeon.GetRoom("zen").AddItem(*item[0], 2, 2);
     dungeon.GetRoom("zen").AddItem(*item[1], 3, 3);
+
     dungeon.GetRoom("hennessy hall").AddItem(*item[2], 3, 1);
     dungeon.GetRoom("hennessy hall").AddItem(*item[0], 1, 1);
-    dungeon.GetRoom("dreyfuss").AddItem(*item[0], 3, 3);
+
+    dungeon.GetRoom("dreyfuss").AddItem(*item[0], 1, 1);
     dungeon.GetRoom("dreyfuss").AddItem(*item[3], 1, 3);
+
+    dungeon.GetRoom("science building").AddItem(*item[2], 3, 1);
+
 
 
 
