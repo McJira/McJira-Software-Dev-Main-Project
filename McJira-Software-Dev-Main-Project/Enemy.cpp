@@ -11,7 +11,7 @@ Enemy::Enemy() : health(25.0), attackDamage(10.0), enemyIntro("Default Enemy") {
 
 }
 //Implementation of custom enemy constructor
-Enemy::Enemy(double h, double dmg, int widthS, int widthE, int speed, string name, string intro, string outro) : health(h), attackDamage(dmg), hitZoneStart(widthS), hitZoneEnd(widthE), attackSpeed(speed), enemyName(name), enemyIntro(intro), enemyOutro(outro)
+Enemy::Enemy(double h, double dmg, int widthS, int widthE, int speed, int id, string name, string intro, string outro) : health(h), attackDamage(dmg), hitZoneStart(widthS), hitZoneEnd(widthE), attackSpeed(speed), enemyId(id), enemyName(name), enemyIntro(intro), enemyOutro(outro)
 {
 
 	enemiesRemaining++;
@@ -75,6 +75,11 @@ int Enemy::getHitZoneEnd() const
 int Enemy::getAttackSpeed() const
 {
 	return attackSpeed;
+}
+
+int Enemy::getEnemyID() const
+{
+	return enemyId;
 }
 
 //Getter function for the name of the enemy

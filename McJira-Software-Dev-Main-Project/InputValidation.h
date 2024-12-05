@@ -9,6 +9,7 @@ class InputValidation {
 public:
 
     void ToLowerCase(string&);
+    string convertInCodeNameToLowerCase(string);
 
 
 

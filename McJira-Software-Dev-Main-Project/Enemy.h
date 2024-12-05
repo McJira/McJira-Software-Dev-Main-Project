@@ -17,6 +17,7 @@ private:
 	int hitZoneStart;
 	int hitZoneEnd;
 	int attackSpeed;
+	int enemyId;
 	string enemyName;
 	string enemyIntro;
 	string enemyOutro;
@@ -30,7 +31,7 @@ public:
 	Enemy();
 
 	//Constructor to create custom enemies
-	Enemy(double h, double dmg, int widthS, int widthE, int speed, string name, string intro, string outro);
+	Enemy(double h, double dmg, int widthS, int widthE, int speed, int enemyID, string name, string intro, string outro);
 
 	//Deconstructor for after enemy is defeated
 	~Enemy();
@@ -58,6 +59,9 @@ public:
 
 	//Getter function for the attack speed required
 	int getAttackSpeed() const;
+
+	//Getter function for the ID of a an enemy
+	int getEnemyID() const;
 
 	//Getter function for the name of the enemy
 	string getEnemyName() const;

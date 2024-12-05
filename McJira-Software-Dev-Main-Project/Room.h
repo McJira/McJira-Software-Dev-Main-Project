@@ -149,11 +149,21 @@ public:
         }
     }
 
+    bool isEnemyAtPlayerPosition() {
+
+        if (ObjectsGrid[playerX][playerY] == 'E'){
+            return true;
+        }
+
+        return false;
+    }
+
     // Method to add an enemy at a specific position in the enemy grid
     bool AddEnemy(const Enemy& enemy, int x, int y) {
         if (x >= 0 && x < enemygrid.size() && y >= 0 && y < enemygrid[0].size() && x != playerX && y != playerY) {
             enemygrid[x][y] = enemy;
             grid[x][y] = 'E';  // Mark enemy position in the room layout
+            ObjectsGrid[x][y] = 'E'; // Mark enemy position in the objects grid
             return true;
         }
         cout << "Invalid enemy position!" << endl;
@@ -161,10 +171,11 @@ public:
     }
     //This function removes an enemy from the room.
     
-    bool RemoveEnemy(int x, int y) {
-        if (x >= 0 && x < enemygrid.size() && y >= 0 && y < enemygrid[0].size()) {
-            enemygrid[x][y] = Enemy();  // Replace enemy with a default blank enemy
-            grid[x][y] = ' ';           // Clear the position on the room layout
+    bool RemoveEnemy() {
+        if (playerX >= 0 && playerX < enemygrid.size() && playerY >= 0 && playerY < enemygrid[0].size()) {
+            enemygrid[playerX][playerY] = Enemy();  // Replace enemy with a default blank enemy
+            grid[playerX][playerY] = ' ';           // Clear the position on the room layout
+            ObjectsGrid[playerX][playerY] = ' ';    // Clear the position on the objects grid
             return true;
         }
         cout << "Invalid position to remove enemy!" << endl;
