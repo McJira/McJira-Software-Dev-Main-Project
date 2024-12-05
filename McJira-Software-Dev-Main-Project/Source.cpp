@@ -20,7 +20,7 @@ USE THIS SECTION FOR NEEDED SPECIFICATIONS
 ITEM ID's:
 
 1. healing potion ID: 1
-2. basic sword ID: 2
+2. all strength potion ID: 2
 3. Add more when adding new items please, this will be used with the inventory
 
 
@@ -255,7 +255,9 @@ void instantiateGame(Player& player, Inventory& inventory, Map& dungeon, vector<
 
     //add new dynamic objects to a corresponding vector, THESE OBJECTS HAVE TO GET DESTROYED UPON RESTART
     item.push_back(new Item(1, "healing", 1, "A glass bottle filled with a shimmering red liquid ", 15));
-    item.push_back(new Item(2, "sword", 1, "A Basic Sword", 100));
+    item.push_back(new Item(2, "strength", 1, "A glass bottle filled with a dull grey liquid", 10));
+    item.push_back(new Item(2, "strengthplus", 1, "A bottle filled with a black shimmering liquid", 20));
+    item.push_back(new Item(2, "strengthsuper", 1, "A bottle labeled super strength with an, almost alive looking, liquid moving within", 30));
     enemy.push_back(new Enemy(50.0, 10.0, 24, 26, 5, 0, "IAN", "I am IAN! You really think you can defeat me? Give it your best shot!", "no... NOO... THIS CAN'T BE...."));
     enemy.push_back(new Enemy(25, 5.0, 10.0, 30, 10, 1, "Robotic Staff", "Hey,get out of here", "You have Bested me!"));
     enemy.push_back(new Enemy(40, 10, 20, 30, 5, 2, "Ian's Minion", "You encounter one of Ian's Minions! It growls and prepares to attack you.","The Minion collapses to the ground, defeated. You feel a small sense of victory."));
@@ -273,8 +275,15 @@ void instantiateGame(Player& player, Inventory& inventory, Map& dungeon, vector<
     dungeon.GetRoom("hennessy hall").AddEnemy(*enemy[2], 3, 3);//Ian's minion
     dungeon.GetRoom("zen").AddEnemy(*enemy[3], 2, 3); // Statue
 
+
     dungeon.GetRoom("zen").AddItem(*item[0], 2, 2);
     dungeon.GetRoom("zen").AddItem(*item[1], 3, 3);
+    dungeon.GetRoom("hennessy hall").AddItem(*item[2], 3, 1);
+    dungeon.GetRoom("hennessy hall").AddItem(*item[0], 1, 1);
+    dungeon.GetRoom("dreyfuss").AddItem(*item[0], 3, 3);
+    dungeon.GetRoom("dreyfuss").AddItem(*item[3], 1, 3);
+
+
 
     // one instance per room
     dungeon.GetRoom("zen").AddInstance(*instances[0], 3, 1); // Sinha

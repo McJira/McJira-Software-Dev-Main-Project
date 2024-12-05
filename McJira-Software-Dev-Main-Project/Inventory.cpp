@@ -12,11 +12,13 @@ void Inventory::AddItemToInventory(Item itemToBeAdded){
 	}	
 	else
 	{
-		cout << endl << itemToBeAdded.GetItemName() << " Added To Inventory " << endl;
+		
+		cout << endl << itemToBeAdded.GetItemName() << " Added To Inventory " << endl;		
 		inventory.push_back(itemToBeAdded);
 	}
 
 }
+
 void Inventory::InspectItemFromHotBar(string desiredItem, Player& player)
 {
 	//bool to check if the item was found in the data structure or not
@@ -57,8 +59,10 @@ void Inventory::InspectItemFromHotBar(string desiredItem, Player& player)
 				}
 				case 2: {
 					player.AddAttackPower(inventory.at(i).GetItemUse());
+					RemoveItemFromInventory(i);
 					break;
 				}
+				
 				default:
 					break;
 				}
